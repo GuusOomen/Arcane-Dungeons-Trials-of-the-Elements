@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="2D_character"
+config/name="Arcane-Dungeons-Trials-of-the-Elements"
 run/main_scene="res://Character.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
