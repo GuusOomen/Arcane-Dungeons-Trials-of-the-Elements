@@ -6,6 +6,7 @@
 [node name="Node" type="Node"]
 
 [node name="TextureRect" type="TextureRect" parent="."]
+z_index = -100
 offset_right = 1150.0
 offset_bottom = 647.0
 texture = ExtResource("1_1ifyt")

@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@export var projectile_scene: PackedScene
+
 # Constants for various actions
 const SPEED = 200.0
 const DASH_SPEED = 600.0
@@ -81,11 +83,17 @@ func _physics_process(delta: float) -> void:
 		# Movement and attacks only available when not dashing, rolling, or attacking
 		velocity = input_vector * SPEED
 		
+		if Input.is_action_just_pressed("bow"):
+			global_position.angle_to(get_global_mouse_position())
+			var projectile := projectile_scene.instantiate() as CharacterBody2D
+			projectile.z_index = -1
+			projectile.velocity = (get_global_mouse_position() - global_position).normalized()
+			projectile.global_position = global_position + 50.0 * projectile.velocity
+			get_tree().root.add_child(projectile)
+		
 		# Attack handling
 		if Input.is_action_just_pressed("attack"):
-			perform_attack("short")
-		elif Input.is_action_just_pressed("long_attack"):
-			perform_attack("long")
+			perform_attack()
 
 		# Dash and Roll
 		if Input.is_action_just_pressed("dash"):
@@ -95,16 +103,18 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-func perform_attack(range_type: String) -> void:
+var attack_counter := 0
+func perform_attack() -> void:
 	# Set the attack animation based on the direction and range type
-	if range_type == "short":
-		play_animation(current_direction + "-Slash-1-short")
+	if 0 == attack_counter % 2:
+		play_animation(current_direction + "-Slash-1")
 		attack_timer = ATTACK_DURATION_SHORT
 	else:
-		play_animation(current_direction + "-Slash-2-long")
-		attack_timer = ATTACK_DURATION_LONG
+		play_animation(current_direction + "-Slash-2")
+		attack_timer = ATTACK_DURATION_SHORT
 	is_attacking = true
 	changed_direction_attack = false
+	attack_counter += 1
 
 func start_dash(direction: Vector2) -> void:
 	is_dashing = true
