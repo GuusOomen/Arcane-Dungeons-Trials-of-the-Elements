@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://br858p83p1f5r"]
+
+[ext_resource type="Texture2D" uid="uid://1h5o2rgunp8x" path="res://roguelike_dungeon_2_by_isohei_d9gb2jj-fullview.jpg" id="1_1ifyt"]
+[ext_resource type="PackedScene" uid="uid://cokr0nbhhpsng" path="res://Main_character.tscn" id="2_pqbwu"]
+
+[node name="Node" type="Node"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1150.0
+offset_bottom = 647.0
+texture = ExtResource("1_1ifyt")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_pqbwu")]
+position = Vector2(586, 328)
+scale = Vector2(4, 4)
