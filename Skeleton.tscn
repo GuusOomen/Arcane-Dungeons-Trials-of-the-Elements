@@ -23,8 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://dv4bo8mtse1xs" path="res://enemies/skeleton/Right/Png/SkeletonWithSwordRightRun.png" id="20_32cq0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h655u"]
-radius = 6.0
-height = 22.0
+radius = 8.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iilo7"]
 atlas = ExtResource("1_n3ch6")
@@ -565,7 +564,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_o5bs2")
 }],
-"loop": true,
+"loop": false,
 "name": &"Back-Attack",
 "speed": 8.0
 }, {
@@ -686,7 +685,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_h0sxw")
 }],
-"loop": true,
+"loop": false,
 "name": &"Front-Attack",
 "speed": 8.0
 }, {
@@ -807,7 +806,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rjwpq")
 }],
-"loop": true,
+"loop": false,
 "name": &"Left-Attack",
 "speed": 8.0
 }, {
@@ -928,7 +927,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5gwki")
 }],
-"loop": true,
+"loop": false,
 "name": &"Right-Attack",
 "speed": 8.0
 }, {
@@ -1029,10 +1028,10 @@ animations = [{
 script = ExtResource("1_bwphp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 4)
+position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_h655u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wougq")
-animation = &"Right-Walk"
-frame_progress = 0.387188
+animation = &"Front-Attack"
+autoplay = "Front-Idle"
