@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Character_controls.gd" id="1_neyl5"]
 [ext_resource type="PackedScene" uid="uid://b1sl54bed4u5h" path="res://projectile.tscn" id="2_30pio"]
 [ext_resource type="Texture2D" uid="uid://dps7jbb60lnle" path="res://main_character/Back/Base.png" id="2_mria7"]
-[ext_resource type="Material" uid="uid://dylfj54igclxt" path="res://cloth.tres" id="3_sf4tv"]
+[ext_resource type="Material" path="res://cloth.tres" id="3_sf4tv"]
 [ext_resource type="Texture2D" uid="uid://mcg63gr366sb" path="res://main_character/Back/Bow Attack.png" id="3_y36h0"]
 [ext_resource type="Texture2D" uid="uid://bomein7b6qxvt" path="res://main_character/Back/Bow Base.png" id="4_qu5j1"]
 [ext_resource type="Texture2D" uid="uid://drvoa6f37ua3q" path="res://main_character/Back/Dash.png" id="5_1cago"]
@@ -1329,7 +1329,7 @@ height = 10.0
 radius = 5.0
 height = 20.0
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
 motion_mode = 1
 script = ExtResource("1_neyl5")
 projectile_scene = ExtResource("2_30pio")

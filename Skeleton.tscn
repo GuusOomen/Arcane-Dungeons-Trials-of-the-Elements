@@ -1,4 +1,4 @@
-[gd_scene load_steps=152 format=3 uid="uid://bqphqqsbp1btx"]
+[gd_scene load_steps=156 format=3 uid="uid://bqphqqsbp1btx"]
 
 [ext_resource type="Script" path="res://skeleton.gd" id="1_bwphp"]
 [ext_resource type="Texture2D" uid="uid://isct52h2bdwy" path="res://enemies/skeleton/Up/Png/SkeletonWithSwordUpAttack01.png" id="1_n3ch6"]
@@ -1024,6 +1024,19 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mvxap"]
+resource_local_to_scene = true
+size = Vector2(16, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4tmt0"]
+size = Vector2(16, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yy4wu"]
+size = Vector2(12, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_awidb"]
+size = Vector2(12, 30)
+
 [node name="Skeleton" type="CharacterBody2D"]
 script = ExtResource("1_bwphp")
 
@@ -1035,3 +1048,42 @@ shape = SubResource("CapsuleShape2D_h655u")
 sprite_frames = SubResource("SpriteFrames_wougq")
 animation = &"Front-Attack"
 autoplay = "Front-Idle"
+frame = 7
+frame_progress = 1.0
+
+[node name="Front-Detect" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Front-Detect"]
+position = Vector2(0, 22)
+shape = SubResource("RectangleShape2D_mvxap")
+
+[node name="Back-Detect" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Back-Detect"]
+position = Vector2(0, -18)
+shape = SubResource("RectangleShape2D_4tmt0")
+
+[node name="Right-Detect" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right-Detect"]
+position = Vector2(14, 2)
+shape = SubResource("RectangleShape2D_yy4wu")
+
+[node name="Left-Detect" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left-Detect"]
+position = Vector2(-14, 2)
+shape = SubResource("RectangleShape2D_awidb")
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.875
+
+[connection signal="body_entered" from="Front-Detect" to="." method="_on_detect_body_entered" binds= ["Front"]]
+[connection signal="body_exited" from="Front-Detect" to="." method="_on_detect_body_exited" binds= ["Front"]]
+[connection signal="body_entered" from="Back-Detect" to="." method="_on_detect_body_entered" binds= ["Back"]]
+[connection signal="body_exited" from="Back-Detect" to="." method="_on_detect_body_exited" binds= ["Back"]]
+[connection signal="body_entered" from="Right-Detect" to="." method="_on_detect_body_entered" binds= ["Right"]]
+[connection signal="body_exited" from="Right-Detect" to="." method="_on_detect_body_exited" binds= ["Right"]]
+[connection signal="body_entered" from="Left-Detect" to="." method="_on_detect_body_entered" binds= ["Left"]]
+[connection signal="body_exited" from="Left-Detect" to="." method="_on_detect_body_exited" binds= ["Left"]]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
