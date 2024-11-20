@@ -5,6 +5,7 @@ extends CharacterBody2D
 # Constants for various actions
 const SPEED = 200.0
 const DASH_SPEED = 600.0
+const ROLL_SPEED = 400.0
 const ROLL_DURATION = 0.6
 const ATTACK_DURATION_SHORT = 0.6
 const ATTACK_DURATION_LONG = 1.06
@@ -99,7 +100,7 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("dash"):
 			start_dash(input_vector)
 		elif Input.is_action_just_pressed("roll"):
-			start_roll()
+			start_roll(input_vector)
 
 	move_and_slide()
 
@@ -119,12 +120,33 @@ func perform_attack() -> void:
 func start_dash(direction: Vector2) -> void:
 	is_dashing = true
 	dash_timer = 0.2
-	velocity = direction * DASH_SPEED
+	if direction == Vector2(0.0,0.0):
+		if current_direction == "Back":
+			velocity = (Vector2(0.0,-1.0)) * DASH_SPEED
+		elif current_direction == "Front":
+			velocity = (Vector2(0.0,1.0)) * DASH_SPEED
+		elif current_direction == "Side" and animation_player.flip_h == true:
+			velocity = (Vector2(-1.0,0.0)) * DASH_SPEED
+		else:
+			velocity = (Vector2(1.0,0.0)) * DASH_SPEED
+	else:
+		velocity = (direction * DASH_SPEED)
 	play_animation(current_direction + "-Dash")
 
-func start_roll() -> void:
+func start_roll(direction: Vector2) -> void:
 	is_rolling = true
 	roll_timer = ROLL_DURATION
+	if direction == Vector2(0.0,0.0):
+		if current_direction == "Back":
+			velocity = (Vector2(0.0,-0.5)) * ROLL_SPEED
+		elif current_direction == "Front":
+			velocity = (Vector2(0.0,0.5)) * ROLL_SPEED
+		elif current_direction == "Side" and animation_player.flip_h == true:
+			velocity = (Vector2(-0.5,0.0)) * ROLL_SPEED
+		else:
+			velocity = (Vector2(0.5,0.0)) * ROLL_SPEED
+	else:
+		velocity = (direction * 0.5 * ROLL_SPEED)
 	play_animation(current_direction + "-Roll")
 
 # Helper function to play animations
