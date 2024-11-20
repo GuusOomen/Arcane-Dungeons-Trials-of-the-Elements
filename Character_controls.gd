@@ -21,12 +21,26 @@ var is_rolling = false
 var roll_timer = 0.0
 var is_attacking = false
 var attack_timer = 0.0
-var last_input_vector = Vector2(0.0,0.0)
+var is_taking_dmg = false
+var dmg_timer = 0.0
+var last_input_vector = Vector2.ZERO
 var changed_direction_attack = false
 var current_direction = "Front"  # Track direction for animation ("Front", "Back", "Side")
 var attack_direction = ""  # Track direction for attack ("up", "down", "left", "right")
 
+# variables to track health
+var hearts_list : Array[TextureRect]
+var health = 5
+
+# variables to track upgrades
+var dash_upgraded = false
+
 @onready var animation_player = $AnimatedSprite2D
+
+func _ready() -> void:
+	var hearts_parent = $"../HUD/CanvasLayer/HBoxContainer"
+	for child in hearts_parent.get_children():
+		hearts_list.append(child)
 
 func get_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
@@ -38,7 +52,7 @@ func _physics_process(delta: float) -> void:
 		Input.get_action_strength("right") - Input.get_action_strength("left"),
 		Input.get_action_strength("down") - Input.get_action_strength("up")
 	).normalized()
-	if input_vector != Vector2(0.0,0.0):
+	if input_vector != Vector2.ZERO:
 		last_input_vector = input_vector
 	# Determine the character's facing direction based on input
 	if input_vector.x < 0 and !is_attacking:
@@ -53,7 +67,12 @@ func _physics_process(delta: float) -> void:
 		current_direction = "Front"
 
 	# Manage dashing and rolling states
-	if is_dashing:
+	if is_taking_dmg:
+		velocity = input_vector * 0
+		dmg_timer -= delta
+		if dmg_timer <= 0:
+			is_taking_dmg = false
+	elif is_dashing:
 		dash_timer -= delta
 		if dash_timer <= 0:
 			is_dashing = false
@@ -87,12 +106,7 @@ func _physics_process(delta: float) -> void:
 		velocity = input_vector * SPEED
 		
 		if Input.is_action_just_pressed("bow"):
-			global_position.angle_to(get_global_mouse_position())
-			var projectile := projectile_scene.instantiate() as CharacterBody2D
-			projectile.z_index = -1
-			projectile.velocity = (get_global_mouse_position() - global_position).normalized()
-			projectile.global_position = global_position + 50.0 * projectile.velocity
-			get_tree().root.add_child(projectile)
+			perform_magic()
 		
 		# Attack handling
 		if Input.is_action_just_pressed("attack"):
@@ -119,6 +133,14 @@ func perform_attack() -> void:
 	changed_direction_attack = false
 	attack_counter += 1
 
+func perform_magic() -> void:
+	global_position.angle_to(get_global_mouse_position())
+	var projectile := projectile_scene.instantiate() as CharacterBody2D
+	projectile.z_index = -1
+	projectile.velocity = (get_global_mouse_position() - global_position).normalized()
+	projectile.global_position = global_position + 50.0 * projectile.velocity
+	get_tree().root.add_child(projectile)
+
 func start_dash(direction: Vector2) -> void:
 	is_dashing = true
 	dash_timer = 0.2
@@ -135,3 +157,28 @@ func start_roll(direction: Vector2) -> void:
 func play_animation(anim_name: String) -> void:
 	if animation_player.animation != anim_name:
 		animation_player.play(anim_name)
+
+func heal():
+	if health < 5:
+		health += 1
+		update_heart_display_heal()
+
+func take_damage():
+	is_taking_dmg = true
+	dmg_timer = 0.4
+	if health > 0:
+		health -= 1
+		play_animation(current_direction + "-Hit")
+		update_heart_display_dmg()
+	#if health == 0:
+		#dead()
+
+func update_heart_display_dmg():
+	for i in range(hearts_list.size()):
+		if i == health:
+			hearts_list[i].get_child(0).play("Hit")
+
+func update_heart_display_heal():
+	for i in range(hearts_list.size()):
+		if i == health - 1:
+			hearts_list[i].get_child(0).play("Heal")
