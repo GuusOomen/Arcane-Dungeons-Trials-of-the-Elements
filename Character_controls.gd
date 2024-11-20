@@ -21,6 +21,7 @@ var is_rolling = false
 var roll_timer = 0.0
 var is_attacking = false
 var attack_timer = 0.0
+var last_input_vector = Vector2(0.0,0.0)
 var changed_direction_attack = false
 var current_direction = "Front"  # Track direction for animation ("Front", "Back", "Side")
 var attack_direction = ""  # Track direction for attack ("up", "down", "left", "right")
@@ -37,7 +38,8 @@ func _physics_process(delta: float) -> void:
 		Input.get_action_strength("right") - Input.get_action_strength("left"),
 		Input.get_action_strength("down") - Input.get_action_strength("up")
 	).normalized()
-
+	if input_vector != Vector2(0.0,0.0):
+		last_input_vector = input_vector
 	# Determine the character's facing direction based on input
 	if input_vector.x < 0 and !is_attacking:
 		current_direction = "Side"
@@ -98,9 +100,9 @@ func _physics_process(delta: float) -> void:
 
 		# Dash and Roll
 		if Input.is_action_just_pressed("dash"):
-			start_dash(input_vector)
+			start_dash(last_input_vector)
 		elif Input.is_action_just_pressed("roll"):
-			start_roll(input_vector)
+			start_roll(last_input_vector)
 
 	move_and_slide()
 
@@ -120,33 +122,13 @@ func perform_attack() -> void:
 func start_dash(direction: Vector2) -> void:
 	is_dashing = true
 	dash_timer = 0.2
-	if direction == Vector2(0.0,0.0):
-		if current_direction == "Back":
-			velocity = (Vector2(0.0,-1.0)) * DASH_SPEED
-		elif current_direction == "Front":
-			velocity = (Vector2(0.0,1.0)) * DASH_SPEED
-		elif current_direction == "Side" and animation_player.flip_h == true:
-			velocity = (Vector2(-1.0,0.0)) * DASH_SPEED
-		else:
-			velocity = (Vector2(1.0,0.0)) * DASH_SPEED
-	else:
-		velocity = (direction * DASH_SPEED)
+	velocity = (direction * DASH_SPEED)
 	play_animation(current_direction + "-Dash")
 
 func start_roll(direction: Vector2) -> void:
 	is_rolling = true
 	roll_timer = ROLL_DURATION
-	if direction == Vector2(0.0,0.0):
-		if current_direction == "Back":
-			velocity = (Vector2(0.0,-0.5)) * ROLL_SPEED
-		elif current_direction == "Front":
-			velocity = (Vector2(0.0,0.5)) * ROLL_SPEED
-		elif current_direction == "Side" and animation_player.flip_h == true:
-			velocity = (Vector2(-0.5,0.0)) * ROLL_SPEED
-		else:
-			velocity = (Vector2(0.5,0.0)) * ROLL_SPEED
-	else:
-		velocity = (direction * 0.5 * ROLL_SPEED)
+	velocity = (direction * 0.5 * ROLL_SPEED)
 	play_animation(current_direction + "-Roll")
 
 # Helper function to play animations
