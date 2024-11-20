@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://1h5o2rgunp8x" path="res://roguelike_dungeon_2_by_isohei_d9gb2jj-fullview.jpg" id="1_1ifyt"]
 [ext_resource type="PackedScene" uid="uid://cokr0nbhhpsng" path="res://Main_character.tscn" id="2_pqbwu"]
-[ext_resource type="PackedScene" uid="uid://ip246espjksp" path="res://rooms/Room1.tscn" id="3_ijfog"]
+[ext_resource type="PackedScene" uid="uid://ip246espjksp" path="res://rooms/Room1.tscn" id="3_w78d1"]
 
 [node name="Node" type="Node"]
 
@@ -16,6 +16,6 @@ texture = ExtResource("1_1ifyt")
 position = Vector2(586, 328)
 scale = Vector2(4, 4)
 
-[node name="Room1" parent="." instance=ExtResource("3_ijfog")]
-position = Vector2(345, 517)
+[node name="Room1" parent="." instance=ExtResource("3_w78d1")]
+position = Vector2(565, 444)
 scale = Vector2(2.5, 2.5)
