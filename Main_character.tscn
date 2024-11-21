@@ -36,7 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://7l74qd4okm6v" path="res://main_character/Side/Sheate.png" id="32_at81v"]
 [ext_resource type="Texture2D" uid="uid://xjbpewrc7f8q" path="res://main_character/Side/Slash 2.png" id="33_rd3nv"]
 [ext_resource type="Texture2D" uid="uid://diq8neiktbeho" path="res://main_character/Side/Walk.png" id="34_45jma"]
-[ext_resource type="Script" path="res://wall_checker.gd" id="37_p3vvw"]
+[ext_resource type="Script" path="res://wall_hider.gd" id="37_p3vvw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wosla"]
 atlas = ExtResource("3_y36h0")
@@ -1334,6 +1334,7 @@ radius = 4.0
 height = 14.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_neyl5")
 projectile_scene = ExtResource("2_30pio")
@@ -1349,11 +1350,11 @@ position = Vector2(0, 9)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_a7k2p")
 
-[node name="WallChecker" type="Area2D" parent="."]
+[node name="WallHider" type="Area2D" parent="."]
 position = Vector2(0, 1)
 script = ExtResource("37_p3vvw")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WallChecker"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallHider"]
 z_index = 1
 position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_q4xwv")

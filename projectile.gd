@@ -4,13 +4,13 @@ extends CharacterBody2D
 @export var direction := Vector2.RIGHT
 @export var speed := 300.0
 
-func _process(delta: float) -> void:
-	$Sprite2D.z_index = global_position.y / 10
-
 func _physics_process(delta: float) -> void:
 	velocity = speed * direction
 	move_and_slide()
 	speed *= 1.01
+	for i in get_slide_collision_count():
+		if get_slide_collision(i).get_collider() is TileMapLayer:
+			destroy()
 
 func destroy() -> void:
 	call_deferred("queue_free")

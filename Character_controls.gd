@@ -43,12 +43,12 @@ func _ready() -> void:
 		hearts_list.append(child)
 
 func get_input():
-	var input_direction = Input.get_vector("left", "right", "up", "down")
+	var input_direction := Input.get_vector("left", "right", "up", "down")
 	velocity = input_direction * SPEED
 
 func _physics_process(delta: float) -> void:
 	# Handle movement input in four directions
-	var input_vector = Vector2(
+	var input_vector := Vector2(
 		Input.get_action_strength("right") - Input.get_action_strength("left"),
 		Input.get_action_strength("down") - Input.get_action_strength("up")
 	).normalized()
@@ -138,7 +138,7 @@ func perform_magic() -> void:
 	projectile.cast_group = "Player"
 	projectile.direction = (get_global_mouse_position() - global_position).normalized()
 	projectile.global_position = global_position + 50.0 * projectile.direction
-	get_tree().root.add_child(projectile)
+	get_tree().current_scene.add_child(projectile)
 
 func start_dash(direction: Vector2) -> void:
 	is_dashing = true

@@ -9,6 +9,7 @@
 [node name="Node" type="Node"]
 
 [node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 z_index = -100
 offset_right = 1150.0
 offset_bottom = 647.0
@@ -17,12 +18,10 @@ texture = ExtResource("1_1ifyt")
 [node name="Player" parent="." instance=ExtResource("2_pqbwu")]
 position = Vector2(586, 328)
 scale = Vector2(4, 4)
-collision_layer = 0
 
 [node name="Player2" parent="." instance=ExtResource("2_pqbwu")]
 position = Vector2(868, 415)
 scale = Vector2(4, 4)
-collision_layer = 0
 
 [node name="Room1" parent="." instance=ExtResource("3_w78d1")]
 position = Vector2(565, 444)
