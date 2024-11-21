@@ -19,6 +19,11 @@ position = Vector2(586, 328)
 scale = Vector2(4, 4)
 collision_layer = 0
 
+[node name="Player2" parent="." instance=ExtResource("2_pqbwu")]
+position = Vector2(868, 415)
+scale = Vector2(4, 4)
+collision_layer = 0
+
 [node name="Room1" parent="." instance=ExtResource("3_w78d1")]
 position = Vector2(565, 444)
 scale = Vector2(2.5, 2.5)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=202 format=3 uid="uid://cokr0nbhhpsng"]
+[gd_scene load_steps=203 format=3 uid="uid://cokr0nbhhpsng"]
 
 [ext_resource type="Script" path="res://Character_controls.gd" id="1_neyl5"]
 [ext_resource type="PackedScene" uid="uid://b1sl54bed4u5h" path="res://projectile.tscn" id="2_30pio"]
@@ -1323,13 +1323,17 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a7k2p"]
 radius = 1.0
-height = 10.0
+height = 12.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q4xwv"]
 radius = 5.0
 height = 20.0
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pvafc"]
+radius = 4.0
+height = 14.0
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 motion_mode = 1
 script = ExtResource("1_neyl5")
 projectile_scene = ExtResource("2_30pio")
@@ -1353,3 +1357,9 @@ script = ExtResource("37_p3vvw")
 z_index = 1
 position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_q4xwv")
+
+[node name="Hitbox" type="Area2D" parent="." groups=["Hitbox"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 4)
+shape = SubResource("CapsuleShape2D_pvafc")

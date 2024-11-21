@@ -134,11 +134,10 @@ func perform_attack() -> void:
 	attack_counter += 1
 
 func perform_magic() -> void:
-	global_position.angle_to(get_global_mouse_position())
 	var projectile := projectile_scene.instantiate() as CharacterBody2D
-	projectile.z_index = -1
-	projectile.velocity = (get_global_mouse_position() - global_position).normalized()
-	projectile.global_position = global_position + 50.0 * projectile.velocity
+	projectile.cast_group = "Player"
+	projectile.direction = (get_global_mouse_position() - global_position).normalized()
+	projectile.global_position = global_position + 50.0 * projectile.direction
 	get_tree().root.add_child(projectile)
 
 func start_dash(direction: Vector2) -> void:
