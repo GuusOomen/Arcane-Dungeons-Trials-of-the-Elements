@@ -4,6 +4,6 @@
 
 [resource]
 shader = ExtResource("1_uvenr")
-shader_parameter/color_light = Color(1, 0, 0, 1)
-shader_parameter/color_medium = Color(0.509804, 0, 0, 1)
-shader_parameter/color_dark = Color(0.290196, 0, 0, 1)
+shader_parameter/color_light = Color(0, 0.792157, 1, 1)
+shader_parameter/color_medium = Color(0, 0.490196, 1, 1)
+shader_parameter/color_dark = Color(0, 0, 1, 1)
