@@ -23,11 +23,13 @@ scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_glqny")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 15)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_yh2m3")
 
 [node name="WallHider" type="Area2D" parent="."]
+visible = false
 script = ExtResource("3_pqlyo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallHider"]
@@ -35,6 +37,7 @@ position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_0ugwy")
 
 [node name="Damagebox" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Damagebox"]
 shape = SubResource("CircleShape2D_cu7uf")

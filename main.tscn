@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://br858p83p1f5r"]
+[gd_scene load_steps=7 format=3 uid="uid://br858p83p1f5r"]
 
 [ext_resource type="Texture2D" uid="uid://1h5o2rgunp8x" path="res://roguelike_dungeon_2_by_isohei_d9gb2jj-fullview.jpg" id="1_1ifyt"]
 [ext_resource type="PackedScene" uid="uid://cokr0nbhhpsng" path="res://Main_character.tscn" id="2_pqbwu"]
 [ext_resource type="PackedScene" uid="uid://ip246espjksp" path="res://rooms/Room1.tscn" id="3_w78d1"]
 [ext_resource type="PackedScene" uid="uid://bqphqqsbp1btx" path="res://Skeleton.tscn" id="4_ot48j"]
-[ext_resource type="PackedScene" path="res://hud.tscn" id="5_slawn"]
+[ext_resource type="PackedScene" uid="uid://b22wmlu7rrtem" path="res://hud.tscn" id="5_slawn"]
+[ext_resource type="PackedScene" uid="uid://d0ybc5t7vr58y" path="res://orb.tscn" id="6_8kdbm"]
 
 [node name="Node" type="Node"]
 
@@ -15,20 +16,20 @@ offset_right = 1150.0
 offset_bottom = 647.0
 texture = ExtResource("1_1ifyt")
 
-[node name="Player" parent="." instance=ExtResource("2_pqbwu")]
-position = Vector2(586, 328)
-scale = Vector2(4, 4)
-
-[node name="Player2" parent="." instance=ExtResource("2_pqbwu")]
-position = Vector2(868, 415)
-scale = Vector2(4, 4)
-
 [node name="Room1" parent="." instance=ExtResource("3_w78d1")]
 position = Vector2(565, 444)
 scale = Vector2(2.5, 2.5)
 
+[node name="Orb" parent="." instance=ExtResource("6_8kdbm")]
+position = Vector2(282, 179)
+type = "fire"
+
 [node name="Skeleton" parent="." instance=ExtResource("4_ot48j")]
 position = Vector2(378, 457)
 scale = Vector2(2.5, 2.5)
+
+[node name="Player" parent="." instance=ExtResource("2_pqbwu")]
+position = Vector2(586, 328)
+scale = Vector2(4, 4)
 
 [node name="HUD" parent="." instance=ExtResource("5_slawn")]

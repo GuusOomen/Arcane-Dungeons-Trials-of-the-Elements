@@ -38,13 +38,15 @@ var dash_upgraded = false
 @onready var animation_player = $AnimatedSprite2D
 
 func _ready() -> void:
+	var material = $AnimatedSprite2D.material
+	print(material.get_shader_parameter("color_light"))
 	var hearts_parent = $"../HUD/CanvasLayer/HBoxContainer"
 	for child in hearts_parent.get_children():
 		hearts_list.append(child)
 
-func get_input():
-	var input_direction := Input.get_vector("left", "right", "up", "down")
-	velocity = input_direction * SPEED
+#func get_input():
+	#var input_direction := Input.get_vector("left", "right", "up", "down")
+	#velocity = input_direction * SPEED
 
 func _physics_process(delta: float) -> void:
 	# Handle movement input in four directions
@@ -171,6 +173,10 @@ func take_damage():
 		update_heart_display_dmg()
 	#if health == 0:
 		#dead()
+
+func change_type(type):
+
+	print(type)
 
 func update_heart_display_dmg():
 	for i in range(hearts_list.size()):
