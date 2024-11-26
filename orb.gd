@@ -1,11 +1,24 @@
 extends Area2D
 
-@export var cast_group: StringName = "Player"
-@export var type : String
+@export var type : StringName
 
-func _on_ready() -> void:
+func _ready() -> void:
 	#CHange the color of the orb here
-	return
+	var fire = $"AnimatedSprite2D-fire"
+	var water = $"AnimatedSprite2D-water"
+	var earth = $"AnimatedSprite2D-earth"
+	var wind = $"AnimatedSprite2D-wind"
+	match type:
+		"fire":
+			fire.show()
+		"earth":
+			earth.show()
+		"water":
+			water.show()
+		"wind":
+			wind.show()
+		_:
+			print("Unknown type: ", type)
 
 func destroy() -> void:
 	call_deferred("queue_free")
@@ -14,4 +27,4 @@ func _on_area_entered(area: Area2D) -> void:
 	var parent := area.get_parent()
 	if parent.has_method("change_type"):
 		parent.change_type(type)
-	destroy()
+		destroy()

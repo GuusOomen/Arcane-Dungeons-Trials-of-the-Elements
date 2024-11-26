@@ -1,6 +1,10 @@
 extends CharacterBody2D
 
-@export var projectile_scene: PackedScene
+@export var projectile_scene_default: PackedScene
+@export var projectile_scene_fire: PackedScene
+@export var projectile_scene_water: PackedScene
+@export var projectile_scene_earth: PackedScene
+@export var projectile_scene_wind: PackedScene
 
 # Constants for various actions
 const SPEED = 200.0
@@ -32,6 +36,7 @@ var attack_direction = ""  # Track direction for attack ("up", "down", "left", "
 var hearts_list : Array[TextureRect]
 var health = 5
 
+var char_type = "default"
 # variables to track upgrades
 var dash_upgraded = false
 
@@ -134,7 +139,18 @@ func perform_attack() -> void:
 	attack_counter += 1
 
 func perform_magic() -> void:
-	var projectile := projectile_scene.instantiate() as CharacterBody2D
+	var projectile: CharacterBody2D
+	match char_type:
+		"fire":
+			projectile = projectile_scene_fire.instantiate() as CharacterBody2D
+		"earth":
+			projectile = projectile_scene_earth.instantiate() as CharacterBody2D
+		"water":
+			projectile = projectile_scene_water.instantiate() as CharacterBody2D
+		"wind":
+			projectile = projectile_scene_wind.instantiate() as CharacterBody2D
+		"default":
+			projectile = projectile_scene_default.instantiate() as CharacterBody2D
 	projectile.cast_group = "Player"
 	projectile.direction = (get_global_mouse_position() - global_position).normalized()
 	projectile.global_position = global_position + 50.0 * projectile.direction
@@ -173,6 +189,7 @@ func take_damage():
 		#dead()
 
 func change_type(type):
+	char_type = type
 	var material = $AnimatedSprite2D.material
 	match type:
 		"fire":

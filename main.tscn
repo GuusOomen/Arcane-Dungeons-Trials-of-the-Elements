@@ -1,11 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://br858p83p1f5r"]
+[gd_scene load_steps=12 format=3 uid="uid://br858p83p1f5r"]
 
 [ext_resource type="Texture2D" uid="uid://1h5o2rgunp8x" path="res://roguelike_dungeon_2_by_isohei_d9gb2jj-fullview.jpg" id="1_1ifyt"]
 [ext_resource type="PackedScene" uid="uid://cokr0nbhhpsng" path="res://Main_character.tscn" id="2_pqbwu"]
 [ext_resource type="PackedScene" uid="uid://ip246espjksp" path="res://rooms/Room1.tscn" id="3_w78d1"]
 [ext_resource type="PackedScene" uid="uid://bqphqqsbp1btx" path="res://Skeleton.tscn" id="4_ot48j"]
 [ext_resource type="PackedScene" uid="uid://b22wmlu7rrtem" path="res://hud.tscn" id="5_slawn"]
+[ext_resource type="PackedScene" uid="uid://b1sl54bed4u5h" path="res://projectile/projectile.tscn" id="6_2psyd"]
 [ext_resource type="PackedScene" uid="uid://d0ybc5t7vr58y" path="res://orb.tscn" id="6_8kdbm"]
+[ext_resource type="PackedScene" uid="uid://cmft2eharu7sk" path="res://projectile/projectile-fire.tscn" id="7_sblsb"]
+[ext_resource type="PackedScene" uid="uid://p7vdj2e6agkp" path="res://projectile/projectile-water.tscn" id="8_lh76p"]
+[ext_resource type="PackedScene" uid="uid://0bvvjk8q2f4h" path="res://projectile/projectile-earth.tscn" id="9_qaslt"]
+[ext_resource type="PackedScene" uid="uid://dcdpnchr06gxu" path="res://projectile/projectile-wind.tscn" id="10_j8t1p"]
 
 [node name="Node" type="Node"]
 
@@ -22,19 +27,19 @@ scale = Vector2(2.5, 2.5)
 
 [node name="Orb_wind" parent="." instance=ExtResource("6_8kdbm")]
 position = Vector2(908.24, 450.86)
-type = "wind"
+type = &"wind"
 
 [node name="Orb_fire" parent="." instance=ExtResource("6_8kdbm")]
 position = Vector2(282, 179)
-type = "fire"
+type = &"fire"
 
 [node name="Orb_earth" parent="." instance=ExtResource("6_8kdbm")]
 position = Vector2(856, 201)
-type = "earth"
+type = &"earth"
 
 [node name="Orb_water" parent="." instance=ExtResource("6_8kdbm")]
 position = Vector2(456.57, 358)
-type = "water"
+type = &"water"
 
 [node name="Skeleton" parent="." instance=ExtResource("4_ot48j")]
 position = Vector2(378, 457)
@@ -43,5 +48,10 @@ scale = Vector2(2.5, 2.5)
 [node name="Player" parent="." instance=ExtResource("2_pqbwu")]
 position = Vector2(586, 328)
 scale = Vector2(4, 4)
+projectile_scene_default = ExtResource("6_2psyd")
+projectile_scene_fire = ExtResource("7_sblsb")
+projectile_scene_water = ExtResource("8_lh76p")
+projectile_scene_earth = ExtResource("9_qaslt")
+projectile_scene_wind = ExtResource("10_j8t1p")
 
 [node name="HUD" parent="." instance=ExtResource("5_slawn")]

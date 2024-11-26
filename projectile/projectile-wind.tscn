@@ -1,0 +1,81 @@
+[gd_scene load_steps=12 format=3 uid="uid://dcdpnchr06gxu"]
+
+[ext_resource type="Script" path="res://projectile/projectile.gd" id="1_wpm1v"]
+[ext_resource type="Texture2D" uid="uid://b83otag0x1pnc" path="res://projectile/All_Fire_Bullet_Pixel_16x16_06.png" id="2_a2xj6"]
+[ext_resource type="Script" path="res://wall_hider.gd" id="3_um6pb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s27rs"]
+atlas = ExtResource("2_a2xj6")
+region = Rect2(96, 129, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wahs2"]
+atlas = ExtResource("2_a2xj6")
+region = Rect2(112, 129, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3qxv"]
+atlas = ExtResource("2_a2xj6")
+region = Rect2(128, 129, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x5ma2"]
+atlas = ExtResource("2_a2xj6")
+region = Rect2(144, 129, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_416qw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s27rs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wahs2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3qxv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x5ma2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yh2m3"]
+radius = 1.0
+height = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0ugwy"]
+radius = 15.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cu7uf"]
+radius = 12.0
+
+[node name="Projectile" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_wpm1v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2.38419e-06, -0.500003)
+scale = Vector2(2.25, 2.25)
+sprite_frames = SubResource("SpriteFrames_416qw")
+autoplay = "default"
+frame_progress = 0.710665
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 15)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_yh2m3")
+
+[node name="WallHider" type="Area2D" parent="."]
+script = ExtResource("3_um6pb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallHider"]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_0ugwy")
+
+[node name="Damagebox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damagebox"]
+shape = SubResource("CircleShape2D_cu7uf")
+
+[connection signal="area_entered" from="Damagebox" to="." method="_on_damagebox_area_entered"]

@@ -1,7 +1,6 @@
-[gd_scene load_steps=203 format=3 uid="uid://cokr0nbhhpsng"]
+[gd_scene load_steps=202 format=3 uid="uid://cokr0nbhhpsng"]
 
 [ext_resource type="Script" path="res://Character_controls.gd" id="1_neyl5"]
-[ext_resource type="PackedScene" uid="uid://b1sl54bed4u5h" path="res://projectile.tscn" id="2_30pio"]
 [ext_resource type="Texture2D" uid="uid://dps7jbb60lnle" path="res://main_character/Back/Base.png" id="2_mria7"]
 [ext_resource type="Material" uid="uid://caj1cng2hn77d" path="res://cloth.tres" id="3_sf4tv"]
 [ext_resource type="Texture2D" uid="uid://mcg63gr366sb" path="res://main_character/Back/Bow Attack.png" id="3_y36h0"]
@@ -1337,7 +1336,6 @@ height = 14.0
 collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_neyl5")
-projectile_scene = ExtResource("2_30pio")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = ExtResource("3_sf4tv")

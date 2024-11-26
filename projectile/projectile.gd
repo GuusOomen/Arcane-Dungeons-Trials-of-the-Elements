@@ -4,6 +4,9 @@ extends CharacterBody2D
 @export var direction := Vector2.RIGHT
 @export var speed := 300.0
 
+func _ready() -> void:
+	$AnimatedSprite2D.rotation = atan2(direction.y, direction.x)
+
 func _physics_process(delta: float) -> void:
 	velocity = speed * direction
 	move_and_slide()
