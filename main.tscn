@@ -46,6 +46,7 @@ position = Vector2(378, 457)
 scale = Vector2(2.5, 2.5)
 
 [node name="Player" parent="." instance=ExtResource("2_pqbwu")]
+unique_name_in_owner = true
 position = Vector2(586, 328)
 scale = Vector2(4, 4)
 projectile_scene_default = ExtResource("6_2psyd")

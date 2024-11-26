@@ -1333,7 +1333,6 @@ radius = 4.0
 height = 14.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
-collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_neyl5")
 

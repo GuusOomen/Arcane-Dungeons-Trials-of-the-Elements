@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://ip246espjksp"]
+[gd_scene load_steps=10 format=4 uid="uid://ip246espjksp"]
 
 [ext_resource type="Texture2D" uid="uid://dak85krm7wp57" path="res://dungeon/Dungeon tileset.png" id="1_lwhjf"]
 
@@ -171,6 +171,18 @@ texture = ExtResource("1_lwhjf")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_wtycr")
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_bjp4a"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_0noq3"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+agent_radius = 0.0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y06k5"]
 texture = ExtResource("1_lwhjf")
 0:0/0 = 0
@@ -300,52 +312,97 @@ texture = ExtResource("1_lwhjf")
 7:8/0 = 0
 8:8/0 = 0
 9:8/0 = 0
+9:8/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0noq3")
 10:8/0 = 0
+10:8/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0noq3")
 11:8/0 = 0
+11:8/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0noq3")
 12:8/0 = 0
+12:8/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0noq3")
 0:9/0 = 0
+0:9/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_bjp4a")
 1:9/0 = 0
+1:9/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_bjp4a")
 2:9/0 = 0
+2:9/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_bjp4a")
 4:9/0 = 0
+4:9/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0noq3")
 5:9/0 = 0
+5:9/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0noq3")
 6:9/0 = 0
+6:9/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0noq3")
 7:9/0 = 0
 8:9/0 = 0
+8:9/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0noq3")
 9:9/0 = 0
+9:9/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0noq3")
 10:9/0 = 0
+10:9/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0noq3")
 11:9/0 = 0
+11:9/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0noq3")
 12:9/0 = 0
+12:9/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0noq3")
 0:10/0 = 0
+0:10/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_bjp4a")
 1:10/0 = 0
+1:10/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_bjp4a")
 2:10/0 = 0
+2:10/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_bjp4a")
 3:10/0 = 0
+3:10/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0noq3")
 4:10/0 = 0
+4:10/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0noq3")
 5:10/0 = 0
+5:10/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0noq3")
 6:10/0 = 0
+6:10/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0noq3")
 7:10/0 = 0
+7:10/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0noq3")
 8:10/0 = 0
+8:10/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0noq3")
 9:10/0 = 0
+9:10/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0noq3")
 10:10/0 = 0
+10:10/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0noq3")
 11:10/0 = 0
+11:10/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0noq3")
 12:10/0 = 0
+12:10/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0noq3")
 13:10/0 = 0
+13:10/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0noq3")
 14:10/0 = 0
+14:10/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0noq3")
 0:11/0 = 0
+0:11/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_bjp4a")
 1:11/0 = 0
+1:11/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_bjp4a")
 2:11/0 = 0
+2:11/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_bjp4a")
 4:11/0 = 0
+4:11/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0noq3")
 5:11/0 = 0
+5:11/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0noq3")
 6:11/0 = 0
+6:11/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0noq3")
 7:11/0 = 0
+7:11/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0noq3")
 8:11/0 = 0
+8:11/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0noq3")
 9:11/0 = 0
+9:11/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0noq3")
 10:11/0 = 0
+10:11/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0noq3")
 11:11/0 = 0
+11:11/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0noq3")
 12:11/0 = 0
+12:11/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0noq3")
 13:11/0 = 0
+13:11/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0noq3")
 14:11/0 = 0
+14:11/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0noq3")
 
 [sub_resource type="TileSet" id="TileSet_1ep57"]
+navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_y06k5")
 
 [node name="Room1" type="Node2D"]

@@ -13,7 +13,9 @@ var attack_direction = null
 var player_loc = []
 
 @onready var animation_player = $AnimatedSprite2D
+@onready var nav_agent = $NavigationAgent2D
 @onready var attack_timer = $AttackTimer
+@onready var nav_timer = $NavigationTimer
 @onready var player = %Player
 
 func _physics_process(delta: float) -> void:
@@ -36,6 +38,10 @@ func _physics_process(delta: float) -> void:
 		play_animation(current_direction + "-Idle")
 		if !player_loc.is_empty():
 			perform_attack()
+		else:
+			var dir = to_local(nav_agent.get_next_path_position()).normalized()
+			velocity = dir * SPEED
+			move_and_slide()
 		## Default movement animation based on direction
 		#if input_vector != Vector2.ZERO:
 			#play_animation(current_direction + "-Walk")
@@ -62,7 +68,7 @@ func play_animation(anim_name: String) -> void:
 
 
 func _on_detect_body_entered(body: Node2D, direction: String) -> void:
-	if body.is_in_group("player") && !player_loc.has(direction):
+	if body.is_in_group("Player") && !player_loc.has(direction):
 		player_loc.insert(0, direction)
 
 
@@ -74,3 +80,7 @@ func _on_detect_body_exited(body: Node2D, direction: String) -> void:
 func _on_attack_timer_timeout() -> void:
 	if player_loc.has(attack_direction):
 		player.take_damage()
+
+
+func _on_navigation_timer_timeout() -> void:
+	nav_agent.target_position = player.global_position

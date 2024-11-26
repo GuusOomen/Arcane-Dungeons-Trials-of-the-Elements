@@ -1078,6 +1078,13 @@ shape = SubResource("RectangleShape2D_awidb")
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 0.875
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+
+[node name="NavigationTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
 [connection signal="body_entered" from="Front-Detect" to="." method="_on_detect_body_entered" binds= ["Front"]]
 [connection signal="body_exited" from="Front-Detect" to="." method="_on_detect_body_exited" binds= ["Front"]]
 [connection signal="body_entered" from="Back-Detect" to="." method="_on_detect_body_entered" binds= ["Back"]]
@@ -1087,3 +1094,4 @@ wait_time = 0.875
 [connection signal="body_entered" from="Left-Detect" to="." method="_on_detect_body_entered" binds= ["Left"]]
 [connection signal="body_exited" from="Left-Detect" to="." method="_on_detect_body_exited" binds= ["Left"]]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="NavigationTimer" to="." method="_on_navigation_timer_timeout"]
