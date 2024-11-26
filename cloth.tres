@@ -1,9 +1,9 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dylfj54igclxt"]
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://caj1cng2hn77d"]
 
 [ext_resource type="Shader" path="res://cloth.gdshader" id="1_uvenr"]
 
 [resource]
 shader = ExtResource("1_uvenr")
-shader_parameter/color_light = Color(0, 0.792157, 1, 1)
-shader_parameter/color_medium = Color(0, 0.490196, 1, 1)
-shader_parameter/color_dark = Color(0, 0, 1, 1)
+shader_parameter/color_light = Color(0.800491, 0.800491, 0.800491, 1)
+shader_parameter/color_medium = Color(0.497474, 0.497474, 0.497474, 1)
+shader_parameter/color_dark = Color(0.201527, 0.201527, 0.201527, 1)

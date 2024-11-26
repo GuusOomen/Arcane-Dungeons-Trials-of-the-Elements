@@ -38,8 +38,6 @@ var dash_upgraded = false
 @onready var animation_player = $AnimatedSprite2D
 
 func _ready() -> void:
-	var material = $AnimatedSprite2D.material
-	print(material.get_shader_parameter("color_light"))
 	var hearts_parent = $"../HUD/CanvasLayer/HBoxContainer"
 	for child in hearts_parent.get_children():
 		hearts_list.append(child)
@@ -175,8 +173,30 @@ func take_damage():
 		#dead()
 
 func change_type(type):
-
-	print(type)
+	var material = $AnimatedSprite2D.material
+	match type:
+		"fire":
+			print("Type is fire")
+			material.set("shader_parameter/color_light", Color(0.8, 0.2, 0.2))
+			material.set("shader_parameter/color_medium", Color(0.6, 0.1, 0.1))
+			material.set("shader_parameter/color_dark", Color(0.4, 0, 0))
+		"earth":
+			print("Type is earth")
+			material.set("shader_parameter/color_light", Color(0.2, 0.6, 0.2))
+			material.set("shader_parameter/color_medium", Color(0.1, 0.4, 0.1)) 
+			material.set("shader_parameter/color_dark", Color(0, 0.2, 0)) 
+		"water":
+			print("Type is water")
+			material.set("shader_parameter/color_light", Color(0.4, 0.6, 1.0))
+			material.set("shader_parameter/color_medium", Color(0.2, 0.4, 0.8))
+			material.set("shader_parameter/color_dark", Color(0.1, 0.2, 0.5))
+		"wind":
+			print("Type is wind")
+			material.set("shader_parameter/color_light", Color(0.8, 0.9, 1.0))
+			material.set("shader_parameter/color_medium", Color(0.6, 0.7, 0.9))
+			material.set("shader_parameter/color_dark", Color(0.4, 0.5, 0.7))
+		_:
+			print("Unknown type: ", type)
 
 func update_heart_display_dmg():
 	for i in range(hearts_list.size()):
