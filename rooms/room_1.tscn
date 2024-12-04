@@ -433,7 +433,8 @@ tile_set = SubResource("TileSet_pgyyu")
 [node name="Player" parent="." instance=ExtResource("2_gvdli")]
 position = Vector2(0, -192)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, 20)
-
 [node name="Skeleton" parent="." instance=ExtResource("3_b62ts")]
+position = Vector2(-112, 16)
+
+[node name="Skeleton2" parent="." instance=ExtResource("3_b62ts")]
+position = Vector2(112, 16)

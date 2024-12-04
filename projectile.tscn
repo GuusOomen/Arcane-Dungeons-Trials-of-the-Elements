@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://dbaqtyouqaapu"]
+
+[ext_resource type="Script" path="res://projectile.gd" id="1_hrn44"]
+[ext_resource type="Texture2D" uid="uid://dpah4kwbso8ya" path="res://main_character/fire_ball.png" id="2_glqny"]
+[ext_resource type="Script" path="res://wall_hider.gd" id="3_pqlyo"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yh2m3"]
+radius = 1.0
+height = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0ugwy"]
+radius = 15.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cu7uf"]
+radius = 12.0
+
+[node name="Projectile" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_hrn44")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_glqny")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 15)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_yh2m3")
+
+[node name="WallHider" type="Area2D" parent="."]
+script = ExtResource("3_pqlyo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallHider"]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_0ugwy")
+
+[node name="Damagebox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damagebox"]
+shape = SubResource("CircleShape2D_cu7uf")
+
+[connection signal="area_entered" from="Damagebox" to="." method="_on_damagebox_area_entered"]

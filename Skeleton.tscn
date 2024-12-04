@@ -21,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://dsqny5ycx0il7" path="res://enemies/skeleton/Right/Png/SkeletonWithSwordRightHurt.png" id="18_lwst7"]
 [ext_resource type="Texture2D" uid="uid://b0niesy6ir7vc" path="res://enemies/skeleton/Right/Png/SkeletonWithSwordRightIdle.png" id="19_swkfk"]
 [ext_resource type="Texture2D" uid="uid://dv4bo8mtse1xs" path="res://enemies/skeleton/Right/Png/SkeletonWithSwordRightRun.png" id="20_32cq0"]
-[ext_resource type="PackedScene" path="res://enemies/healthbar.tscn" id="22_wha6g"]
+[ext_resource type="PackedScene" uid="uid://gqq7opqr8gnq" path="res://enemies/healthbar.tscn" id="22_wha6g"]
 [ext_resource type="Script" path="res://wall_hider.gd" id="23_oqy3f"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h655u"]
@@ -1049,6 +1049,7 @@ radius = 7.0
 height = 25.5
 
 [node name="Skeleton" type="CharacterBody2D" groups=["Enemy"]]
+scale = Vector2(2.5, 2.5)
 collision_layer = 0
 script = ExtResource("1_bwphp")
 
