@@ -28,8 +28,6 @@ func _ready() -> void:
 	healthbar.init_health(health)
 
 func _physics_process(delta: float) -> void:
-	if dead:
-		return
 	## Determine the character's facing direction based on input
 	if is_taking_dmg:
 		dmg_timer -= delta
@@ -43,23 +41,32 @@ func _physics_process(delta: float) -> void:
 		if attack_timeout <= 0:
 			is_attacking = false
 	else:
-		play_animation(current_direction + "-Idle")
 		if !player_loc.is_empty():
 			perform_attack()
 		else:
 			var dir = to_local(nav_agent.get_next_path_position()).normalized()
 			velocity = dir * SPEED
+			animate_movement()
 			move_and_slide()
-		## Default movement animation based on direction
-		#if input_vector != Vector2.ZERO:
-			#play_animation(current_direction + "-Walk")
-		#else:
-			#play_animation(current_direction + "-Idle")
-		
-		## Movement and attacks only available when not attacking
-		#velocity = input_vector * SPEED
 
 	#move_and_slide()
+
+func animate_movement() -> void:
+	if velocity == Vector2.ZERO:
+		play_animation(current_direction + "-Idle")
+	else:
+		if (abs(velocity.x) > abs(velocity.y)):
+			if velocity.x > 0:
+				current_direction = "Right"
+			else:
+				current_direction = "Left"
+		else:
+			if velocity.y > 0:
+				current_direction = "Front"
+			else:
+				current_direction = "Back"
+	
+	play_animation(current_direction + "-Walk")
 
 func perform_attack() -> void:
 	# Set the attack animation based on the direction and range type
@@ -90,6 +97,7 @@ func death():
 	for i in get_children():
 		if i != animation_player:
 			i.queue_free()
+	set_physics_process(false)
 
 func _on_detect_area_entered(area: Node2D, direction: String) -> void:
 	if !area.is_in_group("Hitbox"):
@@ -110,4 +118,6 @@ func _on_attack_timer_timeout() -> void:
 
 
 func _on_navigation_timer_timeout() -> void:
+	if player == null:
+		return
 	nav_agent.target_position = player.global_position
