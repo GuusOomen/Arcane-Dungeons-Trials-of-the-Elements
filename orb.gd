@@ -8,7 +8,6 @@ func _ready() -> void:
 	var water = $"AnimatedSprite2D-water"
 	var earth = $"AnimatedSprite2D-earth"
 	var wind = $"AnimatedSprite2D-wind"
-	print(type)
 	match type:
 		Types.Projectile.FIRE:
 			fire.show()

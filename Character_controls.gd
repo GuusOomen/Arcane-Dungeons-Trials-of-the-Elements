@@ -1,12 +1,12 @@
 extends CharacterBody2D
 
-var projectiles := {
-	Types.Projectile.DEFAULT: preload("res://projectile/projectile.tscn"),
-	Types.Projectile.FIRE: preload("res://projectile/projectile-fire.tscn"),
-	Types.Projectile.WATER: preload("res://projectile/projectile-water.tscn"),
-	Types.Projectile.EARTH: preload("res://projectile/projectile-earth.tscn"),
-	Types.Projectile.WIND: preload("res://projectile/projectile-wind.tscn"),
-}
+var projectiles := [
+	preload("res://projectile/projectile.tscn"),
+	preload("res://projectile/projectile-fire.tscn"),
+	preload("res://projectile/projectile-water.tscn"),
+	preload("res://projectile/projectile-earth.tscn"),
+	preload("res://projectile/projectile-wind.tscn")
+]
 
 # Constants for various actions
 const SPEED = 200.0
@@ -40,7 +40,7 @@ var hearts_list : Array[TextureRect]
 var health = 5
 
 var char_type = 0
-var types = {char_type : null}
+var types = []
 # variables to track upgrades
 var dash_upgraded = false
 
@@ -50,10 +50,6 @@ func _ready() -> void:
 	var hearts_parent = $HUD/CanvasLayer/HBoxContainer
 	for child in hearts_parent.get_children():
 		hearts_list.append(child)
-
-#func get_input():
-	#var input_direction := Input.get_vector("left", "right", "up", "down")
-	#velocity = input_direction * SPEED
 
 func _physics_process(delta: float) -> void:
 	if is_dead:
@@ -123,12 +119,12 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("attack"):
 			perform_attack()
 		if Input.is_action_just_pressed("scroll_up"):
-			print(types)
-			#change_type()
+			if len(types) > 1:
+				change_type(types[(types.find(char_type,0) + 1) % len(types)])
+			
 		if Input.is_action_just_pressed("scroll_down"):
-			char_type 
-			print(len(types))
-			#change_type()
+			if len(types) > 1:
+				change_type(types[(types.find(char_type,0) + 1) % len(types)])
 		
 		# Dash and Roll
 		if Input.is_action_just_pressed("dash"):
@@ -195,7 +191,8 @@ func dead():
 	get_tree().reload_current_scene()
 
 func change_type(type):
-	types[type] = null
+	if not type in types:
+		types.append(type)
 	char_type = type
 	var material = $AnimatedSprite2D.material
 	match type:
