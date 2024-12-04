@@ -15,6 +15,7 @@ var dmg_timer = 0.0
 var current_direction = "Front"  # Track direction for animation ("Front", "Back", "Right", "Left")
 var attack_direction = null
 var player_loc = []
+var dead = false
 
 @onready var animation_player = $AnimatedSprite2D
 @onready var nav_agent = $NavigationAgent2D
@@ -27,6 +28,8 @@ func _ready() -> void:
 	healthbar.init_health(health)
 
 func _physics_process(delta: float) -> void:
+	if dead:
+		return
 	## Determine the character's facing direction based on input
 	if is_taking_dmg:
 		dmg_timer -= delta
@@ -74,7 +77,7 @@ func play_animation(anim_name: String) -> void:
 func take_damage():
 	is_taking_dmg = true
 	dmg_timer = 0.4
-	if health > 0:
+	if health > 1:
 		health -= 1
 		play_animation(current_direction + "-Hurt")
 		healthbar.health = health
@@ -82,7 +85,11 @@ func take_damage():
 		death()
 		
 func death():
-	queue_free()
+	dead = true
+	play_animation(current_direction + "-Death")
+	for i in get_children():
+		if i != animation_player:
+			i.queue_free()
 
 func _on_detect_area_entered(area: Node2D, direction: String) -> void:
 	if !area.is_in_group("Hitbox"):

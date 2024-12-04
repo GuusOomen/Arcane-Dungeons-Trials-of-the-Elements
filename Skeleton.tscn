@@ -596,7 +596,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4fsb4")
 }],
-"loop": true,
+"loop": false,
 "name": &"Back-Death",
 "speed": 10.0
 }, {
@@ -717,7 +717,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_n3dry")
 }],
-"loop": true,
+"loop": false,
 "name": &"Front-Death",
 "speed": 10.0
 }, {
@@ -838,7 +838,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6cqfm")
 }],
-"loop": true,
+"loop": false,
 "name": &"Left-Death",
 "speed": 10.0
 }, {
@@ -959,7 +959,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_y78qk")
 }],
-"loop": true,
+"loop": false,
 "name": &"Right-Death",
 "speed": 10.0
 }, {
@@ -1059,7 +1059,7 @@ shape = SubResource("CapsuleShape2D_h655u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wougq")
-animation = &"Back-Hurt"
+animation = &"Back-Attack"
 autoplay = "Front-Idle"
 
 [node name="Front-Detect" type="Area2D" parent="."]
@@ -1093,12 +1093,12 @@ shape = SubResource("RectangleShape2D_awidb")
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 0.875
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
-
 [node name="NavigationTimer" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
 
 [node name="Hitbox" type="Area2D" parent="." groups=["Hitbox"]]
 collision_mask = 0
