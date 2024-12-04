@@ -1,11 +1,11 @@
 [gd_scene load_steps=11 format=3 uid="uid://br858p83p1f5r"]
 
 [ext_resource type="PackedScene" uid="uid://cokr0nbhhpsng" path="res://Main_character.tscn" id="2_pqbwu"]
-[ext_resource type="PackedScene" uid="uid://ip246espjksp" path="res://rooms/Room1.tscn" id="3_w78d1"]
+[ext_resource type="PackedScene" uid="uid://ip246espjksp" path="res://rooms/test_room.tscn" id="3_w78d1"]
 [ext_resource type="PackedScene" uid="uid://bqphqqsbp1btx" path="res://Skeleton.tscn" id="4_ot48j"]
-[ext_resource type="PackedScene" uid="uid://b22wmlu7rrtem" path="res://hud.tscn" id="5_slawn"]
+[ext_resource type="PackedScene" path="res://hud.tscn" id="5_slawn"]
 [ext_resource type="PackedScene" uid="uid://b1sl54bed4u5h" path="res://projectile/projectile.tscn" id="6_2psyd"]
-[ext_resource type="PackedScene" uid="uid://d0ybc5t7vr58y" path="res://orb.tscn" id="6_8kdbm"]
+[ext_resource type="PackedScene" path="res://orb.tscn" id="6_8kdbm"]
 [ext_resource type="PackedScene" uid="uid://cmft2eharu7sk" path="res://projectile/projectile-fire.tscn" id="7_sblsb"]
 [ext_resource type="PackedScene" uid="uid://p7vdj2e6agkp" path="res://projectile/projectile-water.tscn" id="8_lh76p"]
 [ext_resource type="PackedScene" uid="uid://0bvvjk8q2f4h" path="res://projectile/projectile-earth.tscn" id="9_qaslt"]
@@ -38,7 +38,6 @@ position = Vector2(378, 457)
 scale = Vector2(2.5, 2.5)
 
 [node name="Player" parent="." instance=ExtResource("2_pqbwu")]
-unique_name_in_owner = true
 position = Vector2(586, 328)
 scale = Vector2(4, 4)
 projectile_scene_default = ExtResource("6_2psyd")

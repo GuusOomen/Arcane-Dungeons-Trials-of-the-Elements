@@ -21,10 +21,11 @@
 [ext_resource type="Texture2D" uid="uid://dsqny5ycx0il7" path="res://enemies/skeleton/Right/Png/SkeletonWithSwordRightHurt.png" id="18_lwst7"]
 [ext_resource type="Texture2D" uid="uid://b0niesy6ir7vc" path="res://enemies/skeleton/Right/Png/SkeletonWithSwordRightIdle.png" id="19_swkfk"]
 [ext_resource type="Texture2D" uid="uid://dv4bo8mtse1xs" path="res://enemies/skeleton/Right/Png/SkeletonWithSwordRightRun.png" id="20_32cq0"]
-[ext_resource type="PackedScene" uid="uid://gqq7opqr8gnq" path="res://enemies/healthbar.tscn" id="22_wha6g"]
+[ext_resource type="PackedScene" path="res://enemies/healthbar.tscn" id="22_wha6g"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h655u"]
-radius = 8.0
+radius = 1.0
+height = 16.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iilo7"]
 atlas = ExtResource("1_n3ch6")
@@ -1043,10 +1044,12 @@ radius = 6.0
 height = 28.0
 
 [node name="Skeleton" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 0
 script = ExtResource("1_bwphp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
+position = Vector2(0, 14)
+rotation = 1.5708
 shape = SubResource("CapsuleShape2D_h655u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
