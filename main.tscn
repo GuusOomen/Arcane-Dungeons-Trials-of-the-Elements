@@ -1,32 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://br858p83p1f5r"]
+[gd_scene load_steps=3 format=3 uid="uid://br858p83p1f5r"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_oe2o2"]
-[ext_resource type="PackedScene" uid="uid://cokr0nbhhpsng" path="res://Main_character.tscn" id="2_pqbwu"]
-[ext_resource type="PackedScene" uid="uid://bqphqqsbp1btx" path="res://Skeleton.tscn" id="4_ot48j"]
 [ext_resource type="PackedScene" uid="uid://d0ybc5t7vr58y" path="res://orb.tscn" id="6_8kdbm"]
 
 [node name="Node" type="Node"]
 script = ExtResource("1_oe2o2")
 
 [node name="Orb_wind" parent="." instance=ExtResource("6_8kdbm")]
-position = Vector2(908.24, 450.86)
+position = Vector2(173, 125)
 type = &"wind"
 
 [node name="Orb_fire" parent="." instance=ExtResource("6_8kdbm")]
-position = Vector2(282, 179)
+position = Vector2(-198, -113)
 type = &"fire"
 
 [node name="Orb_earth" parent="." instance=ExtResource("6_8kdbm")]
-position = Vector2(856, 201)
+position = Vector2(149, -108)
 type = &"earth"
 
 [node name="Orb_water" parent="." instance=ExtResource("6_8kdbm")]
-position = Vector2(456.57, 358)
+position = Vector2(-203, 107)
 type = &"water"
-
-[node name="Skeleton" parent="." instance=ExtResource("4_ot48j")]
-position = Vector2(378, 457)
-scale = Vector2(2.5, 2.5)
-
-[node name="Player" parent="." instance=ExtResource("2_pqbwu")]
-position = Vector2(575, 390)
