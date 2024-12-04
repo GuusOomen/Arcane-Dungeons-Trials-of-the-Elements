@@ -44,7 +44,7 @@ var dash_upgraded = false
 @onready var animation_player = $AnimatedSprite2D
 
 func _ready() -> void:
-	var hearts_parent = $"../HUD/CanvasLayer/HBoxContainer"
+	var hearts_parent = $HUD/CanvasLayer/HBoxContainer
 	for child in hearts_parent.get_children():
 		hearts_list.append(child)
 

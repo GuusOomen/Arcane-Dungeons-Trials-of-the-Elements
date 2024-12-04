@@ -1,4 +1,4 @@
-[gd_scene load_steps=202 format=3 uid="uid://cokr0nbhhpsng"]
+[gd_scene load_steps=203 format=3 uid="uid://cokr0nbhhpsng"]
 
 [ext_resource type="Script" path="res://Character_controls.gd" id="1_neyl5"]
 [ext_resource type="Texture2D" uid="uid://dps7jbb60lnle" path="res://main_character/Back/Base.png" id="2_mria7"]
@@ -35,6 +35,7 @@
 [ext_resource type="Texture2D" uid="uid://7l74qd4okm6v" path="res://main_character/Side/Sheate.png" id="32_at81v"]
 [ext_resource type="Texture2D" uid="uid://xjbpewrc7f8q" path="res://main_character/Side/Slash 2.png" id="33_rd3nv"]
 [ext_resource type="Texture2D" uid="uid://diq8neiktbeho" path="res://main_character/Side/Walk.png" id="34_45jma"]
+[ext_resource type="PackedScene" path="res://hud.tscn" id="37_khhtc"]
 [ext_resource type="Script" path="res://wall_hider.gd" id="37_p3vvw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wosla"]
@@ -1362,3 +1363,5 @@ shape = SubResource("CapsuleShape2D_q4xwv")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_pvafc")
+
+[node name="HUD" parent="." instance=ExtResource("37_khhtc")]
