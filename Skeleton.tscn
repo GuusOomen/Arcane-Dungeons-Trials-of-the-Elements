@@ -21,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://dsqny5ycx0il7" path="res://enemies/skeleton/Right/Png/SkeletonWithSwordRightHurt.png" id="18_lwst7"]
 [ext_resource type="Texture2D" uid="uid://b0niesy6ir7vc" path="res://enemies/skeleton/Right/Png/SkeletonWithSwordRightIdle.png" id="19_swkfk"]
 [ext_resource type="Texture2D" uid="uid://dv4bo8mtse1xs" path="res://enemies/skeleton/Right/Png/SkeletonWithSwordRightRun.png" id="20_32cq0"]
-[ext_resource type="PackedScene" path="res://enemies/healthbar.tscn" id="22_wha6g"]
+[ext_resource type="PackedScene" uid="uid://gqq7opqr8gnq" path="res://enemies/healthbar.tscn" id="22_wha6g"]
 [ext_resource type="Script" path="res://wall_hider.gd" id="23_oqy3f"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h655u"]
@@ -1082,7 +1082,6 @@ collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Right-Detect"]
 position = Vector2(14, 2.2)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_yy4wu")
 
 [node name="Left-Detect" type="Area2D" parent="."]
@@ -1090,7 +1089,6 @@ collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Left-Detect"]
 position = Vector2(-14, 2)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_awidb")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

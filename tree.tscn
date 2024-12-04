@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://boastwxvwprua"]
+
+[ext_resource type="SpriteFrames" uid="uid://ckf065g1w1fcl" path="res://tree.tres" id="1_fhjha"]
+[ext_resource type="Script" path="res://wall_hider.gd" id="2_b0ioy"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vi0jy"]
+radius = 5.0
+height = 44.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bgf0w"]
+radius = 29.6432
+
+[node name="Tree" type="StaticBody2D"]
+scale = Vector2(2.5, 2.5)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_fhjha")
+offset = Vector2(4, -38)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_vi0jy")
+
+[node name="WallHider" type="Area2D" parent="."]
+script = ExtResource("2_b0ioy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallHider"]
+position = Vector2(0, -37.6)
+shape = SubResource("CircleShape2D_bgf0w")
