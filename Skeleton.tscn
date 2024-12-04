@@ -21,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://dsqny5ycx0il7" path="res://enemies/skeleton/Right/Png/SkeletonWithSwordRightHurt.png" id="18_lwst7"]
 [ext_resource type="Texture2D" uid="uid://b0niesy6ir7vc" path="res://enemies/skeleton/Right/Png/SkeletonWithSwordRightIdle.png" id="19_swkfk"]
 [ext_resource type="Texture2D" uid="uid://dv4bo8mtse1xs" path="res://enemies/skeleton/Right/Png/SkeletonWithSwordRightRun.png" id="20_32cq0"]
-[ext_resource type="PackedScene" uid="uid://gqq7opqr8gnq" path="res://enemies/healthbar.tscn" id="22_wha6g"]
+[ext_resource type="PackedScene" path="res://enemies/healthbar.tscn" id="22_wha6g"]
 [ext_resource type="Script" path="res://wall_hider.gd" id="23_oqy3f"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h655u"]
@@ -1035,10 +1035,10 @@ size = Vector2(16, 10)
 size = Vector2(16, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yy4wu"]
-size = Vector2(12, 30)
+size = Vector2(12, 26)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_awidb"]
-size = Vector2(12, 30)
+size = Vector2(12, 26.4)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8u0b4"]
 radius = 6.0
@@ -1081,7 +1081,8 @@ shape = SubResource("RectangleShape2D_4tmt0")
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Right-Detect"]
-position = Vector2(14, 2)
+position = Vector2(14, 2.2)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_yy4wu")
 
 [node name="Left-Detect" type="Area2D" parent="."]
@@ -1089,14 +1090,8 @@ collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Left-Detect"]
 position = Vector2(-14, 2)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_awidb")
-
-[node name="AttackTimer" type="Timer" parent="."]
-wait_time = 0.875
-
-[node name="NavigationTimer" type="Timer" parent="."]
-wait_time = 0.1
-autostart = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 debug_enabled = true
@@ -1124,6 +1119,22 @@ script = ExtResource("23_oqy3f")
 position = Vector2(0, 0.5)
 shape = SubResource("CapsuleShape2D_x7kbo")
 
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="AttackTimer" type="Timer" parent="Timers"]
+wait_time = 0.875
+
+[node name="NavigationTimer" type="Timer" parent="Timers"]
+wait_time = 0.1
+autostart = true
+
+[node name="AttackTimeout" type="Timer" parent="Timers"]
+wait_time = 1.5
+
+[node name="DmgTimer" type="Timer" parent="Timers"]
+wait_time = 0.4
+one_shot = true
+
 [connection signal="area_entered" from="Front-Detect" to="." method="_on_detect_area_entered" binds= ["Front"]]
 [connection signal="area_exited" from="Front-Detect" to="." method="_on_detect_area_exited" binds= ["Front"]]
 [connection signal="area_entered" from="Back-Detect" to="." method="_on_detect_area_entered" binds= ["Back"]]
@@ -1132,5 +1143,7 @@ shape = SubResource("CapsuleShape2D_x7kbo")
 [connection signal="area_exited" from="Right-Detect" to="." method="_on_detect_area_exited" binds= ["Right"]]
 [connection signal="area_entered" from="Left-Detect" to="." method="_on_detect_area_entered" binds= ["Left"]]
 [connection signal="area_exited" from="Left-Detect" to="." method="_on_detect_area_exited" binds= ["Left"]]
-[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
-[connection signal="timeout" from="NavigationTimer" to="." method="_on_navigation_timer_timeout"]
+[connection signal="timeout" from="Timers/AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="Timers/NavigationTimer" to="." method="_on_navigation_timer_timeout"]
+[connection signal="timeout" from="Timers/AttackTimeout" to="." method="_on_attack_timeout_timeout"]
+[connection signal="timeout" from="Timers/DmgTimer" to="." method="_on_dmg_timer_timeout"]

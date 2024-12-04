@@ -4,14 +4,10 @@ extends CharacterBody2D
 
 # Constants for various actions
 const SPEED = 100.0
-const ATTACK_DURATION = 1.5
-const ATTACK_RANGE_LONG = 100
 
 # Variables to track states
 var is_attacking = false
-var attack_timeout = 0.0
 var is_taking_dmg = false
-var dmg_timer = 0.0
 var current_direction = "Front"  # Track direction for animation ("Front", "Back", "Right", "Left")
 var attack_direction = null
 var player_loc = []
@@ -19,8 +15,10 @@ var dead = false
 
 @onready var animation_player = $AnimatedSprite2D
 @onready var nav_agent = $NavigationAgent2D
-@onready var attack_timer = $AttackTimer
-@onready var nav_timer = $NavigationTimer
+@onready var attack_timer = $Timers/AttackTimer
+@onready var attack_timeout = $Timers/AttackTimeout
+@onready var dmg_timer = $Timers/DmgTimer
+@onready var nav_timer = $Timers/NavigationTimer
 @onready var player = get_tree().get_first_node_in_group("Player")
 @onready var healthbar = $Healthbar
 
@@ -30,16 +28,9 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	## Determine the character's facing direction based on input
 	if is_taking_dmg:
-		dmg_timer -= delta
-		
-		if dmg_timer <= 0:
-			is_taking_dmg = false
+		return
 	elif is_attacking:
-		#velocity = input_vector * 0
-		attack_timeout -= delta
-		
-		if attack_timeout <= 0:
-			is_attacking = false
+		return
 	else:
 		if !player_loc.is_empty():
 			perform_attack()
@@ -70,8 +61,9 @@ func animate_movement() -> void:
 
 func perform_attack() -> void:
 	# Set the attack animation based on the direction and range type
+	play_animation(player_loc[0] + "-Idle")
 	play_animation(player_loc[0] + "-Attack")
-	attack_timeout = ATTACK_DURATION
+	attack_timeout.start()
 	is_attacking = true
 	attack_timer.start()
 	attack_direction = player_loc[0]
@@ -83,7 +75,10 @@ func play_animation(anim_name: String) -> void:
 
 func take_damage():
 	is_taking_dmg = true
-	dmg_timer = 0.4
+	attack_timer.stop()
+	attack_timeout.emit_signal("timeout")
+	is_attacking = false
+	dmg_timer.start()
 	if health > 1:
 		health -= 1
 		play_animation(current_direction + "-Hurt")
@@ -121,3 +116,11 @@ func _on_navigation_timer_timeout() -> void:
 	if player == null:
 		return
 	nav_agent.target_position = player.global_position
+
+
+func _on_dmg_timer_timeout() -> void:
+	is_taking_dmg = false
+
+
+func _on_attack_timeout_timeout() -> void:
+	is_attacking = false
