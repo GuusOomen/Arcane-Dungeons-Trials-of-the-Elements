@@ -127,10 +127,11 @@ func _physics_process(delta: float) -> void:
 				change_type(types[(types.find(char_type,0) + 1) % len(types)])
 		
 		# Dash and Roll
-		if Input.is_action_just_pressed("dash"):
-			start_dash(last_input_vector)
-		elif Input.is_action_just_pressed("roll"):
-			start_roll(last_input_vector)
+		if Input.is_action_just_pressed("roll"):
+			if char_type == Types.Projectile.WIND:
+				start_dash(last_input_vector)
+			else:
+				start_roll(last_input_vector)
 	move_and_slide()
 
 var attack_counter := 0
