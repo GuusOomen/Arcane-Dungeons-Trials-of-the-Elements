@@ -1,4 +1,4 @@
-[gd_scene load_steps=156 format=3 uid="uid://bqphqqsbp1btx"]
+[gd_scene load_steps=157 format=3 uid="uid://bqphqqsbp1btx"]
 
 [ext_resource type="Script" path="res://skeleton.gd" id="1_bwphp"]
 [ext_resource type="Texture2D" uid="uid://isct52h2bdwy" path="res://enemies/skeleton/Up/Png/SkeletonWithSwordUpAttack01.png" id="1_n3ch6"]
@@ -1037,7 +1037,11 @@ size = Vector2(12, 30)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_awidb"]
 size = Vector2(12, 30)
 
-[node name="Skeleton" type="CharacterBody2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8u0b4"]
+radius = 6.0
+height = 28.0
+
+[node name="Skeleton" type="CharacterBody2D" groups=["Enemy"]]
 script = ExtResource("1_bwphp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -1046,30 +1050,32 @@ shape = SubResource("CapsuleShape2D_h655u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wougq")
-animation = &"Front-Attack"
+animation = &"Back-Hurt"
 autoplay = "Front-Idle"
-frame = 7
-frame_progress = 1.0
 
 [node name="Front-Detect" type="Area2D" parent="."]
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Front-Detect"]
 position = Vector2(0, 22)
 shape = SubResource("RectangleShape2D_mvxap")
 
 [node name="Back-Detect" type="Area2D" parent="."]
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Back-Detect"]
 position = Vector2(0, -18)
 shape = SubResource("RectangleShape2D_4tmt0")
 
 [node name="Right-Detect" type="Area2D" parent="."]
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Right-Detect"]
 position = Vector2(14, 2)
 shape = SubResource("RectangleShape2D_yy4wu")
 
 [node name="Left-Detect" type="Area2D" parent="."]
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Left-Detect"]
 position = Vector2(-14, 2)
@@ -1085,12 +1091,27 @@ debug_enabled = true
 wait_time = 0.1
 autostart = true
 
+[node name="Hitbox" type="Area2D" parent="." groups=["Hitbox"]]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 3)
+shape = SubResource("CapsuleShape2D_8u0b4")
+
+[connection signal="area_entered" from="Front-Detect" to="." method="_on_detect_area_entered" binds= ["Front"]]
+[connection signal="area_exited" from="Front-Detect" to="." method="_on_detect_area_exited" binds= ["Front"]]
 [connection signal="body_entered" from="Front-Detect" to="." method="_on_detect_body_entered" binds= ["Front"]]
 [connection signal="body_exited" from="Front-Detect" to="." method="_on_detect_body_exited" binds= ["Front"]]
+[connection signal="area_entered" from="Back-Detect" to="." method="_on_detect_area_entered" binds= ["Back"]]
+[connection signal="area_exited" from="Back-Detect" to="." method="_on_detect_area_exited" binds= ["Back"]]
 [connection signal="body_entered" from="Back-Detect" to="." method="_on_detect_body_entered" binds= ["Back"]]
 [connection signal="body_exited" from="Back-Detect" to="." method="_on_detect_body_exited" binds= ["Back"]]
+[connection signal="area_entered" from="Right-Detect" to="." method="_on_detect_area_entered" binds= ["Right"]]
+[connection signal="area_exited" from="Right-Detect" to="." method="_on_detect_area_exited" binds= ["Right"]]
 [connection signal="body_entered" from="Right-Detect" to="." method="_on_detect_body_entered" binds= ["Right"]]
 [connection signal="body_exited" from="Right-Detect" to="." method="_on_detect_body_exited" binds= ["Right"]]
+[connection signal="area_entered" from="Left-Detect" to="." method="_on_detect_area_entered" binds= ["Left"]]
+[connection signal="area_exited" from="Left-Detect" to="." method="_on_detect_area_exited" binds= ["Left"]]
 [connection signal="body_entered" from="Left-Detect" to="." method="_on_detect_body_entered" binds= ["Left"]]
 [connection signal="body_exited" from="Left-Detect" to="." method="_on_detect_body_exited" binds= ["Left"]]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

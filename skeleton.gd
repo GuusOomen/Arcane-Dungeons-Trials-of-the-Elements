@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@export var health = 3
+
 # Constants for various actions
 const SPEED = 100.0
 const ATTACK_DURATION = 1.5
@@ -8,6 +10,8 @@ const ATTACK_RANGE_LONG = 100
 # Variables to track states
 var is_attacking = false
 var attack_timeout = 0.0
+var is_taking_dmg = false
+var dmg_timer = 0.0
 var current_direction = "Front"  # Track direction for animation ("Front", "Back", "Right", "Left")
 var attack_direction = null
 var player_loc = []
@@ -16,19 +20,16 @@ var player_loc = []
 @onready var nav_agent = $NavigationAgent2D
 @onready var attack_timer = $AttackTimer
 @onready var nav_timer = $NavigationTimer
-@onready var player = %Player
+@onready var player = get_tree().get_first_node_in_group("Player")
 
 func _physics_process(delta: float) -> void:
 	## Determine the character's facing direction based on input
-	#if input_vector.x < 0 and !is_attacking:
-		#current_direction = "Left"
-	#elif input_vector.x > 0 and !is_attacking:
-		#current_direction = "Right"
-	#elif input_vector.y < 0 and !is_attacking:
-		#current_direction = "Back"
-	#elif input_vector.y > 0 and !is_attacking:
-		#current_direction = "Front"
-	if is_attacking:
+	if is_taking_dmg:
+		dmg_timer -= delta
+		
+		if dmg_timer <= 0:
+			is_taking_dmg = false
+	elif is_attacking:
 		#velocity = input_vector * 0
 		attack_timeout -= delta
 		
@@ -66,14 +67,28 @@ func play_animation(anim_name: String) -> void:
 	if animation_player.animation != anim_name:
 		animation_player.play(anim_name)
 
+func take_damage():
+	is_taking_dmg = true
+	dmg_timer = 0.4
+	if health > 0:
+		health -= 1
+		play_animation(current_direction + "-Hurt")
+	else:
+		death()
+		
+func death():
+	queue_free()
 
-func _on_detect_body_entered(body: Node2D, direction: String) -> void:
-	if body.is_in_group("Player") && !player_loc.has(direction):
+func _on_detect_area_entered(area: Node2D, direction: String) -> void:
+	if !area.is_in_group("Hitbox"):
+		return
+	var parent := area.get_parent()
+	if parent.is_in_group("Player") && !player_loc.has(direction):
 		player_loc.insert(0, direction)
 
 
-func _on_detect_body_exited(body: Node2D, direction: String) -> void:
-	if player_loc.has(direction):
+func _on_detect_area_exited(area: Node2D, direction: String) -> void:
+	if area.is_in_group("Hitbox") && player_loc.has(direction):
 		player_loc.remove_at(player_loc.find(direction))
 
 
