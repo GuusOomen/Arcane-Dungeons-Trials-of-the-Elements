@@ -1,4 +1,4 @@
-[gd_scene load_steps=157 format=3 uid="uid://bqphqqsbp1btx"]
+[gd_scene load_steps=158 format=3 uid="uid://bqphqqsbp1btx"]
 
 [ext_resource type="Script" path="res://skeleton.gd" id="1_bwphp"]
 [ext_resource type="Texture2D" uid="uid://isct52h2bdwy" path="res://enemies/skeleton/Up/Png/SkeletonWithSwordUpAttack01.png" id="1_n3ch6"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://dsqny5ycx0il7" path="res://enemies/skeleton/Right/Png/SkeletonWithSwordRightHurt.png" id="18_lwst7"]
 [ext_resource type="Texture2D" uid="uid://b0niesy6ir7vc" path="res://enemies/skeleton/Right/Png/SkeletonWithSwordRightIdle.png" id="19_swkfk"]
 [ext_resource type="Texture2D" uid="uid://dv4bo8mtse1xs" path="res://enemies/skeleton/Right/Png/SkeletonWithSwordRightRun.png" id="20_32cq0"]
+[ext_resource type="PackedScene" uid="uid://gqq7opqr8gnq" path="res://enemies/healthbar.tscn" id="22_wha6g"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h655u"]
 radius = 8.0
@@ -1098,21 +1099,22 @@ collision_mask = 0
 position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_8u0b4")
 
+[node name="Healthbar" parent="." instance=ExtResource("22_wha6g")]
+anchors_preset = 10
+anchor_bottom = 0.0
+offset_left = -8.0
+offset_top = 19.0
+offset_right = 8.0
+offset_bottom = 20.0
+grow_vertical = 1
+
 [connection signal="area_entered" from="Front-Detect" to="." method="_on_detect_area_entered" binds= ["Front"]]
 [connection signal="area_exited" from="Front-Detect" to="." method="_on_detect_area_exited" binds= ["Front"]]
-[connection signal="body_entered" from="Front-Detect" to="." method="_on_detect_body_entered" binds= ["Front"]]
-[connection signal="body_exited" from="Front-Detect" to="." method="_on_detect_body_exited" binds= ["Front"]]
 [connection signal="area_entered" from="Back-Detect" to="." method="_on_detect_area_entered" binds= ["Back"]]
 [connection signal="area_exited" from="Back-Detect" to="." method="_on_detect_area_exited" binds= ["Back"]]
-[connection signal="body_entered" from="Back-Detect" to="." method="_on_detect_body_entered" binds= ["Back"]]
-[connection signal="body_exited" from="Back-Detect" to="." method="_on_detect_body_exited" binds= ["Back"]]
 [connection signal="area_entered" from="Right-Detect" to="." method="_on_detect_area_entered" binds= ["Right"]]
 [connection signal="area_exited" from="Right-Detect" to="." method="_on_detect_area_exited" binds= ["Right"]]
-[connection signal="body_entered" from="Right-Detect" to="." method="_on_detect_body_entered" binds= ["Right"]]
-[connection signal="body_exited" from="Right-Detect" to="." method="_on_detect_body_exited" binds= ["Right"]]
 [connection signal="area_entered" from="Left-Detect" to="." method="_on_detect_area_entered" binds= ["Left"]]
 [connection signal="area_exited" from="Left-Detect" to="." method="_on_detect_area_exited" binds= ["Left"]]
-[connection signal="body_entered" from="Left-Detect" to="." method="_on_detect_body_entered" binds= ["Left"]]
-[connection signal="body_exited" from="Left-Detect" to="." method="_on_detect_body_exited" binds= ["Left"]]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="NavigationTimer" to="." method="_on_navigation_timer_timeout"]

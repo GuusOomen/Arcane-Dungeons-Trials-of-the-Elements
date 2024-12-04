@@ -21,6 +21,10 @@ var player_loc = []
 @onready var attack_timer = $AttackTimer
 @onready var nav_timer = $NavigationTimer
 @onready var player = get_tree().get_first_node_in_group("Player")
+@onready var healthbar = $Healthbar
+
+func _ready() -> void:
+	healthbar.init_health(health)
 
 func _physics_process(delta: float) -> void:
 	## Determine the character's facing direction based on input
@@ -73,6 +77,7 @@ func take_damage():
 	if health > 0:
 		health -= 1
 		play_animation(current_direction + "-Hurt")
+		healthbar.health = health
 	else:
 		death()
 		
