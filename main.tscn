@@ -1,6 +1,5 @@
-[gd_scene load_steps=12 format=3 uid="uid://br858p83p1f5r"]
+[gd_scene load_steps=11 format=3 uid="uid://br858p83p1f5r"]
 
-[ext_resource type="Texture2D" uid="uid://1h5o2rgunp8x" path="res://roguelike_dungeon_2_by_isohei_d9gb2jj-fullview.jpg" id="1_1ifyt"]
 [ext_resource type="PackedScene" uid="uid://cokr0nbhhpsng" path="res://Main_character.tscn" id="2_pqbwu"]
 [ext_resource type="PackedScene" uid="uid://ip246espjksp" path="res://rooms/Room1.tscn" id="3_w78d1"]
 [ext_resource type="PackedScene" uid="uid://bqphqqsbp1btx" path="res://Skeleton.tscn" id="4_ot48j"]
@@ -13,13 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://dcdpnchr06gxu" path="res://projectile/projectile-wind.tscn" id="10_j8t1p"]
 
 [node name="Node" type="Node"]
-
-[node name="TextureRect" type="TextureRect" parent="."]
-visible = false
-z_index = -100
-offset_right = 1150.0
-offset_bottom = 647.0
-texture = ExtResource("1_1ifyt")
 
 [node name="Room1" parent="." instance=ExtResource("3_w78d1")]
 position = Vector2(565, 444)

@@ -31,6 +31,7 @@ var last_input_vector = Vector2.ZERO
 var changed_direction_attack = false
 var current_direction = "Front"  # Track direction for animation ("Front", "Back", "Side")
 var attack_direction = ""  # Track direction for attack ("up", "down", "left", "right")
+var is_dead = false
 
 # variables to track health
 var hearts_list : Array[TextureRect]
@@ -52,6 +53,8 @@ func _ready() -> void:
 	#velocity = input_direction * SPEED
 
 func _physics_process(delta: float) -> void:
+	if is_dead:
+		return
 	# Handle movement input in four directions
 	var input_vector := Vector2(
 		Input.get_action_strength("right") - Input.get_action_strength("left"),
@@ -185,30 +188,31 @@ func take_damage():
 		health -= 1
 		play_animation(current_direction + "-Hit")
 		update_heart_display_dmg()
-	#if health == 0:
-		#dead()
+	if health == 0:
+		dead()
+
+func dead():
+	is_dead = true
+	await get_tree().create_timer(1).timeout
+	get_tree().reload_current_scene()
 
 func change_type(type):
 	char_type = type
 	var material = $AnimatedSprite2D.material
 	match type:
 		"fire":
-			print("Type is fire")
 			material.set("shader_parameter/color_light", Color(0.8, 0.2, 0.2))
 			material.set("shader_parameter/color_medium", Color(0.6, 0.1, 0.1))
 			material.set("shader_parameter/color_dark", Color(0.4, 0, 0))
 		"earth":
-			print("Type is earth")
 			material.set("shader_parameter/color_light", Color(0.2, 0.6, 0.2))
 			material.set("shader_parameter/color_medium", Color(0.1, 0.4, 0.1)) 
 			material.set("shader_parameter/color_dark", Color(0, 0.2, 0)) 
 		"water":
-			print("Type is water")
 			material.set("shader_parameter/color_light", Color(0.4, 0.6, 1.0))
 			material.set("shader_parameter/color_medium", Color(0.2, 0.4, 0.8))
 			material.set("shader_parameter/color_dark", Color(0.1, 0.2, 0.5))
 		"wind":
-			print("Type is wind")
 			material.set("shader_parameter/color_light", Color(0.8, 0.9, 1.0))
 			material.set("shader_parameter/color_medium", Color(0.6, 0.7, 0.9))
 			material.set("shader_parameter/color_dark", Color(0.4, 0.5, 0.7))
