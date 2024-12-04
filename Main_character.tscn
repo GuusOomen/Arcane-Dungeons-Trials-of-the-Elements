@@ -1334,6 +1334,7 @@ radius = 4.0
 height = 14.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+scale = Vector2(4, 4)
 collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_neyl5")
@@ -1365,3 +1366,6 @@ position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_pvafc")
 
 [node name="HUD" parent="." instance=ExtResource("37_khhtc")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+top_level = true
