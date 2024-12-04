@@ -6,18 +6,18 @@
 [node name="Node" type="Node"]
 script = ExtResource("1_oe2o2")
 
-[node name="Orb_wind" parent="." instance=ExtResource("6_8kdbm")]
-position = Vector2(173, 125)
-type = &"wind"
-
 [node name="Orb_fire" parent="." instance=ExtResource("6_8kdbm")]
 position = Vector2(-198, -113)
-type = &"fire"
-
-[node name="Orb_earth" parent="." instance=ExtResource("6_8kdbm")]
-position = Vector2(149, -108)
-type = &"earth"
+type = 1
 
 [node name="Orb_water" parent="." instance=ExtResource("6_8kdbm")]
 position = Vector2(-203, 107)
-type = &"water"
+type = 2
+
+[node name="Orb_earth" parent="." instance=ExtResource("6_8kdbm")]
+position = Vector2(149, -108)
+type = 3
+
+[node name="Orb_wind" parent="." instance=ExtResource("6_8kdbm")]
+position = Vector2(173, 125)
+type = 4

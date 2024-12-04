@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var type : StringName
+@export var type: Types.Projectile
 
 func _ready() -> void:
 	#CHange the color of the orb here
@@ -8,14 +8,15 @@ func _ready() -> void:
 	var water = $"AnimatedSprite2D-water"
 	var earth = $"AnimatedSprite2D-earth"
 	var wind = $"AnimatedSprite2D-wind"
+	print(type)
 	match type:
-		"fire":
+		Types.Projectile.FIRE:
 			fire.show()
-		"earth":
+		Types.Projectile.EARTH:
 			earth.show()
-		"water":
+		Types.Projectile.WATER:
 			water.show()
-		"wind":
+		Types.Projectile.WIND:
 			wind.show()
 		_:
 			print("Unknown type: ", type)

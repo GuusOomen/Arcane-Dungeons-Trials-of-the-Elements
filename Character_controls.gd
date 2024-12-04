@@ -1,11 +1,11 @@
 extends CharacterBody2D
 
 var projectiles := {
-	"default": preload("res://projectile/projectile.tscn"),
-	"fire": preload("res://projectile/projectile-fire.tscn"),
-	"water": preload("res://projectile/projectile-water.tscn"),
-	"earth": preload("res://projectile/projectile-earth.tscn"),
-	"wind": preload("res://projectile/projectile-wind.tscn"),
+	Types.Projectile.DEFAULT: preload("res://projectile/projectile.tscn"),
+	Types.Projectile.FIRE: preload("res://projectile/projectile-fire.tscn"),
+	Types.Projectile.WATER: preload("res://projectile/projectile-water.tscn"),
+	Types.Projectile.EARTH: preload("res://projectile/projectile-earth.tscn"),
+	Types.Projectile.WIND: preload("res://projectile/projectile-wind.tscn"),
 }
 
 # Constants for various actions
@@ -39,7 +39,8 @@ var is_dead = false
 var hearts_list : Array[TextureRect]
 var health = 5
 
-var char_type = "default"
+var char_type = 0
+var types = {char_type : null}
 # variables to track upgrades
 var dash_upgraded = false
 
@@ -121,13 +122,19 @@ func _physics_process(delta: float) -> void:
 		# Attack handling
 		if Input.is_action_just_pressed("attack"):
 			perform_attack()
-
+		if Input.is_action_just_pressed("scroll_up"):
+			print(types)
+			#change_type()
+		if Input.is_action_just_pressed("scroll_down"):
+			char_type 
+			print(len(types))
+			#change_type()
+		
 		# Dash and Roll
 		if Input.is_action_just_pressed("dash"):
 			start_dash(last_input_vector)
 		elif Input.is_action_just_pressed("roll"):
 			start_roll(last_input_vector)
-
 	move_and_slide()
 
 var attack_counter := 0
@@ -188,22 +195,23 @@ func dead():
 	get_tree().reload_current_scene()
 
 func change_type(type):
+	types[type] = null
 	char_type = type
 	var material = $AnimatedSprite2D.material
 	match type:
-		"fire":
+		Types.Projectile.FIRE:
 			material.set("shader_parameter/color_light", Color(0.8, 0.2, 0.2))
 			material.set("shader_parameter/color_medium", Color(0.6, 0.1, 0.1))
 			material.set("shader_parameter/color_dark", Color(0.4, 0, 0))
-		"earth":
-			material.set("shader_parameter/color_light", Color(0.2, 0.6, 0.2))
-			material.set("shader_parameter/color_medium", Color(0.1, 0.4, 0.1)) 
-			material.set("shader_parameter/color_dark", Color(0, 0.2, 0)) 
-		"water":
+		Types.Projectile.WATER:
 			material.set("shader_parameter/color_light", Color(0.4, 0.6, 1.0))
 			material.set("shader_parameter/color_medium", Color(0.2, 0.4, 0.8))
 			material.set("shader_parameter/color_dark", Color(0.1, 0.2, 0.5))
-		"wind":
+		Types.Projectile.EARTH:
+			material.set("shader_parameter/color_light", Color(0.2, 0.6, 0.2))
+			material.set("shader_parameter/color_medium", Color(0.1, 0.4, 0.1)) 
+			material.set("shader_parameter/color_dark", Color(0, 0.2, 0)) 
+		Types.Projectile.WIND:
 			material.set("shader_parameter/color_light", Color(0.8, 0.9, 1.0))
 			material.set("shader_parameter/color_medium", Color(0.6, 0.7, 0.9))
 			material.set("shader_parameter/color_dark", Color(0.4, 0.5, 0.7))

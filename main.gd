@@ -1,6 +1,7 @@
 extends Node
 
 var player := preload("res://Main_character.tscn")
+var enemy_skeleton := preload("res://Skeleton.tscn")
 var testroom := preload("res://rooms/test_room.tscn")
 var orb := preload("res://orb.tscn")
 var room1 := preload("res://rooms/room_1.tscn")
@@ -11,12 +12,15 @@ func _ready() -> void:
 	var waterorb = orb.instantiate()
 	var character = player.instantiate()
 	var room = testroom.instantiate()
+	var enemy = enemy_skeleton.instantiate()
 	room.scale = Vector2(2.5,2.5)
+	enemy.position = Vector2(-400,0)
 	waterorb.position = Vector2(50,0)
-	waterorb.type = "wind"
+	waterorb.type = 2
 	add_child(waterorb)
 	add_child(room)
 	add_child(character)
+	add_child(enemy)
 	
 
 
