@@ -1335,7 +1335,7 @@ height = 14.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 scale = Vector2(4, 4)
-collision_layer = 0
+collision_layer = 128
 motion_mode = 1
 script = ExtResource("1_neyl5")
 
