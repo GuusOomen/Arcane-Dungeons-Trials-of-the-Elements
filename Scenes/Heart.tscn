@@ -1,0 +1,92 @@
+[gd_scene load_steps=13 format=3 uid="uid://cj8lsacerxmvq"]
+
+[ext_resource type="Texture2D" uid="uid://dgr7stq5gxevx" path="res://Assets/Hearts/PNG/animated/border/heart_animated_2.png" id="1_3yoa8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ev8p"]
+atlas = ExtResource("1_3yoa8")
+region = Rect2(68, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_na7tl"]
+atlas = ExtResource("1_3yoa8")
+region = Rect2(51, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15tci"]
+atlas = ExtResource("1_3yoa8")
+region = Rect2(34, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_elx4l"]
+atlas = ExtResource("1_3yoa8")
+region = Rect2(17, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6x3t1"]
+atlas = ExtResource("1_3yoa8")
+region = Rect2(0, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5lxaj"]
+atlas = ExtResource("1_3yoa8")
+region = Rect2(0, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqyyp"]
+atlas = ExtResource("1_3yoa8")
+region = Rect2(17, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_svfg1"]
+atlas = ExtResource("1_3yoa8")
+region = Rect2(34, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tuk4f"]
+atlas = ExtResource("1_3yoa8")
+region = Rect2(51, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bw2rs"]
+atlas = ExtResource("1_3yoa8")
+region = Rect2(68, 0, 17, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ywwgx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ev8p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_na7tl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15tci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_elx4l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6x3t1")
+}],
+"loop": false,
+"name": &"Heal",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5lxaj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqyyp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_svfg1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tuk4f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bw2rs")
+}],
+"loop": false,
+"name": &"Hit",
+"speed": 10.0
+}]
+
+[node name="Heart" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_ywwgx")
+animation = &"Heal"
+frame = 4
+frame_progress = 1.0
