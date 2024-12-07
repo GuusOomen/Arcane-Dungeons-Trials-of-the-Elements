@@ -18,7 +18,7 @@ var character: Node = null
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var waterorb = orb.instantiate()
-	var character = player.instantiate()
+	character = player.instantiate()
 	var enemy = enemy_skeleton.instantiate()
 	
 	enemy.position = Vector2(-400,0)
@@ -26,7 +26,7 @@ func _ready() -> void:
 	waterorb.type = 2
 	
 	#Load starting room
-	_load_room(starting_room, Vector2(100, 100))
+	_load_room(starting_room, Vector2(0, 0))
 	add_child(character)
 	add_child(waterorb)
 	add_child(enemy)
@@ -45,7 +45,7 @@ func _load_room(room_scene: PackedScene, player_start_position: Vector2) -> void
 	
 	# Position the player in the new room
 	if character:
-		character.position = player_start_position
+		character.position = player_start_position #Dit werkt nog niet, player spawn altijd op dezelfde plek
 
 func teleport_to_room(room_scene: PackedScene, player_start_position: Vector2) -> void:
 	_load_room(room_scene, player_start_position)
