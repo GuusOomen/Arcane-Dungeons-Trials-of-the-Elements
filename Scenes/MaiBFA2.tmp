@@ -1,4 +1,4 @@
-[gd_scene load_steps=201 format=3 uid="uid://cokr0nbhhpsng"]
+[gd_scene load_steps=204 format=3 uid="uid://cokr0nbhhpsng"]
 
 [ext_resource type="Script" path="res://Scripts/Character_controls.gd" id="1_neyl5"]
 [ext_resource type="Texture2D" uid="uid://dps7jbb60lnle" path="res://Assets/main_character/Back/Base.png" id="2_mria7"]
@@ -36,6 +36,8 @@
 [ext_resource type="Texture2D" uid="uid://xjbpewrc7f8q" path="res://Assets/main_character/Side/Slash 2.png" id="33_rd3nv"]
 [ext_resource type="Texture2D" uid="uid://diq8neiktbeho" path="res://Assets/main_character/Side/Walk.png" id="34_45jma"]
 [ext_resource type="PackedScene" uid="uid://b22wmlu7rrtem" path="res://Scenes/hud.tscn" id="37_khhtc"]
+[ext_resource type="Script" path="res://Scripts/wall_hider.gd" id="37_p3vvw"]
+[ext_resource type="Script" path="res://Scenes/pivot.gd" id="38_nccl4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wosla"]
 atlas = ExtResource("3_y36h0")
@@ -1324,6 +1326,10 @@ animations = [{
 radius = 1.0
 height = 12.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q4xwv"]
+radius = 5.0
+height = 20.0
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pvafc"]
 radius = 4.0
 height = 14.0
@@ -1335,18 +1341,25 @@ motion_mode = 1
 script = ExtResource("1_neyl5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-y_sort_enabled = true
 material = ExtResource("3_sf4tv")
-position = Vector2(0, 9)
+position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_ljnsc")
 animation = &"Front-Base"
-offset = Vector2(0, -13)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1
 position = Vector2(0, 5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_a7k2p")
+
+[node name="WallHider" type="Area2D" parent="."]
+position = Vector2(0, -3)
+script = ExtResource("37_p3vvw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallHider"]
+z_index = 1
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_q4xwv")
 
 [node name="Hitbox" type="Area2D" parent="." groups=["Hitbox"]]
 position = Vector2(0, -4)
@@ -1359,3 +1372,7 @@ shape = SubResource("CapsuleShape2D_pvafc")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 top_level = true
+
+[node name="Pivot" type="Node2D" parent="."]
+position = Vector2(0, 12)
+script = ExtResource("38_nccl4")

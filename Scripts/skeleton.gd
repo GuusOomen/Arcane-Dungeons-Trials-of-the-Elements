@@ -11,7 +11,7 @@ var is_taking_dmg = false
 var current_direction = "Front"  # Track direction for animation ("Front", "Back", "Right", "Left")
 var attack_direction = null
 var player_loc = []
-var dead = false
+var is_dead = false
 
 @onready var animation_player = $AnimatedSprite2D
 @onready var nav_agent = $NavigationAgent2D
@@ -87,12 +87,15 @@ func take_damage():
 		death()
 		
 func death():
-	dead = true
+	if is_dead:
+		return
+	set_process(false)
+	set_physics_process(false)
+	is_dead = true
 	play_animation(current_direction + "-Death")
 	for i in get_children():
 		if i != animation_player:
 			i.queue_free()
-	set_physics_process(false)
 
 func _on_detect_area_entered(area: Node2D, direction: String) -> void:
 	if !area.is_in_group("Hitbox"):

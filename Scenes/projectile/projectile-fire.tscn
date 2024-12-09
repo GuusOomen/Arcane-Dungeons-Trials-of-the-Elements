@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://cmft2eharu7sk"]
+[gd_scene load_steps=11 format=3 uid="uid://cmft2eharu7sk"]
 
 [ext_resource type="Script" path="res://Scripts/projectile/projectile.gd" id="1_xfue4"]
 [ext_resource type="Texture2D" uid="uid://dgows7j1526sd" path="res://Assets/projectile/All_Fire_Bullet_Pixel_16x16_00.png" id="2_tjopo"]
-[ext_resource type="Script" path="res://Scripts/wall_hider.gd" id="3_8vo1s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jj1ha"]
 atlas = ExtResource("2_tjopo")
@@ -51,9 +50,6 @@ animations = [{
 radius = 1.0
 height = 32.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0ugwy"]
-radius = 15.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_cu7uf"]
 radius = 12.0
 
@@ -62,26 +58,20 @@ collision_layer = 0
 script = ExtResource("1_xfue4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(2.38419e-06, -0.500003)
+y_sort_enabled = true
+position = Vector2(0, 15.75)
 scale = Vector2(2.25, 2.25)
 sprite_frames = SubResource("SpriteFrames_416qw")
 autoplay = "default"
 frame_progress = 0.780087
+offset = Vector2(0, -7)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 15)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_yh2m3")
 
-[node name="WallHider" type="Area2D" parent="."]
-script = ExtResource("3_8vo1s")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WallHider"]
-position = Vector2(0, -1)
-shape = SubResource("CircleShape2D_0ugwy")
-
 [node name="Damagebox" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Damagebox"]
 shape = SubResource("CircleShape2D_cu7uf")

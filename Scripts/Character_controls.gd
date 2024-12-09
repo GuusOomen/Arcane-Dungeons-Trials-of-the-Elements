@@ -52,8 +52,6 @@ func _ready() -> void:
 		hearts_list.append(child)
 
 func _physics_process(delta: float) -> void:
-	if is_dead:
-		return
 	# Handle movement input in four directions
 	var input_vector := Vector2(
 		Input.get_action_strength("right") - Input.get_action_strength("left"),
@@ -187,6 +185,10 @@ func take_damage():
 		dead()
 
 func dead():
+	if is_dead:
+		return
+	set_process(false)
+	set_physics_process(false)
 	is_dead = true
 	await get_tree().create_timer(1).timeout
 	get_tree().reload_current_scene()

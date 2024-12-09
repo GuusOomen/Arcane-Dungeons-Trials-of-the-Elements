@@ -1,4 +1,4 @@
-[gd_scene load_steps=160 format=3 uid="uid://bqphqqsbp1btx"]
+[gd_scene load_steps=154 format=3 uid="uid://bqphqqsbp1btx"]
 
 [ext_resource type="Script" path="res://Scripts/skeleton.gd" id="1_bwphp"]
 [ext_resource type="Texture2D" uid="uid://isct52h2bdwy" path="res://Assets/skeleton/Up/Png/SkeletonWithSwordUpAttack01.png" id="1_n3ch6"]
@@ -22,11 +22,6 @@
 [ext_resource type="Texture2D" uid="uid://b0niesy6ir7vc" path="res://Assets/skeleton/Right/Png/SkeletonWithSwordRightIdle.png" id="19_swkfk"]
 [ext_resource type="Texture2D" uid="uid://dv4bo8mtse1xs" path="res://Assets/skeleton/Right/Png/SkeletonWithSwordRightRun.png" id="20_32cq0"]
 [ext_resource type="PackedScene" uid="uid://gqq7opqr8gnq" path="res://Scenes/enemies/healthbar.tscn" id="22_wha6g"]
-[ext_resource type="Script" path="res://Scripts/wall_hider.gd" id="23_oqy3f"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h655u"]
-radius = 1.0
-height = 16.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iilo7"]
 atlas = ExtResource("1_n3ch6")
@@ -1027,74 +1022,67 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mvxap"]
-resource_local_to_scene = true
-size = Vector2(16, 10)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4tmt0"]
-size = Vector2(16, 10)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yy4wu"]
-size = Vector2(12, 26)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_awidb"]
-size = Vector2(12, 26.4)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wbysv"]
+radius = 1.0
+height = 14.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8u0b4"]
 radius = 6.0
 height = 28.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x7kbo"]
-radius = 7.0
-height = 25.5
 
 [node name="Skeleton" type="CharacterBody2D" groups=["Enemy"]]
 scale = Vector2(2.5, 2.5)
 collision_layer = 0
 script = ExtResource("1_bwphp")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 14)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_h655u")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 11)
 sprite_frames = SubResource("SpriteFrames_wougq")
-animation = &"Back-Attack"
+animation = &"Front-Idle"
 autoplay = "Front-Idle"
+offset = Vector2(0, -17)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-8.88178e-16, 5.99955)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_wbysv")
 
 [node name="Front-Detect" type="Area2D" parent="."]
+position = Vector2(4.65661e-10, -6)
 collision_layer = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Front-Detect"]
-position = Vector2(0, 22)
-shape = SubResource("RectangleShape2D_mvxap")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Front-Detect"]
+polygon = PackedVector2Array(9.97489, 18.0166, -11.0475, 18.0166, -18.027, 9.77582, -15.1679, 1.95548, 2.91136, 9.944)
 
 [node name="Back-Detect" type="Area2D" parent="."]
+position = Vector2(0, -6)
 collision_layer = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Back-Detect"]
-position = Vector2(0, -18)
-shape = SubResource("RectangleShape2D_4tmt0")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Back-Detect"]
+polygon = PackedVector2Array(-10, -17.05, 5, -19.95, 13.8, -15.15, 17.8, -4.15, 15, -2.05, -6, -8.05)
 
 [node name="Right-Detect" type="Area2D" parent="."]
+position = Vector2(0, -6)
 collision_layer = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Right-Detect"]
-position = Vector2(14, 2.2)
-shape = SubResource("RectangleShape2D_yy4wu")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Right-Detect"]
+polygon = PackedVector2Array(11.0075, -5.00946, 19.0595, -11.1543, 20.9665, 2.93651, 16.9405, 10.0349, 4.9686, 15.9679, 2.95562, 12.0479)
 
 [node name="Left-Detect" type="Area2D" parent="."]
+position = Vector2(0, -6)
 collision_layer = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Left-Detect"]
-position = Vector2(-14, 2)
-shape = SubResource("RectangleShape2D_awidb")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Left-Detect"]
+polygon = PackedVector2Array(-10, 17.95, -19, 6.95, -16, -5.05, -10, -8.95, -3.1, 8.95, -3, 17.85)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
+path_desired_distance = 4.0
+target_desired_distance = 0.1
+path_postprocessing = 1
+path_metadata_flags = 0
 
 [node name="Hitbox" type="Area2D" parent="." groups=["Hitbox"]]
+position = Vector2(0, -6)
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
@@ -1102,22 +1090,16 @@ position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_8u0b4")
 
 [node name="Healthbar" parent="." instance=ExtResource("22_wha6g")]
+z_index = 100
 anchors_preset = 10
 anchor_bottom = 0.0
 offset_left = -8.0
-offset_top = 19.0
+offset_top = 13.0
 offset_right = 8.0
-offset_bottom = 20.0
+offset_bottom = 14.0
 grow_vertical = 1
 
-[node name="WallHider" type="Area2D" parent="."]
-script = ExtResource("23_oqy3f")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WallHider"]
-position = Vector2(0, 0.5)
-shape = SubResource("CapsuleShape2D_x7kbo")
-
-[node name="Timers" type="Node2D" parent="."]
+[node name="Timers" type="Node" parent="."]
 
 [node name="AttackTimer" type="Timer" parent="Timers"]
 wait_time = 0.875
