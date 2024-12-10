@@ -1,4 +1,4 @@
-[gd_scene load_steps=108 format=3 uid="uid://bi5hfmp8satwf"]
+[gd_scene load_steps=111 format=3 uid="uid://26k2ba5xm41c"]
 
 [ext_resource type="Script" path="res://turret.gd" id="1_8elre"]
 [ext_resource type="Texture2D" uid="uid://bk14hly8g4pci" path="res://enemies/turret/Up/Png/TurretUpAttack01.png" id="2_1lblv"]
@@ -127,6 +127,18 @@ region = Rect2(144, 0, 48, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_0dhwp"]
 atlas = ExtResource("6_oh1sl")
 region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o482t"]
+atlas = ExtResource("6_oh1sl")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5k4q4"]
+atlas = ExtResource("6_oh1sl")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_svrrw"]
+atlas = ExtResource("6_oh1sl")
+region = Rect2(336, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_24iqk"]
 atlas = ExtResource("7_g5sbc")
@@ -418,7 +430,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6fb1m")
 }],
-"loop": true,
+"loop": false,
 "name": &"Back-Hurt",
 "speed": 8.0
 }, {
@@ -460,6 +472,15 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0dhwp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o482t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5k4q4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_svrrw")
 }],
 "loop": false,
 "name": &"Front-Attack",
@@ -501,7 +522,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_h7ohq")
 }],
-"loop": true,
+"loop": false,
 "name": &"Front-Hurt",
 "speed": 8.0
 }, {
@@ -584,7 +605,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_damba")
 }],
-"loop": true,
+"loop": false,
 "name": &"Left-Hurt",
 "speed": 8.0
 }, {
@@ -667,7 +688,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5ldhs")
 }],
-"loop": true,
+"loop": false,
 "name": &"Right-Hurt",
 "speed": 8.0
 }, {
@@ -715,11 +736,8 @@ shape = SubResource("CapsuleShape2D_h655u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wougq")
-animation = &"Left-Hurt"
+animation = &"Front-Attack"
 autoplay = "Front-Idle"
-
-[node name="AttackTimer" type="Timer" parent="."]
-wait_time = 0.875
 
 [node name="Hitbox" type="Area2D" parent="." groups=["Hitbox"]]
 collision_mask = 0
@@ -744,4 +762,25 @@ script = ExtResource("23_gv1rr")
 position = Vector2(0, 0.5)
 shape = SubResource("CapsuleShape2D_x7kbo")
 
-[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="AttackTimer" type="Timer" parent="Timers"]
+
+[node name="AttackTimeout" type="Timer" parent="Timers"]
+
+[node name="DmgTimer" type="Timer" parent="Timers"]
+wait_time = 0.5
+one_shot = true
+
+[node name="DeathTimer" type="Timer" parent="Timers"]
+wait_time = 0.6
+one_shot = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(200, 0)
+collide_with_areas = true
+
+[connection signal="timeout" from="Timers/AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="Timers/AttackTimeout" to="." method="_on_attack_timeout_timeout"]
+[connection signal="timeout" from="Timers/DmgTimer" to="." method="_on_dmg_timer_timeout"]
+[connection signal="timeout" from="Timers/DeathTimer" to="." method="_on_death_timer_timeout"]

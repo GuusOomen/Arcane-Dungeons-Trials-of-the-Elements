@@ -3,67 +3,65 @@ extends CharacterBody2D
 @export var health = 3
 
 # Constants for various actions
-const ATTACK_DURATION = 1.5
-const ATTACK_RANGE_LONG = 100
+const ATTACK_RANGE_LONG = 200
 
 # Variables to track states
 var is_attacking = false
-var attack_timeout = 0.0
 var is_taking_dmg = false
-var dmg_timer = 0.0
 var current_direction = "Front"  # Track direction for animation ("Front", "Back", "Right", "Left")
 var attack_direction = null
 var dead = false
+var angle_to_target
+
+var projectile = preload("res://projectile/projectile-water.tscn")
 
 @onready var animation_player = $AnimatedSprite2D
-@onready var nav_agent = $NavigationAgent2D
-@onready var attack_timer = $AttackTimer
-@onready var nav_timer = $NavigationTimer
+@onready var attack_timer = $Timers/AttackTimer
+@onready var attack_timeout = $Timers/AttackTimeout
+@onready var dmg_timer = $Timers/DmgTimer
+@onready var death_timer = $Timers/DeathTimer
 @onready var player = get_tree().get_first_node_in_group("Player")
 @onready var healthbar = $Healthbar
+@onready var raycast = $RayCast2D
 
 func _ready() -> void:
 	healthbar.init_health(health)
 
 func _physics_process(delta: float) -> void:
+	if dead:
+		return
+	
 	## Determine the character's facing direction based on input
 	if is_taking_dmg:
-		dmg_timer -= delta
-		
-		if dmg_timer <= 0:
-			is_taking_dmg = false
+		return
 	elif is_attacking:
-		#velocity = input_vector * 0
-		attack_timeout -= delta
-		
-		if attack_timeout <= 0:
-			is_attacking = false
+		target()
+	else:
+		play_animation(current_direction + "-Idle")
+		target()
 
 	#move_and_slide()
 
-func animate_movement() -> void:
-	if velocity == Vector2.ZERO:
-		play_animation(current_direction + "-Idle")
+func target() -> void:
+	angle_to_target = global_position.angle_to_point(player.global_position)
+	raycast.rotation = angle_to_target
+	var collider = raycast.get_collider()
+	if collider != null && collider.get_parent() == player:
+		attack()
 	else:
-		if (abs(velocity.x) > abs(velocity.y)):
-			if velocity.x > 0:
-				current_direction = "Right"
-			else:
-				current_direction = "Left"
-		else:
-			if velocity.y > 0:
-				current_direction = "Front"
-			else:
-				current_direction = "Back"
-	
-	play_animation(current_direction + "-Walk")
+		stop_attack()
 
-func perform_attack() -> void:
-	# Set the attack animation based on the direction and range type
-	play_animation(current_direction + "-Attack")
-	attack_timeout = ATTACK_DURATION
+func attack() -> void:
+	if is_attacking:
+		return
+	
 	is_attacking = true
 	attack_timer.start()
+	play_animation(current_direction + "-Attack")
+
+func stop_attack() -> void:
+	is_attacking = false
+	attack_timer.stop()
 
 # Helper function to play animations
 func play_animation(anim_name: String) -> void:
@@ -72,18 +70,36 @@ func play_animation(anim_name: String) -> void:
 
 func take_damage():
 	is_taking_dmg = true
-	dmg_timer = 0.4
+	dmg_timer.start()
 	if health > 1:
 		health -= 1
 		play_animation(current_direction + "-Hurt")
 		healthbar.health = health
 	else:
 		death()
-		
+
 func death():
 	dead = true
 	play_animation(current_direction + "-Death")
-	for i in get_children():
-		if i != animation_player:
-			i.queue_free()
-	set_physics_process(false)
+	death_timer.start()
+
+
+func _on_attack_timer_timeout() -> void:
+	var curr_projectile: CharacterBody2D = projectile.instantiate()
+	curr_projectile.cast_group = "Enemy"
+	curr_projectile.direction = (raycast.target_position).rotated(raycast.rotation).normalized()
+	curr_projectile.global_position = global_position + 50.0 * curr_projectile.direction
+	get_tree().current_scene.add_child(curr_projectile)
+	print("shot")
+
+
+func _on_attack_timeout_timeout() -> void:
+	pass
+
+
+func _on_dmg_timer_timeout() -> void:
+	is_taking_dmg = false
+
+
+func _on_death_timer_timeout() -> void:
+	queue_free()
