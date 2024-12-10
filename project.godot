@@ -30,6 +30,7 @@ window/stretch/mode="canvas_items"
 Hitbox=""
 Player=""
 Pivot=""
+Tree=""
 
 [input]
 

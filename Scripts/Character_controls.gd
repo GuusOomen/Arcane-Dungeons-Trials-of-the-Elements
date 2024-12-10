@@ -39,7 +39,7 @@ var is_dead = false
 var hearts_list : Array[TextureRect]
 var health = 5
 
-var char_type = 0
+var char_type = Types.Projectile.DEFAULT
 var types = []
 # variables to track upgrades
 var dash_upgraded = false
@@ -148,6 +148,7 @@ func perform_attack() -> void:
 func perform_magic() -> void:
 	var projectile: CharacterBody2D = projectiles[char_type].instantiate()
 	projectile.cast_group = "Player"
+	projectile.type = char_type
 	projectile.direction = (get_global_mouse_position() - global_position).normalized()
 	projectile.global_position = global_position + 50.0 * projectile.direction
 	get_tree().current_scene.add_child(projectile)

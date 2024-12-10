@@ -158,39 +158,47 @@ script = ExtResource("1_bcuaq")
 
 [node name="AnimatedSprite2D-fire" type="AnimatedSprite2D" parent="."]
 visible = false
-position = Vector2(-3.19744e-14, -9)
+y_sort_enabled = true
+position = Vector2(0, 15.75)
 rotation = 1.5708
 scale = Vector2(2.25, 2.25)
 sprite_frames = SubResource("SpriteFrames_3hs5l")
 autoplay = "default"
 frame_progress = 0.657129
+offset = Vector2(-11, 0)
 
 [node name="AnimatedSprite2D-water" type="AnimatedSprite2D" parent="."]
 visible = false
-position = Vector2(0, -9)
+y_sort_enabled = true
+position = Vector2(0, 15.75)
 rotation = 1.5708
 scale = Vector2(2.25, 2.25)
 sprite_frames = SubResource("SpriteFrames_r4wtc")
 autoplay = "default"
 frame_progress = 0.404135
+offset = Vector2(-11, 0)
 
 [node name="AnimatedSprite2D-earth" type="AnimatedSprite2D" parent="."]
 visible = false
-position = Vector2(0, -9)
+y_sort_enabled = true
+position = Vector2(0, 15.75)
 rotation = 1.5708
 scale = Vector2(2.25, 2.25)
 sprite_frames = SubResource("SpriteFrames_wbmco")
 autoplay = "default"
 frame_progress = 0.697728
+offset = Vector2(-11, 0)
 
 [node name="AnimatedSprite2D-wind" type="AnimatedSprite2D" parent="."]
 visible = false
-position = Vector2(0, -9)
+y_sort_enabled = true
+position = Vector2(0, 15.75)
 rotation = 1.5708
 scale = Vector2(2.25, 2.25)
 sprite_frames = SubResource("SpriteFrames_v2rh0")
 autoplay = "default"
 frame_progress = 0.734124
+offset = Vector2(-11, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tskvm")

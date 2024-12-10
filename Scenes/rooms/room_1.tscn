@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=4 uid="uid://bc40cf455yxnq"]
+[gd_scene load_steps=12 format=4 uid="uid://bc40cf455yxnq"]
 
 [ext_resource type="Texture2D" uid="uid://dak85krm7wp57" path="res://Assets/dungeon/Dungeon tileset.png" id="1_lwhjf"]
 [ext_resource type="PackedScene" uid="uid://cokr0nbhhpsng" path="res://Scenes/Main_character.tscn" id="2_gvdli"]
 [ext_resource type="PackedScene" uid="uid://bqphqqsbp1btx" path="res://Scenes/Skeleton.tscn" id="3_b62ts"]
 [ext_resource type="PackedScene" uid="uid://boastwxvwprua" path="res://Scenes/tree.tscn" id="4_olsni"]
+[ext_resource type="PackedScene" uid="uid://d0ybc5t7vr58y" path="res://Scenes/orb.tscn" id="5_dubr1"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bjp4a"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -391,4 +392,11 @@ position = Vector2(-112, 16)
 position = Vector2(112, 16)
 
 [node name="Tree" parent="." instance=ExtResource("4_olsni")]
-position = Vector2(-224, 288)
+position = Vector2(-48, 139)
+
+[node name="Tree2" parent="." instance=ExtResource("4_olsni")]
+position = Vector2(44, 137)
+
+[node name="Orb" parent="." instance=ExtResource("5_dubr1")]
+position = Vector2(-300, -146)
+type = 1

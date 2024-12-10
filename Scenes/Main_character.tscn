@@ -1337,10 +1337,10 @@ script = ExtResource("1_neyl5")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
 material = ExtResource("3_sf4tv")
-position = Vector2(0, 9)
+position = Vector2(0, 8)
 sprite_frames = SubResource("SpriteFrames_ljnsc")
 animation = &"Front-Base"
-offset = Vector2(0, -13)
+offset = Vector2(0, -12)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1
@@ -1356,6 +1356,8 @@ position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_pvafc")
 
 [node name="HUD" parent="." instance=ExtResource("37_khhtc")]
+z_index = 4096
+z_as_relative = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 top_level = true

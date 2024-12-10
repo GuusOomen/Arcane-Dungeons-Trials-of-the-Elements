@@ -1,30 +1,47 @@
-[gd_scene load_steps=5 format=3 uid="uid://boastwxvwprua"]
+[gd_scene load_steps=8 format=3 uid="uid://boastwxvwprua"]
 
 [ext_resource type="SpriteFrames" uid="uid://ckf065g1w1fcl" path="res://tree.tres" id="1_fhjha"]
-[ext_resource type="Script" path="res://Scripts/wall_hider.gd" id="2_b0ioy"]
+[ext_resource type="Script" path="res://Scripts/tree.gd" id="1_jvt78"]
+[ext_resource type="Shader" path="res://burn.gdshader" id="2_jgdep"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vi0jy"]
-radius = 5.0
-height = 44.0
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dpqru"]
+frequency = 0.05
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_bgf0w"]
-radius = 29.6432
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bl038"]
+generate_mipmaps = false
+seamless = true
+noise = SubResource("FastNoiseLite_dpqru")
 
-[node name="Tree" type="StaticBody2D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vmerr"]
+resource_local_to_scene = true
+shader = ExtResource("2_jgdep")
+shader_parameter/percentage = 1.0
+shader_parameter/burn_texture = SubResource("NoiseTexture2D_bl038")
+shader_parameter/layer_1 = Color(0.2, 0.2, 0.2, 1)
+shader_parameter/size_1 = 0.05
+shader_parameter/layer_2 = Color(1, 0, 0, 1)
+shader_parameter/size_2 = 0.05
+shader_parameter/layer_3 = Color(1, 0.5, 0, 1)
+shader_parameter/size_3 = 0.05
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jpf8g"]
+radius = 12.0
+
+[node name="Tree" type="StaticBody2D" groups=["Tree"]]
 scale = Vector2(2.5, 2.5)
+script = ExtResource("1_jvt78")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_vmerr")
+position = Vector2(0, -4)
 sprite_frames = ExtResource("1_fhjha")
-offset = Vector2(4, -38)
+offset = Vector2(4, -28)
+
+[node name="Hitbox" type="Area2D" parent="." groups=["Hitbox"]]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
+polygon = PackedVector2Array(-20.8, 3.6, -6, -15.6, -24.4, -14, -15.2, -24.8, -22, -42, -6.8, -30, 9.6, -39.6, 15.6, -47.6, 23.6, -36.4, 19.2, -23.6, 22.8, -18, 5.6, -16.4, 22, 2.4, 20.8, 10.4, 12, 12, -9.6, 13.2, -20.4, 14.8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -3)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_vi0jy")
-
-[node name="WallHider" type="Area2D" parent="."]
-script = ExtResource("2_b0ioy")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WallHider"]
-position = Vector2(0, -37.6)
-shape = SubResource("CircleShape2D_bgf0w")
+shape = SubResource("CircleShape2D_jpf8g")
