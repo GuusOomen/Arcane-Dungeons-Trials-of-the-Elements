@@ -27,7 +27,7 @@ var projectile = preload("res://Scenes/projectile/projectile-water.tscn")
 func _ready() -> void:
 	healthbar.init_health(health)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if dead:
 		return
 	
@@ -37,10 +37,8 @@ func _physics_process(delta: float) -> void:
 	elif is_attacking:
 		target()
 	else:
-		play_animation(current_direction + "-Idle")
+		play_animation(current_direction + "-Idle", false)
 		target()
-
-	#move_and_slide()
 
 func target() -> void:
 	angle_to_target = global_position.angle_to_point(player.global_position)
@@ -52,35 +50,61 @@ func target() -> void:
 		stop_attack()
 
 func attack() -> void:
+	if PI/3 > raycast.rotation and raycast.rotation > -PI/3:
+		current_direction = "Right"
+	elif -PI/3 > raycast.rotation and raycast.rotation > -2*PI/3:
+		current_direction = "Back"
+	elif 2*PI/3 > raycast.rotation and raycast.rotation > PI/3:
+		current_direction = "Front"
+	else:
+		current_direction = "Left"
+	
+	if "Attack" in animation_player.animation:
+		play_animation(current_direction + "-Attack", true)
+	else:
+		play_animation(current_direction + "-Attack", false)
+	
 	if is_attacking:
 		return
 	
 	is_attacking = true
 	attack_timer.start()
-	play_animation(current_direction + "-Attack")
 
 func stop_attack() -> void:
 	is_attacking = false
 	attack_timer.stop()
 
 # Helper function to play animations
-func play_animation(anim_name: String) -> void:
-	if animation_player.animation != anim_name:
-		animation_player.play(anim_name)
+func play_animation(anim_name: String, continuing: bool) -> void:
+	if animation_player.animation == anim_name:
+		return
+	
+	var frame = 0
+	var frame_progress = 0
+	
+	if continuing:
+		frame = animation_player.frame
+		frame_progress = animation_player.frame_progress
+	
+	animation_player.play(anim_name)
+	animation_player.set_frame_and_progress(frame, frame_progress)
 
 func take_damage():
 	is_taking_dmg = true
 	dmg_timer.start()
 	if health > 1:
 		health -= 1
-		play_animation(current_direction + "-Hurt")
+		play_animation(current_direction + "-Hurt", false)
 		healthbar.health = health
 	else:
 		death()
 
 func death():
 	dead = true
-	play_animation(current_direction + "-Death")
+	play_animation(current_direction + "-Death", false)
+	for i in get_children():
+		if i != animation_player:
+			i.queue_free()
 	death_timer.start()
 
 
@@ -90,7 +114,6 @@ func _on_attack_timer_timeout() -> void:
 	curr_projectile.direction = (raycast.target_position).rotated(raycast.rotation).normalized()
 	curr_projectile.global_position = global_position + 50.0 * curr_projectile.direction
 	get_tree().current_scene.add_child(curr_projectile)
-	print("shot")
 
 
 func _on_attack_timeout_timeout() -> void:
