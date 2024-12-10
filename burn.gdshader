@@ -1,3 +1,5 @@
+// KingToot (2024). Burn/Dissolve, https://godotshaders.com/shader/burn-dissolve/
+
 shader_type canvas_item;
 
 // --- Uniforms --- //
