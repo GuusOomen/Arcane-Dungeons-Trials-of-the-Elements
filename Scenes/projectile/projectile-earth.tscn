@@ -52,12 +52,11 @@ script = ExtResource("1_dec2y")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
-position = Vector2(0, 14.67)
 scale = Vector2(2.25, 2.25)
 sprite_frames = SubResource("SpriteFrames_416qw")
 autoplay = "default"
 frame_progress = 0.408765
-offset = Vector2(0, -6)
+offset = Vector2(0, 0.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 15)

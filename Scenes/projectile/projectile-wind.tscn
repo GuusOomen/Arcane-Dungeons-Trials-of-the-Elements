@@ -52,12 +52,11 @@ script = ExtResource("1_wpm1v")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
-position = Vector2(0, 14.67)
 scale = Vector2(2.25, 2.25)
 sprite_frames = SubResource("SpriteFrames_416qw")
 autoplay = "default"
 frame_progress = 0.710665
-offset = Vector2(0, -7)
+offset = Vector2(0, -0.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 15)
