@@ -1,4 +1,4 @@
-[gd_scene load_steps=110 format=3 uid="uid://26k2ba5xm41c"]
+[gd_scene load_steps=109 format=3 uid="uid://26k2ba5xm41c"]
 
 [ext_resource type="Script" path="res://Scripts/turret.gd" id="1_jbwtp"]
 [ext_resource type="Texture2D" uid="uid://bk14hly8g4pci" path="res://Assets/turret/Up/Png/TurretUpAttack01.png" id="2_1lblv"]
@@ -719,11 +719,7 @@ animations = [{
 radius = 6.0
 height = 28.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x7kbo"]
-radius = 7.0
-height = 25.5
-
-[node name="Turret" type="CharacterBody2D" groups=["Enemy"]]
+[node name="Turret" type="CharacterBody2D"]
 scale = Vector2(2.5, 2.5)
 collision_layer = 0
 script = ExtResource("1_jbwtp")
@@ -733,7 +729,7 @@ position = Vector2(0, 14)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_h655u")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["Enemy"]]
 sprite_frames = SubResource("SpriteFrames_wougq")
 animation = &"Front-Attack"
 autoplay = "Front-Idle"
@@ -755,12 +751,6 @@ offset_right = 8.0
 offset_bottom = 17.0
 grow_horizontal = 1
 grow_vertical = 1
-
-[node name="WallHider" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WallHider"]
-position = Vector2(0, 0.5)
-shape = SubResource("CapsuleShape2D_x7kbo")
 
 [node name="Timers" type="Node2D" parent="."]
 
