@@ -1,4 +1,4 @@
-[gd_scene load_steps=109 format=3 uid="uid://26k2ba5xm41c"]
+[gd_scene load_steps=118 format=3 uid="uid://26k2ba5xm41c"]
 
 [ext_resource type="Script" path="res://Scripts/turret.gd" id="1_jbwtp"]
 [ext_resource type="Texture2D" uid="uid://bk14hly8g4pci" path="res://Assets/turret/Up/Png/TurretUpAttack01.png" id="2_1lblv"]
@@ -42,6 +42,18 @@ region = Rect2(144, 0, 48, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_6d1qs"]
 atlas = ExtResource("2_1lblv")
 region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_huoaw"]
+atlas = ExtResource("2_1lblv")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ck52d"]
+atlas = ExtResource("2_1lblv")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2xtu"]
+atlas = ExtResource("2_1lblv")
+region = Rect2(336, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_loww2"]
 atlas = ExtResource("3_myaqe")
@@ -223,6 +235,18 @@ region = Rect2(144, 0, 48, 48)
 atlas = ExtResource("10_1jcdh")
 region = Rect2(192, 0, 48, 48)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3751"]
+atlas = ExtResource("10_1jcdh")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iy57b"]
+atlas = ExtResource("10_1jcdh")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqtq8"]
+atlas = ExtResource("10_1jcdh")
+region = Rect2(336, 0, 48, 48)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_4bc24"]
 atlas = ExtResource("11_eamka")
 region = Rect2(0, 0, 48, 48)
@@ -307,6 +331,18 @@ region = Rect2(144, 0, 48, 48)
 atlas = ExtResource("14_p883w")
 region = Rect2(192, 0, 48, 48)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xhxp"]
+atlas = ExtResource("14_p883w")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bxy0"]
+atlas = ExtResource("14_p883w")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vv2g3"]
+atlas = ExtResource("14_p883w")
+region = Rect2(336, 0, 48, 48)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_at51y"]
 atlas = ExtResource("15_ho47p")
 region = Rect2(0, 0, 48, 48)
@@ -388,6 +424,15 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6d1qs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_huoaw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ck52d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2xtu")
 }],
 "loop": false,
 "name": &"Back-Attack",
@@ -563,6 +608,15 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jvxao")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b3751")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iy57b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqtq8")
 }],
 "loop": false,
 "name": &"Left-Attack",
@@ -646,6 +700,15 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_58crh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7xhxp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bxy0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vv2g3")
 }],
 "loop": false,
 "name": &"Right-Attack",
@@ -731,7 +794,7 @@ shape = SubResource("CapsuleShape2D_h655u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["Enemy"]]
 sprite_frames = SubResource("SpriteFrames_wougq")
-animation = &"Front-Attack"
+animation = &"Right-Attack"
 autoplay = "Front-Idle"
 
 [node name="Hitbox" type="Area2D" parent="." groups=["Hitbox"]]
@@ -756,8 +819,6 @@ grow_vertical = 1
 
 [node name="AttackTimer" type="Timer" parent="Timers"]
 
-[node name="AttackTimeout" type="Timer" parent="Timers"]
-
 [node name="DmgTimer" type="Timer" parent="Timers"]
 wait_time = 0.5
 one_shot = true
@@ -771,6 +832,5 @@ target_position = Vector2(200, 0)
 collide_with_areas = true
 
 [connection signal="timeout" from="Timers/AttackTimer" to="." method="_on_attack_timer_timeout"]
-[connection signal="timeout" from="Timers/AttackTimeout" to="." method="_on_attack_timeout_timeout"]
 [connection signal="timeout" from="Timers/DmgTimer" to="." method="_on_dmg_timer_timeout"]
 [connection signal="timeout" from="Timers/DeathTimer" to="." method="_on_death_timer_timeout"]

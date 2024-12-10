@@ -17,7 +17,6 @@ var projectile = preload("res://Scenes/projectile/projectile-water.tscn")
 
 @onready var animation_player = $AnimatedSprite2D
 @onready var attack_timer = $Timers/AttackTimer
-@onready var attack_timeout = $Timers/AttackTimeout
 @onready var dmg_timer = $Timers/DmgTimer
 @onready var death_timer = $Timers/DeathTimer
 @onready var player = get_tree().get_first_node_in_group("Player")
@@ -109,15 +108,12 @@ func death():
 
 
 func _on_attack_timer_timeout() -> void:
+	play_animation(current_direction + "-Idle", false)
 	var curr_projectile: CharacterBody2D = projectile.instantiate()
 	curr_projectile.cast_group = "Enemy"
 	curr_projectile.direction = (raycast.target_position).rotated(raycast.rotation).normalized()
 	curr_projectile.global_position = global_position + 50.0 * curr_projectile.direction
 	get_tree().current_scene.add_child(curr_projectile)
-
-
-func _on_attack_timeout_timeout() -> void:
-	pass
 
 
 func _on_dmg_timer_timeout() -> void:

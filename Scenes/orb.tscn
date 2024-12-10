@@ -154,6 +154,7 @@ animations = [{
 radius = 16.0312
 
 [node name="Orb" type="Area2D"]
+collision_layer = 0
 script = ExtResource("1_bcuaq")
 
 [node name="AnimatedSprite2D-fire" type="AnimatedSprite2D" parent="."]
