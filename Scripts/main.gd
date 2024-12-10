@@ -9,6 +9,7 @@ var orb := preload("res://Scenes/orb.tscn")
 var starting_room := preload("res://Scenes/rooms/test_room.tscn")
 var room1 := preload("res://Scenes/rooms/room_1.tscn")
 var room2 := preload("res://Scenes/rooms/room_2.tscn")
+var enemy_turret := preload("res://Scenes/Turret.tscn")
 var enemies = 0
 
 # Track current state
@@ -19,9 +20,11 @@ var character: Node = null
 func _ready() -> void:
 	var waterorb = orb.instantiate()
 	character = player.instantiate()
-	var enemy = enemy_skeleton.instantiate()
+	var enemy_skell = enemy_skeleton.instantiate()
+	var enemy_turr = enemy_turret.instantiate()
 	
-	enemy.position = Vector2(-400,0)
+	enemy_skell.position = Vector2(-400,0)
+	enemy_turr.position = Vector2(400,0)
 	waterorb.position = Vector2(50,0)
 	waterorb.type = 2
 	
@@ -29,7 +32,8 @@ func _ready() -> void:
 	_load_room(starting_room, Vector2(0, 0))
 	add_child(character)
 	add_child(waterorb)
-	add_child(enemy)
+	add_child(enemy_skell)
+	add_child(enemy_turr)
 	
 
 # Function to load a new room

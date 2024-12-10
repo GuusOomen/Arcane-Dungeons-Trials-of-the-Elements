@@ -34,6 +34,7 @@ var changed_direction_attack = false
 var current_direction = "Front"  # Track direction for animation ("Front", "Back", "Side")
 var attack_direction = ""  # Track direction for attack ("up", "down", "left", "right")
 var is_dead = false
+var heal_cooldown = 0
 
 # variables to track health
 var hearts_list : Array[TextureRect]
@@ -70,7 +71,15 @@ func _physics_process(delta: float) -> void:
 		current_direction = "Back"
 	elif input_vector.y > 0 and !is_attacking:
 		current_direction = "Front"
-
+	
+	# Heal if type is earth and cooldown passed
+	if char_type == Types.Projectile.EARTH:
+		if heal_cooldown > 5:
+			heal()
+			heal_cooldown = 0
+		heal_cooldown += delta
+		print(heal_cooldown)
+	
 	# Manage dashing and rolling states
 	if is_taking_dmg:
 		velocity = input_vector * 0
@@ -195,6 +204,7 @@ func dead():
 	get_tree().reload_current_scene()
 
 func change_type(type):
+	heal_cooldown = 0
 	if not type in types:
 		types.append(type)
 	char_type = type
