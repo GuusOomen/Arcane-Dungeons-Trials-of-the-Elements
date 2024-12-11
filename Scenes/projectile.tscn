@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dbaqtyouqaapu"]
 
 [ext_resource type="Script" path="res://Scripts/projectile/projectile.gd" id="1_hrn44"]
-[ext_resource type="Texture2D" uid="uid://dpah4kwbso8ya" path="res://Assets/main_character/fire_ball.png" id="2_glqny"]
+[ext_resource type="Texture2D" uid="uid://dpah4kwbso8ya" path="res://Assets/teleporter.png" id="2_glqny"]
 [ext_resource type="Script" path="res://Scripts/wall_hider.gd" id="3_pqlyo"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yh2m3"]

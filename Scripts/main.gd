@@ -1,60 +1,35 @@
 extends Node
 
-#Ik weet nog niet zeker of dit nodig is voor de teleporter
-@export var node: Node
+@onready var player: CharacterBody2D = get_tree().get_first_node_in_group("Player")
 
-var player := preload("res://Scenes/Main_character.tscn")
-var enemy_skeleton := preload("res://Scenes/Skeleton.tscn")
-var orb := preload("res://Scenes/orb.tscn")
-var starting_room := preload("res://Scenes/rooms/test_room.tscn")
-var room1 := preload("res://Scenes/rooms/room_1.tscn")
-var room2 := preload("res://Scenes/rooms/room_2.tscn")
-var enemy_turret := preload("res://Scenes/Turret.tscn")
-var enemies = 0
-
-# Track current state
-var current_room: Node = null
-var character: Node = null
+var is_instanced: Dictionary
+var current_room := 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var waterorb = orb.instantiate()
-	character = player.instantiate()
-	var enemy_skell = enemy_skeleton.instantiate()
-	var enemy_turr = enemy_turret.instantiate()
-	
-	enemy_skell.position = Vector2(-400,0)
-	enemy_turr.position = Vector2(400,0)
-	waterorb.position = Vector2(50,0)
-	waterorb.type = 2
-	
-	#Load starting room
-	_load_room(starting_room, Vector2(0, 0))
-	add_child(character)
-	add_child(waterorb)
-	add_child(enemy_skell)
-	add_child(enemy_turr)
-	
+	teleport(1)
 
 # Function to load a new room
-func _load_room(room_scene: PackedScene, player_start_position: Vector2) -> void:
-	# Remove the current room
-	if current_room:
-		current_room.queue_free()
-	
-	# Instantiate the new room and add it to the scene
-	current_room = room_scene.instantiate()
-	current_room.scale = Vector2(2.5, 2.5)
-	add_child(current_room)
-	
-	# Position the player in the new room
-	if character:
-		character.position = player_start_position #Dit werkt nog niet, player spawn altijd op dezelfde plek
-
-func teleport_to_room(room_scene: PackedScene, player_start_position: Vector2) -> void:
-	_load_room(room_scene, player_start_position)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	return
-	
+func teleport(to: int) -> void:
+	if 0 == to:
+		return
+	player.global_position = Vector2(INF, INF)
+	var room_instance: Node2D = get_node("Room{0}".format([current_room]))
+	if null != room_instance:
+		room_instance.hide()
+		room_instance.process_mode = Node.PROCESS_MODE_DISABLED
+	if is_instanced.has(to):
+		room_instance = get_node("Room{0}".format([to]))
+	else:
+		room_instance = load("res://Scenes/rooms/room_{0}.tscn".format([to])).instantiate()
+		room_instance.hide()
+		add_child(room_instance)
+		is_instanced[to] = 0
+	var teleporter: Area2D = room_instance.get_node("Teleporter{0}".format([current_room]))
+	current_room = to
+	if null == teleporter:
+		return
+	teleporter.has_entered = true
+	player.global_position = Vector2(teleporter.global_position.x, teleporter.global_position.y - 20)
+	room_instance.process_mode = Node.PROCESS_MODE_INHERIT
+	room_instance.show()

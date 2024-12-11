@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=4 uid="uid://ip246espjksp"]
+[gd_scene load_steps=11 format=4 uid="uid://ip246espjksp"]
 
 [ext_resource type="Texture2D" uid="uid://dak85krm7wp57" path="res://Assets/dungeon/Dungeon tileset.png" id="1_lwhjf"]
 [ext_resource type="PackedScene" uid="uid://cocnbhx4hnyyp" path="res://Scenes/teleporter.tscn" id="2_dmrq2"]
-[ext_resource type="PackedScene" uid="uid://dclyxwsviankf" path="res://Scenes/rooms/room_2.tscn" id="3_rr10t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_52dnu"]
 texture = ExtResource("1_lwhjf")
@@ -429,5 +428,3 @@ tile_set = SubResource("TileSet_1ep57")
 
 [node name="Teleporter" parent="." instance=ExtResource("2_dmrq2")]
 position = Vector2(128, 0)
-target_room = ExtResource("3_rr10t")
-target_position = Vector2(-196, -16)
