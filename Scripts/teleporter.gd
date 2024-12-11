@@ -1,7 +1,7 @@
 extends Area2D
 
 @export var to: int
-var has_entered := true
+var has_entered := false
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):

@@ -99,12 +99,15 @@ func take_damage():
 		death()
 
 func death():
+	if dead:
+		return
 	dead = true
 	play_animation(current_direction + "-Death", false)
 	for i in get_children():
 		if i != animation_player:
 			i.queue_free()
 	death_timer.start()
+	remove_from_group("Enemy")
 
 
 func _on_attack_timer_timeout() -> void:

@@ -123,8 +123,8 @@ func _physics_process(delta: float) -> void:
 			perform_magic()
 		
 		# Attack handling
-		if Input.is_action_just_pressed("attack"):
-			perform_attack()
+		#if Input.is_action_just_pressed("attack"):
+			#perform_attack()
 		if Input.is_action_just_pressed("scroll_up"):
 			if len(types) > 1:
 				change_type(types[(types.find(char_type,0) + 1) % len(types)])

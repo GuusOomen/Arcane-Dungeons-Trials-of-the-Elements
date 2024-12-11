@@ -96,6 +96,7 @@ func death():
 	for i in get_children():
 		if i != animation_player:
 			i.queue_free()
+	remove_from_group("Enemy")
 
 func _on_detect_area_entered(area: Node2D, direction: String) -> void:
 	if !area.is_in_group("Hitbox"):
