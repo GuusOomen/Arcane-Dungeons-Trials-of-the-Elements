@@ -793,6 +793,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_h655u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_wougq")
 animation = &"Right-Attack"
 autoplay = "Front-Idle"
@@ -815,7 +816,7 @@ offset_bottom = 17.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="Timers" type="Node2D" parent="."]
+[node name="Timers" type="Node" parent="."]
 
 [node name="AttackTimer" type="Timer" parent="Timers"]
 

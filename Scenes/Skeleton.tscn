@@ -1078,6 +1078,7 @@ polygon = PackedVector2Array(-10, 17.95, -19, 6.95, -16, -5.05, -10, -8.95, -3.1
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_postprocessing = 1
 path_metadata_flags = 0
+debug_enabled = true
 
 [node name="Hitbox" type="Area2D" parent="." groups=["Hitbox"]]
 position = Vector2(0, -6)
