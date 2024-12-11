@@ -40,5 +40,5 @@ func teleport(to: int) -> void:
 	player.global_position = Vector2(teleporter.global_position.x, teleporter.global_position.y - 20.0)
 	var walls := room_instance.get_node("Walls") as TileMapLayer
 	walls.collision_enabled = true
-	await get_tree().create_timer(1.0 / Engine.get_frames_per_second()).timeout
+	await get_tree().create_timer(2.0 / Engine.get_frames_per_second()).timeout
 	player.set_collision_layer_value(8, true)
