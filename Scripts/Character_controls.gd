@@ -162,7 +162,7 @@ func perform_magic() -> void:
 	projectile.cast_group = "Player"
 	projectile.type = char_type
 	projectile.direction = (get_global_mouse_position() - global_position).normalized()
-	projectile.global_position = global_position + 50.0 * projectile.direction
+	projectile.global_position = global_position + 20.0 * projectile.direction
 	get_tree().current_scene.add_child(projectile)
 
 func start_dash(direction: Vector2) -> void:

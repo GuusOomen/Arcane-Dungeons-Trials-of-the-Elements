@@ -31,13 +31,12 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if dead:
 		return
-	
 	if slow_timer > 0:
 		slow_timer -= delta
-		attack_timer.wait_time = 3
 		animation_player.self_modulate = Color(0,1,1)
+		if slow_timer <= 0:
+			attack_timer.wait_time = 1
 	else:
-		attack_timer.wait_time = 2
 		animation_player.self_modulate = Color(1,1,1)
 	
 	## Determine the character's facing direction based on input
@@ -101,6 +100,7 @@ func play_animation(anim_name: String, continuing: bool) -> void:
 func take_damage(slow):
 	if slow:
 		slow_timer = 5.0
+		attack_timer.wait_time = 2
 	is_taking_dmg = true
 	dmg_timer.start()
 	if health > 1:
