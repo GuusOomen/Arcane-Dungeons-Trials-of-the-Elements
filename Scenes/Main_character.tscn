@@ -1356,6 +1356,14 @@ collision_mask = 3
 position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_pvafc")
 
+[node name="Followbox" type="Area2D" parent="." groups=["Followbox"]]
+position = Vector2(0, -4)
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Followbox"]
+position = Vector2(0, 4)
+shape = SubResource("CapsuleShape2D_pvafc")
+
 [node name="HUD" parent="." instance=ExtResource("37_khhtc")]
 z_index = 4096
 z_as_relative = false

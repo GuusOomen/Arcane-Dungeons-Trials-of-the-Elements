@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 @export var health = 3
 
-# Constants for various actions
-const SPEED = 100.0
+# Variable for various actions
+var SPEED = 100.0
 
 # Variables to track states
 var is_attacking = false
@@ -12,6 +12,7 @@ var current_direction = "Front"  # Track direction for animation ("Front", "Back
 var attack_direction = null
 var player_loc = []
 var is_dead = false
+var slow_timer = 0.0
 
 @onready var animation_player = $AnimatedSprite2D
 @onready var nav_agent = $NavigationAgent2D
@@ -27,6 +28,13 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	## Determine the character's facing direction based on input
+	if slow_timer > 0:
+		SPEED = 50
+		slow_timer -= delta
+		animation_player.self_modulate = Color(0,1,1)
+	else:
+		SPEED = 100
+		animation_player.self_modulate = Color(1,1,1)
 	if is_taking_dmg:
 		return
 	elif is_attacking:
@@ -73,7 +81,9 @@ func play_animation(anim_name: String) -> void:
 	if animation_player.animation != anim_name:
 		animation_player.play(anim_name)
 
-func take_damage():
+func take_damage(slow):
+	if slow:
+		slow_timer = 5.0
 	is_taking_dmg = true
 	attack_timer.stop()
 	attack_timeout.emit_signal("timeout")
@@ -99,7 +109,7 @@ func death():
 	remove_from_group("Enemy")
 
 func _on_detect_area_entered(area: Node2D, direction: String) -> void:
-	if !area.is_in_group("Hitbox"):
+	if !area.is_in_group("Followbox"):
 		return
 	var parent := area.get_parent()
 	if parent.is_in_group("Player") && !player_loc.has(direction):
@@ -107,7 +117,7 @@ func _on_detect_area_entered(area: Node2D, direction: String) -> void:
 
 
 func _on_detect_area_exited(area: Node2D, direction: String) -> void:
-	if area.is_in_group("Hitbox") && player_loc.has(direction):
+	if area.is_in_group("Followbox") && player_loc.has(direction):
 		player_loc.remove_at(player_loc.find(direction))
 
 

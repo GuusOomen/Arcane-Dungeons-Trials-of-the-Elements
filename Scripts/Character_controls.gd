@@ -46,6 +46,7 @@ var types = []
 var dash_upgraded = false
 
 @onready var animation_player = $AnimatedSprite2D
+@onready var hitbox = $Hitbox/CollisionShape2D
 
 func _ready() -> void:
 	var hearts_parent = $HUD/CanvasLayer/HBoxContainer
@@ -79,7 +80,7 @@ func _physics_process(delta: float) -> void:
 			heal_cooldown = 0
 		heal_cooldown += delta
 		print(heal_cooldown)
-	
+	hitbox.disabled = false
 	# Manage dashing and rolling states
 	if is_taking_dmg:
 		velocity = input_vector * 0
@@ -88,10 +89,12 @@ func _physics_process(delta: float) -> void:
 			is_taking_dmg = false
 	elif is_dashing:
 		dash_timer -= delta
+		hitbox.disabled = true
 		if dash_timer <= 0:
 			is_dashing = false
 	elif is_rolling:
 		roll_timer -= delta
+		hitbox.disabled = true
 		if roll_timer <= 0:
 			is_rolling = false
 	elif is_attacking:
@@ -184,7 +187,7 @@ func heal():
 		health += 1
 		update_heart_display_heal()
 
-func take_damage():
+func take_damage(slow):
 	is_taking_dmg = true
 	dmg_timer = 0.4
 	if health > 0:
