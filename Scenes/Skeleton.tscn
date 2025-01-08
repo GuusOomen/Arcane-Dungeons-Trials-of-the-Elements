@@ -1050,6 +1050,7 @@ shape = SubResource("CapsuleShape2D_wbysv")
 [node name="Front-Detect" type="Area2D" parent="."]
 position = Vector2(4.65661e-10, -6)
 collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Front-Detect"]
 polygon = PackedVector2Array(9.97489, 18.0166, -11.0475, 18.0166, -18.027, 9.77582, -15.1679, 1.95548, 2.91136, 9.944)
@@ -1057,6 +1058,7 @@ polygon = PackedVector2Array(9.97489, 18.0166, -11.0475, 18.0166, -18.027, 9.775
 [node name="Back-Detect" type="Area2D" parent="."]
 position = Vector2(0, -6)
 collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Back-Detect"]
 polygon = PackedVector2Array(-10, -17.05, 5, -19.95, 13.8, -15.15, 17.8, -4.15, 15, -2.05, -6, -8.05)
@@ -1064,6 +1066,7 @@ polygon = PackedVector2Array(-10, -17.05, 5, -19.95, 13.8, -15.15, 17.8, -4.15, 
 [node name="Right-Detect" type="Area2D" parent="."]
 position = Vector2(0, -6)
 collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Right-Detect"]
 polygon = PackedVector2Array(11.0075, -5.00946, 19.0595, -11.1543, 20.9665, 2.93651, 16.9405, 10.0349, 4.9686, 15.9679, 2.95562, 12.0479)
@@ -1071,6 +1074,7 @@ polygon = PackedVector2Array(11.0075, -5.00946, 19.0595, -11.1543, 20.9665, 2.93
 [node name="Left-Detect" type="Area2D" parent="."]
 position = Vector2(0, -6)
 collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Left-Detect"]
 polygon = PackedVector2Array(-10, 17.95, -19, 6.95, -16, -5.05, -10, -8.95, -3.1, 8.95, -3, 17.85)

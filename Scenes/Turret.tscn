@@ -785,6 +785,7 @@ height = 28.0
 [node name="Turret" type="CharacterBody2D" groups=["Enemy"]]
 scale = Vector2(2.5, 2.5)
 collision_layer = 0
+collision_mask = 2
 script = ExtResource("1_jbwtp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -828,6 +829,10 @@ one_shot = true
 wait_time = 0.6
 one_shot = true
 
+[node name="SlowTimer" type="Timer" parent="Timers"]
+wait_time = 5.0
+one_shot = true
+
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(200, 0)
 collide_with_areas = true
@@ -835,3 +840,4 @@ collide_with_areas = true
 [connection signal="timeout" from="Timers/AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="Timers/DmgTimer" to="." method="_on_dmg_timer_timeout"]
 [connection signal="timeout" from="Timers/DeathTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="timeout" from="Timers/SlowTimer" to="." method="_on_slow_timer_timeout"]

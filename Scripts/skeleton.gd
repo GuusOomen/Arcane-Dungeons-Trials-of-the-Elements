@@ -123,7 +123,7 @@ func _on_detect_area_exited(area: Node2D, direction: String) -> void:
 
 func _on_attack_timer_timeout() -> void:
 	if player_loc.has(attack_direction):
-		player.take_damage()
+		player.take_damage(false)
 
 
 func _on_navigation_timer_timeout() -> void:

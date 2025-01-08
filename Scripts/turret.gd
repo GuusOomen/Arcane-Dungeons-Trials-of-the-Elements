@@ -12,7 +12,6 @@ var current_direction = "Front"  # Track direction for animation ("Front", "Back
 var attack_direction = null
 var dead = false
 var angle_to_target
-var slow_timer = 0.0
 
 var projectile = preload("res://Scenes/projectile/projectile-water.tscn")
 
@@ -23,6 +22,7 @@ var projectile = preload("res://Scenes/projectile/projectile-water.tscn")
 @onready var player = get_tree().get_first_node_in_group("Player")
 @onready var healthbar = $Healthbar
 @onready var raycast = $RayCast2D
+@onready var slow_timer = $Timers/SlowTimer
 
 
 func _ready() -> void:
@@ -31,13 +31,6 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if dead:
 		return
-	if slow_timer > 0:
-		slow_timer -= delta
-		animation_player.self_modulate = Color(0,1,1)
-		if slow_timer <= 0:
-			attack_timer.wait_time = 1
-	else:
-		animation_player.self_modulate = Color(1,1,1)
 	
 	## Determine the character's facing direction based on input
 	if is_taking_dmg:
@@ -52,7 +45,7 @@ func target() -> void:
 	angle_to_target = global_position.angle_to_point(player.global_position)
 	raycast.rotation = angle_to_target
 	var collider = raycast.get_collider()
-	if collider != null && collider.is_in_group("Followbox"):
+	if collider != null && collider.is_in_group("Hitbox"):
 		attack()
 	else:
 		stop_attack()
@@ -99,7 +92,9 @@ func play_animation(anim_name: String, continuing: bool) -> void:
 
 func take_damage(slow):
 	if slow:
-		slow_timer = 5.0
+		animation_player.self_modulate = Color(0,1,1)
+		animation_player.speed_scale = 0.5
+		slow_timer.start()
 		attack_timer.wait_time = 2
 	is_taking_dmg = true
 	dmg_timer.start()
@@ -137,3 +132,9 @@ func _on_dmg_timer_timeout() -> void:
 
 func _on_death_timer_timeout() -> void:
 	queue_free()
+
+
+func _on_slow_timer_timeout() -> void:
+	attack_timer.wait_time = 1
+	animation_player.self_modulate = Color(1,1,1)
+	animation_player.speed_scale = 1

@@ -1358,6 +1358,7 @@ shape = SubResource("CapsuleShape2D_pvafc")
 
 [node name="Followbox" type="Area2D" parent="." groups=["Followbox"]]
 position = Vector2(0, -4)
+collision_layer = 2
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Followbox"]
