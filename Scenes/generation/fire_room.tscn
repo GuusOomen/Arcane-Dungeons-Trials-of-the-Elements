@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://26k2ba5xm41c" path="res://Scenes/Turret.tscn" id="6_tr44f"]
 [ext_resource type="PackedScene" uid="uid://boastwxvwprua" path="res://Scenes/tree.tscn" id="7_kfqfm"]
 [ext_resource type="PackedScene" uid="uid://d0ybc5t7vr58y" path="res://Scenes/orb.tscn" id="8_1dmsc"]
-[ext_resource type="PackedScene" uid="uid://cokr0nbhhpsng" path="res://Scenes/Main_character.tscn" id="8_qbljb"]
+[ext_resource type="PackedScene" uid="uid://cmft2eharu7sk" path="res://Scenes/projectile/projectile-fire.tscn" id="9_0s5m6"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bjp4a"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -389,7 +389,6 @@ shader_parameter/color = Color(0.0583333, 0, 0.1, 0.501961)
 
 [node name="FireRoom" type="Node2D"]
 y_sort_enabled = true
-position = Vector2(20, -20)
 script = ExtResource("1_y8aae")
 
 [node name="Floor" type="TileMapLayer" parent="."]
@@ -463,12 +462,11 @@ modulate = Color(1, 0.25, 0.25, 1)
 position = Vector2(-152, 19)
 scale = Vector2(3.5, 3.5)
 health = 8
+projectile = ExtResource("9_0s5m6")
 
 [node name="Turret2" parent="." instance=ExtResource("6_tr44f")]
 modulate = Color(1, 0.25, 0.25, 1)
 position = Vector2(113, 19)
 scale = Vector2(3.5, 3.5)
 health = 8
-
-[node name="Player" parent="." instance=ExtResource("8_qbljb")]
-position = Vector2(182, -180)
+projectile = ExtResource("9_0s5m6")

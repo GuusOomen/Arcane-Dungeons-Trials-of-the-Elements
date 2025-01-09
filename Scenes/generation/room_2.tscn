@@ -388,7 +388,6 @@ shader_parameter/color = Color(0.0583333, 0, 0.1, 0.501961)
 
 [node name="Room2" type="Node2D"]
 y_sort_enabled = true
-position = Vector2(16, -48)
 script = ExtResource("1_nrvcv")
 
 [node name="Floor" type="TileMapLayer" parent="."]

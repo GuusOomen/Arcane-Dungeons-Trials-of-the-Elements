@@ -44,6 +44,7 @@ var char_type = Types.Projectile.DEFAULT
 var types = []
 # variables to track upgrades
 var dash_upgraded = false
+var teleport_loc := Vector2(INF, 0.0)
 
 @onready var animation_player = $AnimatedSprite2D
 @onready var hitbox = $Hitbox/CollisionShape2D
@@ -158,6 +159,10 @@ func _physics_process(delta: float) -> void:
 			else:
 				start_roll(last_input_vector)
 	move_and_slide()
+	if INF != teleport_loc.x:
+		global_position = teleport_loc
+		teleport_loc.x = INF
+		show()
 
 var attack_counter := 0
 func perform_attack() -> void:
@@ -196,15 +201,15 @@ func start_roll(direction: Vector2) -> void:
 	velocity = (direction * 0.5 * ROLL_SPEED)
 	play_animation(current_direction + "-Roll")
 
-func teleport():
+func teleport(to: Vector2) -> void:
+	hide()
 	teleportsound.play()
+	teleport_loc = to
 
 # Helper function to play animations
 func play_animation(anim_name: String) -> void:
 	if animation_player.animation != anim_name:
 		animation_player.play(anim_name)
-
-
 
 func heal():
 	if health < 5:
