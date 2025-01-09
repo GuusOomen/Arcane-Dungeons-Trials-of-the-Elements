@@ -2,7 +2,6 @@ extends Area2D
 
 var room: Node2D
 var teleporter: Area2D
-
 var is_pressable: bool
 
 func _on_body_entered(body: Node2D) -> void:
@@ -20,6 +19,7 @@ func _process(delta: float) -> void:
 		this_room.process_mode = PROCESS_MODE_DISABLED
 		this_room.global_position = Vector2(10000.0, 0.0)
 		var player: CharacterBody2D = get_tree().get_first_node_in_group("Player")
+		player.teleport()
 		player.get_node("Camera2D").global_position += teleporter.position - player.global_position
 		player.global_position = teleporter.position
 		room.global_position = Vector2.ZERO

@@ -1,4 +1,4 @@
-[gd_scene load_steps=204 format=3 uid="uid://cokr0nbhhpsng"]
+[gd_scene load_steps=209 format=3 uid="uid://cokr0nbhhpsng"]
 
 [ext_resource type="Script" path="res://Scripts/Character_controls.gd" id="1_neyl5"]
 [ext_resource type="Texture2D" uid="uid://dps7jbb60lnle" path="res://Assets/main_character/Back/Base.png" id="2_mria7"]
@@ -39,6 +39,11 @@
 [ext_resource type="PackedScene" uid="uid://b22wmlu7rrtem" path="res://Scenes/hud.tscn" id="37_khhtc"]
 [ext_resource type="AudioStream" uid="uid://bu82jgi5knasu" path="res://Sounds/Laser_Shoot2.wav" id="38_7bgjw"]
 [ext_resource type="AudioStream" uid="uid://42t4ip3n04fn" path="res://Sounds/dash.wav" id="39_14ai8"]
+[ext_resource type="AudioStream" uid="uid://j22qgjd2uwer" path="res://Sounds/Footsteps.wav" id="40_bd22w"]
+[ext_resource type="AudioStream" uid="uid://dgyd305qhas6x" path="res://Sounds/Player_hurt.wav" id="41_1g1m6"]
+[ext_resource type="AudioStream" uid="uid://dwytp7kf802c4" path="res://Sounds/BackgroundSound.mp3" id="42_v7xwc"]
+[ext_resource type="AudioStream" uid="uid://c6w7cv1ounc7k" path="res://Sounds/Roll.wav" id="43_vm6a8"]
+[ext_resource type="AudioStream" uid="uid://bu3bdeej1s1a" path="res://Sounds/Teleport.wav" id="44_ox0l0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wosla"]
 atlas = ExtResource("3_y36h0")
@@ -1382,3 +1387,21 @@ volume_db = -19.675
 
 [node name="DashSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("39_14ai8")
+volume_db = -21.085
+
+[node name="Footsteps" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("40_bd22w")
+
+[node name="PlayerHurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("41_1g1m6")
+
+[node name="BackgroundSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("42_v7xwc")
+volume_db = -26.234
+
+[node name="RollSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("43_vm6a8")
+
+[node name="TeleportSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("44_ox0l0")
+volume_db = -12.18

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://dclyxwsviankf"]
+[gd_scene load_steps=14 format=4 uid="uid://dclyxwsviankf"]
 
 [ext_resource type="Script" path="res://Scripts/room.gd" id="1_3go67"]
 [ext_resource type="Texture2D" uid="uid://dak85krm7wp57" path="res://Assets/dungeon/Dungeon tileset.png" id="1_qllqp"]
@@ -7,8 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://ctylh0prvmbaj" path="res://Scenes/Archer.tscn" id="4_lil0w"]
 [ext_resource type="PackedScene" uid="uid://bqphqqsbp1btx" path="res://Scenes/Skeleton.tscn" id="5_fq6gp"]
 [ext_resource type="PackedScene" uid="uid://26k2ba5xm41c" path="res://Scenes/Turret.tscn" id="6_xt78b"]
-[ext_resource type="PackedScene" uid="uid://d0ybc5t7vr58y" path="res://Scenes/orb.tscn" id="8_x7j0o"]
-[ext_resource type="PackedScene" uid="uid://boastwxvwprua" path="res://Scenes/tree.tscn" id="9_ayvre"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mgr75"]
 texture = ExtResource("1_qllqp")
@@ -412,11 +410,3 @@ position = Vector2(-575, 264)
 
 [node name="Turret" parent="." instance=ExtResource("6_xt78b")]
 position = Vector2(-638, 40)
-
-[node name="Orb" parent="." instance=ExtResource("8_x7j0o")]
-position = Vector2(96, 151)
-scale = Vector2(2.5, 2.5)
-type = 4
-
-[node name="Tree" parent="." instance=ExtResource("9_ayvre")]
-position = Vector2(-195, 559)

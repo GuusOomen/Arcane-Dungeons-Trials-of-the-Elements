@@ -23,6 +23,8 @@ var slow_timer = 0.0
 @onready var nav_timer = $Timers/NavigationTimer
 @onready var player = get_tree().get_first_node_in_group("Player")
 @onready var healthbar = $Healthbar
+@onready var hurtsound = $HurtSound
+@onready var deadsound = $DeadSound
 
 func _enter_tree() -> void:
 	get_parent().enemy_count += 1
@@ -86,6 +88,7 @@ func play_animation(anim_name: String) -> void:
 		animation_player.play(anim_name)
 
 func take_damage(slow):
+	hurtsound.play()
 	if slow:
 		slow_timer = 5.0
 	is_taking_dmg = true
@@ -98,9 +101,11 @@ func take_damage(slow):
 		play_animation(current_direction + "-Hurt")
 		healthbar.health = health
 	else:
+		deadsound.play()
 		death()
 		
 func death():
+	deadsound.play()
 	if is_dead:
 		return
 	set_process(false)
@@ -109,7 +114,8 @@ func death():
 	play_animation(current_direction + "-Death")
 	for i in get_children():
 		if i != animation_player:
-			i.queue_free()
+			if i != deadsound:
+				i.queue_free()
 	remove_from_group("Enemy")
 	get_parent().enemy_count -= 1
 

@@ -29,6 +29,8 @@ var angle_to_target = 0
 @onready var player = get_tree().get_first_node_in_group("Player")
 @onready var healthbar = $Healthbar
 @onready var raycast = $RayCast2D
+@onready var hurtsound = $HurtSound
+@onready var deadsound = $DeadSound
 
 var projectile = preload("res://Scenes/projectile/arrow.tscn")
 
@@ -115,6 +117,7 @@ func play_animation(anim_name: String, continuing: bool) -> void:
 	animation_player.set_frame_and_progress(frame, frame_progress)
 
 func take_damage(slow):
+	hurtsound.play()
 	if slow:
 		animation_player.self_modulate = Color(0,1,1)
 		animation_player.speed_scale = 0.5
@@ -133,6 +136,7 @@ func take_damage(slow):
 		death()
 		
 func death():
+	deadsound.play()
 	if is_dead:
 		return
 	set_process(false)
@@ -141,7 +145,8 @@ func death():
 	play_animation(current_direction + "-Death", false)
 	for i in get_children():
 		if i != animation_player:
-			i.queue_free()
+			if i != deadsound:
+				i.queue_free()
 	remove_from_group("Enemy")
 	get_parent().enemy_count -= 1
 

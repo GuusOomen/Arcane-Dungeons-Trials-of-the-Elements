@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://irv24chgh80b"]
+
+[ext_resource type="AudioStream" uid="uid://b4f47u88fktrx" path="res://Sounds/Turret_dead.wav" id="1_a12tl"]
+
+[node name="DeadSoundTurret" type="AudioStreamPlayer"]
+stream = ExtResource("1_a12tl")

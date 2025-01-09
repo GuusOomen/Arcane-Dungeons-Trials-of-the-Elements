@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgh8ew8dpke64"]
+
+[ext_resource type="AudioStream" uid="uid://bjc71ijwkesyi" path="res://Sounds/Hurt_enemy.wav" id="1_kli1y"]
+
+[node name="HurtSound" type="AudioStreamPlayer"]
+stream = ExtResource("1_kli1y")
