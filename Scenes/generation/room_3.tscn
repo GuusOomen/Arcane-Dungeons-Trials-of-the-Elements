@@ -420,6 +420,20 @@ position = Vector2(-20, 260)
 scale = Vector2(1.5625, 0.3125)
 texture = ExtResource("4_y5mts")
 
+[node name="Fade11" type="Sprite2D" parent="."]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_5f254")
+position = Vector2(-300, -60)
+scale = Vector2(0.3125, 0.3125)
+texture = ExtResource("4_y5mts")
+
+[node name="Fade12" type="Sprite2D" parent="."]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_5f254")
+position = Vector2(260, -60)
+scale = Vector2(0.3125, 0.3125)
+texture = ExtResource("4_y5mts")
+
 [node name="Fade6" type="Sprite2D" parent="."]
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_5f254")

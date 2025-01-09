@@ -384,7 +384,7 @@ shader_parameter/color = Color(0.0583333, 0, 0.1, 1)
 shader = ExtResource("3_rn4pr")
 shader_parameter/color = Color(0.0583333, 0, 0.1, 0.501961)
 
-[node name="Room1" type="Node2D"]
+[node name="Room5" type="Node2D"]
 y_sort_enabled = true
 position = Vector2(20, -20)
 script = ExtResource("1_ghsfi")
