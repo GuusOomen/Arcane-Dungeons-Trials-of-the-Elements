@@ -16,7 +16,6 @@ var attack_direction = null
 var player_loc_follow = []
 var player_loc_hit = []
 var is_dead = false
-var slow_timer = 0.0
 var mode = Mode.move
 var angle_to_target = 0
 
@@ -24,6 +23,7 @@ var angle_to_target = 0
 @onready var nav_agent = $NavigationAgent2D
 @onready var attack_timer = $Timers/AttackTimer
 @onready var attack_timeout = $Timers/AttackTimeout
+@onready var slow_timer = $Timers/SlowTimer
 @onready var dmg_timer = $Timers/DmgTimer
 @onready var nav_timer = $Timers/NavigationTimer
 @onready var player = get_tree().get_first_node_in_group("Player")
@@ -32,8 +32,8 @@ var angle_to_target = 0
 
 var projectile = preload("res://Scenes/projectile/arrow.tscn")
 
-#func _enter_tree() -> void:
-	#get_parent().enemy_count += 1
+func _enter_tree() -> void:
+	get_parent().enemy_count += 1
 
 func _ready() -> void:
 	healthbar.init_health(health)
@@ -44,15 +44,6 @@ func _physics_process(delta: float) -> void:
 		mode = Mode.move
 	elif mode == Mode.move && detect_char() && nav_agent.distance_to_target() <= RANGE:
 		mode = Mode.attack
-	
-	## Determine the character's facing direction based on input
-	if slow_timer > 0:
-		SPEED = 50
-		slow_timer -= delta
-		animation_player.self_modulate = Color(0,1,1)
-	else:
-		SPEED = 100
-		animation_player.self_modulate = Color(1,1,1)
 		
 	if mode == Mode.attack:
 		if is_taking_dmg:
@@ -125,7 +116,10 @@ func play_animation(anim_name: String, continuing: bool) -> void:
 
 func take_damage(slow):
 	if slow:
-		slow_timer = 5.0
+		animation_player.self_modulate = Color(0,1,1)
+		animation_player.speed_scale = 0.5
+		slow_timer.start()
+		attack_timer.wait_time = 2
 	is_taking_dmg = true
 	attack_timer.stop()
 	attack_timeout.emit_signal("timeout")
@@ -204,3 +198,9 @@ func _on_navigation_timer_timeout() -> void:
 
 func _on_dmg_timer_timeout() -> void:
 	is_taking_dmg = false
+
+
+func _on_slow_timer_timeout() -> void:
+	attack_timer.wait_time = 1
+	animation_player.self_modulate = Color(1,1,1)
+	animation_player.speed_scale = 1
