@@ -14,7 +14,7 @@ func _on_body_entered(body: Node2D) -> void:
 	var this_room := get_parent()
 	this_room.hide()
 	this_room.process_mode = PROCESS_MODE_DISABLED
-	this_room.global_position = Vector2(1000, 1000)
+	this_room.global_position = Vector2(10000.0, 0.0)
 	room.global_position = Vector2.ZERO
 	room.process_mode = PROCESS_MODE_ALWAYS
 	room.show()

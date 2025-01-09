@@ -1036,6 +1036,7 @@ collision_layer = 0
 script = ExtResource("1_bwphp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
 position = Vector2(0, 11)
 sprite_frames = SubResource("SpriteFrames_wougq")
 animation = &"Front-Idle"

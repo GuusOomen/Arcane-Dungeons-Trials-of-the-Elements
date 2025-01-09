@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=4 uid="uid://bnfnasww2216l"]
+[gd_scene load_steps=11 format=4 uid="uid://clvft8pq7ev1m"]
 
+[ext_resource type="Script" path="res://Scenes/generation/room.gd" id="1_j4rba"]
 [ext_resource type="Texture2D" uid="uid://dak85krm7wp57" path="res://Assets/dungeon/Dungeon tileset.png" id="1_xw5nq"]
 [ext_resource type="PackedScene" uid="uid://jjdxsy11v4f2" path="res://Scenes/generation/teleporter.tscn" id="2_5wv2c"]
+[ext_resource type="PackedScene" uid="uid://26k2ba5xm41c" path="res://Scenes/Turret.tscn" id="4_1vajj"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bjp4a"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -365,6 +367,7 @@ sources/0 = SubResource("TileSetAtlasSource_gfa05")
 
 [node name="Room1" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_j4rba")
 
 [node name="Floor" type="TileMapLayer" parent="."]
 z_index = -4096
@@ -382,3 +385,6 @@ use_kinematic_bodies = true
 
 [node name="Teleporter" parent="." instance=ExtResource("2_5wv2c")]
 position = Vector2(-80, -48)
+
+[node name="Turret" parent="." instance=ExtResource("4_1vajj")]
+y_sort_enabled = true

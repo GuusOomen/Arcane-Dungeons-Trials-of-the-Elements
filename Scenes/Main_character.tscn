@@ -1373,5 +1373,4 @@ z_as_relative = false
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 1
 top_level = true
-scale = Vector2(1, 1)
 script = ExtResource("37_gs5w3")

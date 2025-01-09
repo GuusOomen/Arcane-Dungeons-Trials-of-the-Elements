@@ -24,6 +24,8 @@ var projectile = preload("res://Scenes/projectile/projectile-water.tscn")
 @onready var raycast = $RayCast2D
 @onready var slow_timer = $Timers/SlowTimer
 
+func _enter_tree() -> void:
+	get_parent().enemy_count += 1
 
 func _ready() -> void:
 	healthbar.init_health(health)
@@ -115,6 +117,7 @@ func death():
 			i.queue_free()
 	death_timer.start()
 	remove_from_group("Enemy")
+	get_parent().enemy_count -= 1
 
 
 func _on_attack_timer_timeout() -> void:
