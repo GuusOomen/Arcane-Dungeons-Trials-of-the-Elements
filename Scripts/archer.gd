@@ -35,7 +35,7 @@ var angle_to_target = 0
 var projectile = preload("res://Scenes/projectile/arrow.tscn")
 
 func _enter_tree() -> void:
-	get_parent().enemy_count += 1
+	owner.enemy_count += 1
 
 func _ready() -> void:
 	healthbar.init_health(health)
@@ -148,7 +148,7 @@ func death():
 			if i != deadsound:
 				i.queue_free()
 	remove_from_group("Enemy")
-	get_parent().enemy_count -= 1
+	owner.enemy_count -= 1
 
 
 func target() -> void:

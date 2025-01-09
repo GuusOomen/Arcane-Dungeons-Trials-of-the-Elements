@@ -27,7 +27,7 @@ var slow_timer = 0.0
 @onready var deadsound = $DeadSound
 
 func _enter_tree() -> void:
-	get_parent().enemy_count += 1
+	owner.enemy_count += 1
 
 func _ready() -> void:
 	healthbar.init_health(health)
@@ -117,7 +117,7 @@ func death():
 			if i != deadsound:
 				i.queue_free()
 	remove_from_group("Enemy")
-	get_parent().enemy_count -= 1
+	owner.enemy_count -= 1
 
 func _on_detect_area_entered(area: Node2D, direction: String) -> void:
 	if area.is_in_group("Followbox"):
