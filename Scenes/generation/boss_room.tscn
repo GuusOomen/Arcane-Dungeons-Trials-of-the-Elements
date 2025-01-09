@@ -453,8 +453,8 @@ use_kinematic_bodies = true
 [node name="Fade5" type="Sprite2D" parent="Fades"]
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_5f254")
-position = Vector2(-0.499901, 1640)
-scale = Vector2(9.67969, 0.3125)
+position = Vector2(-19.4999, 1640)
+scale = Vector2(9.97656, 0.3125)
 texture = ExtResource("4_8abob")
 
 [node name="Fade4" type="Sprite2D" parent="Fades"]
