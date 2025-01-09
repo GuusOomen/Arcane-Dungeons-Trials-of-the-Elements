@@ -77,7 +77,7 @@ func detect_char() -> bool:
 	angle_to_target = global_position.angle_to_point(player.global_position)
 	raycast.rotation = angle_to_target
 	var collider = raycast.get_collider()
-	if collider != null && (collider.is_in_group("Followbox") || collider.is_in_group("Hitbox")):
+	if collider != null && (collider.is_in_group("Followbox") || collider.is_in_group("Hitbox")) && collider.get_parent().is_in_group("Player"):
 		return true
 	else:
 		return false
