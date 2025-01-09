@@ -19,7 +19,9 @@ func teleport(to: int) -> void:
 		room_instance.hide()
 		room_instance.process_mode = PROCESS_MODE_DISABLED
 		var walls := room_instance.get_node("Walls") as TileMapLayer
-		walls.collision_enabled = false
+		walls.enabled = false
+		var floor := room_instance.get_node("Floor") as TileMapLayer
+		floor.enabled = false
 	var has_instance := is_instanced.has(to)
 	if has_instance:
 		room_instance = get_node("Room{0}".format([to]))
@@ -39,6 +41,8 @@ func teleport(to: int) -> void:
 	room_instance.show()
 	player.global_position = Vector2(teleporter.global_position.x, teleporter.global_position.y - 20.0)
 	var walls := room_instance.get_node("Walls") as TileMapLayer
-	walls.collision_enabled = true
+	walls.enabled = true
+	var floor := room_instance.get_node("Floor") as TileMapLayer
+	floor.enabled = true
 	await get_tree().create_timer(2.0 / Engine.get_frames_per_second()).timeout
 	player.set_collision_layer_value(8, true)
