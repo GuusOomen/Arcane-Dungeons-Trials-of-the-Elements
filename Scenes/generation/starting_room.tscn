@@ -384,7 +384,6 @@ shader_parameter/color = Color(0.0583333, 0, 0.1, 0.501961)
 
 [node name="StartingRoom" type="Node2D"]
 y_sort_enabled = true
-position = Vector2(20, -20)
 
 [node name="Floor" type="TileMapLayer" parent="."]
 physics_interpolation_mode = 1
@@ -445,3 +444,6 @@ position = Vector2(-21, 296)
 
 [node name="Teleporter4" parent="." instance=ExtResource("2_tsak7")]
 position = Vector2(261, 18)
+
+[node name="Teleporter5" parent="." instance=ExtResource("2_tsak7")]
+position = Vector2(-20, 20)

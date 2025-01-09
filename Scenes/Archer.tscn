@@ -1,4 +1,4 @@
-[gd_scene load_steps=170 format=3 uid="uid://ctylh0prvmbaj"]
+[gd_scene load_steps=172 format=3 uid="uid://ctylh0prvmbaj"]
 
 [ext_resource type="Script" path="res://Scripts/archer.gd" id="1_o8313"]
 [ext_resource type="Texture2D" uid="uid://durgbkrewhsvq" path="res://Assets/archer/Up/Png/SkeletonWithBowUpAttack01.png" id="2_owwwy"]
@@ -22,6 +22,8 @@
 [ext_resource type="Texture2D" uid="uid://bfhtp7siy0s5q" path="res://Assets/archer/Right/Png/SkeletonWithBowRightIdle.png" id="21_bbkna"]
 [ext_resource type="Texture2D" uid="uid://cs20sem2dobe0" path="res://Assets/archer/Right/Png/SkeletonWithBowRightRun.png" id="22_ewln1"]
 [ext_resource type="PackedScene" uid="uid://gqq7opqr8gnq" path="res://Scenes/enemies/healthbar.tscn" id="22_twjr1"]
+[ext_resource type="PackedScene" uid="uid://bqdutsgsgfq4b" path="res://Scenes/enemies/DeadSound.tscn" id="23_umnjw"]
+[ext_resource type="PackedScene" uid="uid://dgh8ew8dpke64" path="res://Scenes/enemies/HurtSound.tscn" id="24_geywm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ldwcm"]
 atlas = ExtResource("2_owwwy")
@@ -1199,11 +1201,22 @@ wait_time = 1.5
 wait_time = 0.4
 one_shot = true
 
+[node name="SlowTimer" type="Timer" parent="Timers"]
+wait_time = 5.0
+one_shot = true
+
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(1000, 0)
 collide_with_areas = true
+
+[node name="DeadSound" parent="." instance=ExtResource("23_umnjw")]
+volume_db = -15.0
+
+[node name="HurtSound" parent="." instance=ExtResource("24_geywm")]
+volume_db = -15.0
 
 [connection signal="timeout" from="Timers/AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="Timers/NavigationTimer" to="." method="_on_navigation_timer_timeout"]
 [connection signal="timeout" from="Timers/AttackTimeout" to="." method="_on_attack_timeout_timeout"]
 [connection signal="timeout" from="Timers/DmgTimer" to="." method="_on_dmg_timer_timeout"]
+[connection signal="timeout" from="Timers/SlowTimer" to="." method="_on_slow_timer_timeout"]

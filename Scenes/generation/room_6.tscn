@@ -385,7 +385,6 @@ shader_parameter/color = Color(0.0583333, 0, 0.1, 0.501961)
 
 [node name="Room6" type="Node2D"]
 y_sort_enabled = true
-position = Vector2(20, -20)
 script = ExtResource("1_gjh8p")
 
 [node name="Floor" type="TileMapLayer" parent="."]
@@ -415,9 +414,9 @@ texture = ExtResource("4_5ercn")
 [node name="Fade4" type="Sprite2D" parent="."]
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_pgs4g")
-position = Vector2(-16.7125, -140)
+position = Vector2(-21.5514, -140)
 rotation = 3.14159
-scale = Vector2(27.2859, 0.3125)
+scale = Vector2(27.2103, 0.3125)
 texture = ExtResource("4_5ercn")
 
 [node name="Fade2" type="Sprite2D" parent="."]
@@ -431,9 +430,9 @@ texture = ExtResource("4_5ercn")
 [node name="Fade3" type="Sprite2D" parent="."]
 z_index = 1
 material = SubResource("ShaderMaterial_pgs4g")
-position = Vector2(1700, 18)
+position = Vector2(1700, 13.1875)
 rotation = -1.5708
-scale = Vector2(2.99295, 0.3125)
+scale = Vector2(2.91775, 0.3125)
 texture = ExtResource("4_5ercn")
 
 [node name="Teleporter" parent="." instance=ExtResource("5_aj7xd")]

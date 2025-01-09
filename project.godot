@@ -33,6 +33,7 @@ Tree=""
 Enemy=""
 Teleporter=""
 Followbox=""
+Projectile=""
 
 [input]
 

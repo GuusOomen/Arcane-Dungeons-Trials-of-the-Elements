@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://boastwxvwprua"]
+[gd_scene load_steps=9 format=3 uid="uid://boastwxvwprua"]
 
 [ext_resource type="SpriteFrames" uid="uid://ckf065g1w1fcl" path="res://tree.tres" id="1_fhjha"]
 [ext_resource type="Script" path="res://Scripts/tree.gd" id="1_jvt78"]
 [ext_resource type="Shader" path="res://burn.gdshader" id="2_jgdep"]
+[ext_resource type="AudioStream" uid="uid://d25au4un7f16d" path="res://Sounds/TreeBurning.wav" id="4_vrwbm"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_dpqru"]
 frequency = 0.05
@@ -45,3 +46,7 @@ polygon = PackedVector2Array(-20.8, 3.6, -6, -15.6, -24.4, -14, -15.2, -24.8, -2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_jpf8g")
+
+[node name="BurnSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_vrwbm")
+volume_db = -26.234

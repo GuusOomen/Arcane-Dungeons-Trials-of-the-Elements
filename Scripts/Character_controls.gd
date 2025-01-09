@@ -44,11 +44,22 @@ var char_type = Types.Projectile.DEFAULT
 var types = []
 # variables to track upgrades
 var dash_upgraded = false
+var teleport_loc := Vector2(INF, 0.0)
 
 @onready var animation_player = $AnimatedSprite2D
 @onready var hitbox = $Hitbox/CollisionShape2D
+@onready var attacksound = $AttackSound
+@onready var dashsound = $DashSound
+@onready var footsteps = $Footsteps
+@onready var playerhurt = $PlayerHurt
+@onready var backgroundsound = $BackgroundSound
+@onready var rollsound = $RollSound
+@onready var teleportsound = $TeleportSound
+
 
 func _ready() -> void:
+	backgroundsound.play()
+	footsteps.play()
 	var hearts_parent = $HUD/CanvasLayer/HBoxContainer
 	for child in hearts_parent.get_children():
 		hearts_list.append(child)
@@ -76,7 +87,6 @@ func _physics_process(delta: float) -> void:
 			heal()
 			heal_cooldown = 0
 		heal_cooldown += delta
-		print(heal_cooldown)
 	hitbox.disabled = false
 	# Manage dashing and rolling states
 	if is_taking_dmg:
@@ -85,14 +95,20 @@ func _physics_process(delta: float) -> void:
 		if dmg_timer <= 0:
 			is_taking_dmg = false
 	elif is_dashing:
+		footsteps.volume_db = -80
 		dash_timer -= delta
 		hitbox.disabled = true
 		if dash_timer <= 0:
+			footsteps.volume_db = -15.0
+			footsteps.play()
 			is_dashing = false
 	elif is_rolling:
+		footsteps.volume_db = -80
 		roll_timer -= delta
 		hitbox.disabled = true
 		if roll_timer <= 0:
+			footsteps.volume_db = -15.0
+			footsteps.play()
 			is_rolling = false
 	elif is_attacking:
 		velocity = input_vector * 0
@@ -112,8 +128,10 @@ func _physics_process(delta: float) -> void:
 	else:
 		# Default movement animation based on direction
 		if input_vector != Vector2.ZERO:
+			footsteps.volume_db = -15.0
 			play_animation(current_direction + "-Walk")
 		else:
+			footsteps.volume_db = -80
 			play_animation(current_direction + "-Base")
 		
 		# Movement and attacks only available when not dashing, rolling, or attacking
@@ -140,6 +158,10 @@ func _physics_process(delta: float) -> void:
 			else:
 				start_roll(last_input_vector)
 	move_and_slide()
+	if INF != teleport_loc.x:
+		global_position = teleport_loc
+		teleport_loc.x = INF
+		show()
 
 var attack_counter := 0
 func perform_attack() -> void:
@@ -155,6 +177,8 @@ func perform_attack() -> void:
 	attack_counter += 1
 
 func perform_magic() -> void:
+	attacksound.pitch_scale = (randf() + 0.25) * 2
+	attacksound.play()
 	var projectile: CharacterBody2D = projectiles[char_type].instantiate()
 	projectile.cast_group = "Player"
 	projectile.type = char_type
@@ -163,16 +187,23 @@ func perform_magic() -> void:
 	get_tree().current_scene.add_child(projectile)
 
 func start_dash(direction: Vector2) -> void:
+	dashsound.play()
 	is_dashing = true
 	dash_timer = 0.2
 	velocity = (direction * DASH_SPEED)
 	play_animation(current_direction + "-Dash")
 
 func start_roll(direction: Vector2) -> void:
+	rollsound.play()
 	is_rolling = true
 	roll_timer = ROLL_DURATION
 	velocity = (direction * 0.5 * ROLL_SPEED)
 	play_animation(current_direction + "-Roll")
+
+func teleport(to: Vector2) -> void:
+	hide()
+	teleportsound.play()
+	teleport_loc = to
 
 # Helper function to play animations
 func play_animation(anim_name: String) -> void:
@@ -185,6 +216,7 @@ func heal():
 		update_heart_display_heal()
 
 func take_damage(slow):
+	playerhurt.play()
 	is_taking_dmg = true
 	dmg_timer = 0.4
 	if health > 0:
