@@ -1,6 +1,7 @@
 extends Node2D
 
 var is_finished := false
+var enemy_count = 0
 
 func _ready() -> void:
 	for teleporter in get_tree().get_nodes_in_group("Teleporter"):
