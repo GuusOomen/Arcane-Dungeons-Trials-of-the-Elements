@@ -1,6 +1,6 @@
-[gd_scene load_steps=18 format=4 uid="uid://c8ywx1tbum1qv"]
+[gd_scene load_steps=18 format=4 uid="uid://gsb84xttu0w3"]
 
-[ext_resource type="Script" path="res://Scenes/generation/room.gd" id="1_qbts6"]
+[ext_resource type="Script" path="res://Scenes/generation/fleeable_room.gd" id="1_jwlyu"]
 [ext_resource type="Texture2D" uid="uid://dak85krm7wp57" path="res://Assets/dungeon/Dungeon tileset.png" id="2_ro3vx"]
 [ext_resource type="PackedScene" uid="uid://boastwxvwprua" path="res://Scenes/tree.tscn" id="3_wgg51"]
 [ext_resource type="Shader" path="res://fade.gdshader" id="4_drwiw"]
@@ -387,10 +387,10 @@ shader_parameter/color = Color(0.0583333, 0, 0.1, 1)
 shader = ExtResource("4_drwiw")
 shader_parameter/color = Color(0.0583333, 0, 0.1, 0.501961)
 
-[node name="Room1" type="Node2D"]
+[node name="TreeRoom2" type="Node2D"]
 y_sort_enabled = true
 position = Vector2(20, -20)
-script = ExtResource("1_qbts6")
+script = ExtResource("1_jwlyu")
 
 [node name="Floor" type="TileMapLayer" parent="."]
 physics_interpolation_mode = 1
@@ -423,28 +423,12 @@ position = Vector2(-279.75, 260)
 scale = Vector2(3.12891, 0.3125)
 texture = ExtResource("5_4b7c2")
 
-[node name="Fade4" type="Sprite2D" parent="."]
-y_sort_enabled = true
-material = SubResource("ShaderMaterial_pgs4g")
-position = Vector2(-320, -260)
-rotation = 3.14159
-scale = Vector2(2.50505, 0.3125)
-texture = ExtResource("5_4b7c2")
-
 [node name="Fade6" type="Sprite2D" parent="."]
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_pgs4g")
 position = Vector2(-19.6595, -500)
 rotation = 3.14159
 scale = Vector2(2.18224, 0.3125)
-texture = ExtResource("5_4b7c2")
-
-[node name="Fade7" type="Sprite2D" parent="."]
-y_sort_enabled = true
-material = SubResource("ShaderMaterial_pgs4g")
-position = Vector2(199.961, -380)
-rotation = 3.14159
-scale = Vector2(1.25032, 0.3125)
 texture = ExtResource("5_4b7c2")
 
 [node name="Fade8" type="Sprite2D" parent="."]
@@ -463,14 +447,6 @@ rotation = 1.5708
 scale = Vector2(4.37475, 0.3125)
 texture = ExtResource("5_4b7c2")
 
-[node name="Fade5" type="Sprite2D" parent="."]
-z_index = 1
-material = SubResource("ShaderMaterial_pgs4g")
-position = Vector2(-140.999, -400.031)
-rotation = 1.5708
-scale = Vector2(1.87586, 0.3125)
-texture = ExtResource("5_4b7c2")
-
 [node name="Fade3" type="Sprite2D" parent="."]
 z_index = 1
 material = SubResource("ShaderMaterial_pgs4g")
@@ -480,10 +456,10 @@ scale = Vector2(7.83656, 0.3125)
 texture = ExtResource("5_4b7c2")
 
 [node name="Teleporter" parent="." instance=ExtResource("6_ky60k")]
-position = Vector2(-19, -410)
+position = Vector2(-20, -418)
 
 [node name="Teleporter2" parent="." instance=ExtResource("6_ky60k")]
-position = Vector2(65, 263)
+position = Vector2(60, 266)
 
 [node name="Tree" parent="." instance=ExtResource("3_wgg51")]
 position = Vector2(419, 56)

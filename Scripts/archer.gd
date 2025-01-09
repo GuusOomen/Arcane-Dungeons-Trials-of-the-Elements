@@ -5,8 +5,8 @@ enum Mode {attack, move}
 @export var health = 3
 
 # Variable for various actions
-var SPEED = 100.0
-var RANGE = 300
+@export var SPEED := 100.0
+@export var RANGE := 300
 
 # Variables to track states
 var is_attacking = false
