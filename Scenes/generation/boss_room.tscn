@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://cft5li4x4olfd"]
+[gd_scene load_steps=22 format=4 uid="uid://cft5li4x4olfd"]
 
 [ext_resource type="Script" path="res://Scenes/generation/boss_room.gd" id="1_l1rf3"]
 [ext_resource type="Texture2D" uid="uid://dak85krm7wp57" path="res://Assets/dungeon/Dungeon tileset.png" id="2_0taii"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://26k2ba5xm41c" path="res://Scenes/Turret.tscn" id="6_nwsld"]
 [ext_resource type="PackedScene" uid="uid://bqphqqsbp1btx" path="res://Scenes/Skeleton.tscn" id="7_v5ebt"]
 [ext_resource type="PackedScene" uid="uid://ctylh0prvmbaj" path="res://Scenes/Archer.tscn" id="9_dbbpu"]
+[ext_resource type="PackedScene" uid="uid://cokr0nbhhpsng" path="res://Scenes/Main_character.tscn" id="10_hgoqw"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bjp4a"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -409,6 +410,9 @@ size = Vector2(161, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cesle"]
 size = Vector2(16, 36)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dic8k"]
+size = Vector2(40, 679)
+
 [node name="BossRoom" type="Node2D"]
 y_sort_enabled = true
 position = Vector2(20, -20)
@@ -585,5 +589,26 @@ shape = SubResource("RectangleShape2D_cesle")
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(56, -8)
 shape = SubResource("RectangleShape2D_cesle")
+
+[node name="Player" parent="." instance=ExtResource("10_hgoqw")]
+position = Vector2(-20, -169)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(386, 927)
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(-6, 173.5)
+shape = SubResource("RectangleShape2D_dic8k")
+
+[node name="CharacterBody2D2" type="CharacterBody2D" parent="."]
+position = Vector2(-454, 927)
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D2"]
+position = Vector2(-6, 173.5)
+shape = SubResource("RectangleShape2D_dic8k")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

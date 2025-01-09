@@ -18,8 +18,8 @@
 [ext_resource type="Texture2D" uid="uid://bhtta8jghv3er" path="res://Assets/turret/Right/Png/TurretRightHurt.png" id="16_x7thi"]
 [ext_resource type="PackedScene" uid="uid://gqq7opqr8gnq" path="res://Scenes/enemies/healthbar.tscn" id="17_1pfxu"]
 [ext_resource type="Texture2D" uid="uid://bjmycb1vx0x62" path="res://Assets/turret/Right/Png/TurretRightIdle.png" id="17_w4c1i"]
-[ext_resource type="PackedScene" uid="uid://dgh8ew8dpke64" path="res://Scenes/enemies/HurtSound.tscn" id="20_fet4d"]
-[ext_resource type="PackedScene" uid="uid://irv24chgh80b" path="res://Scenes/enemies/DeadSoundTurret.tscn" id="20_r7858"]
+[ext_resource type="PackedScene" path="res://Scenes/enemies/HurtSound.tscn" id="20_fet4d"]
+[ext_resource type="PackedScene" path="res://Scenes/enemies/DeadSoundTurret.tscn" id="20_r7858"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h655u"]
 radius = 1.0

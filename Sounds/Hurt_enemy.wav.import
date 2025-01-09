@@ -2,11 +2,7 @@
 
 importer="wav"
 type="AudioStreamWAV"
-<<<<<<< HEAD
-uid="uid://bjc71ijwkesyi"
-=======
-uid="uid://wolujlqn05eh"
->>>>>>> f7a32fb560919723e72f429f629066eeabe8641f
+uid="uid://bd8vxnp4hwwx2"
 path="res://.godot/imported/Hurt_enemy.wav-c33f566aa1c9a78b885dc6783f24982a.sample"
 
 [deps]
