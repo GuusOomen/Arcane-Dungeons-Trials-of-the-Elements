@@ -1,11 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://dxvu63vla2ccb"]
+[gd_scene load_steps=18 format=3 uid="uid://dxvu63vla2ccb"]
 
 [ext_resource type="Script" path="res://Scripts/generation.gd" id="1_xrdjh"]
 [ext_resource type="PackedScene" uid="uid://g3ikbwmqixki" path="res://Scenes/generation/starting_room.tscn" id="2_7ae3x"]
 [ext_resource type="PackedScene" uid="uid://brw26eavelyeg" path="res://Scenes/generation/room_1.tscn" id="2_rh4gi"]
-[ext_resource type="PackedScene" uid="uid://b2nt1c4lq7vae" path="res://Scenes/generation/room_2.tscn" id="3_alwgr"]
 [ext_resource type="PackedScene" uid="uid://clvft8pq7ev1m" path="res://Scenes/generation/test_room_1.tscn" id="4_jqjx6"]
-[ext_resource type="PackedScene" uid="uid://dh6mg83cdygg0" path="res://Scenes/generation/room_3.tscn" id="4_y4oug"]
 [ext_resource type="PackedScene" uid="uid://cokr0nbhhpsng" path="res://Scenes/Main_character.tscn" id="5_5e5ja"]
 [ext_resource type="Shader" path="res://bg.gdshader" id="6_jauvy"]
 [ext_resource type="Shader" path="res://tonemap.gdshader" id="8_k6jl2"]
@@ -53,8 +51,7 @@ shader = ExtResource("8_kru41")
 y_sort_enabled = true
 script = ExtResource("1_xrdjh")
 starting_room = ExtResource("2_7ae3x")
-room_pool = Array[PackedScene]([ExtResource("2_rh4gi"), ExtResource("3_alwgr"), ExtResource("4_y4oug")])
-ending_pool = Array[PackedScene]([ExtResource("4_jqjx6")])
+room_pool = Array[PackedScene]([ExtResource("2_rh4gi"), ExtResource("4_jqjx6")])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -128

@@ -33,6 +33,5 @@ func _on_damagebox_area_entered(area: Area2D) -> void:
 			destroy()
 		return
 	if parent.has_method("take_damage"):
-		print(slow)
 		parent.take_damage(slow)
 	destroy()
