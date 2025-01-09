@@ -460,10 +460,10 @@ scale = Vector2(5.00453, 0.3125)
 texture = ExtResource("4_cggsp")
 
 [node name="Teleporter" parent="." instance=ExtResource("5_ud8hb")]
-position = Vector2(-260, 228)
+position = Vector2(-260, 227)
 
 [node name="Teleporter2" parent="." instance=ExtResource("5_ud8hb")]
-position = Vector2(-20, -180)
+position = Vector2(-20, -179)
 
 [node name="Turret" parent="." instance=ExtResource("6_6rto2")]
 position = Vector2(-20, -4.00001)

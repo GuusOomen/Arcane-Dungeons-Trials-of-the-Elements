@@ -87,7 +87,6 @@ func _physics_process(delta: float) -> void:
 			heal()
 			heal_cooldown = 0
 		heal_cooldown += delta
-		print(heal_cooldown)
 	hitbox.disabled = false
 	# Manage dashing and rolling states
 	if is_taking_dmg:

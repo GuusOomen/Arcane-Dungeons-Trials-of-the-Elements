@@ -437,10 +437,10 @@ scale = Vector2(4.37502, 0.3125)
 texture = ExtResource("3_q6ute")
 
 [node name="Teleporter" parent="." instance=ExtResource("2_5wv2c")]
-position = Vector2(-180, 180)
+position = Vector2(-180, 187)
 
 [node name="Teleporter2" parent="." instance=ExtResource("2_5wv2c")]
-position = Vector2(140, 180)
+position = Vector2(140, 187)
 
 [node name="Skeleton" parent="." instance=ExtResource("4_2wxgc")]
 position = Vector2(-20, -108)
