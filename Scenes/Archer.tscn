@@ -1199,6 +1199,10 @@ wait_time = 1.5
 wait_time = 0.4
 one_shot = true
 
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(1000, 0)
+collide_with_areas = true
+
 [connection signal="timeout" from="Timers/AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="Timers/NavigationTimer" to="." method="_on_navigation_timer_timeout"]
 [connection signal="timeout" from="Timers/AttackTimeout" to="." method="_on_attack_timeout_timeout"]
