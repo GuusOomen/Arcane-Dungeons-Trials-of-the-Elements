@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://b8lgkr0hv1md1"]
+[gd_scene load_steps=16 format=4 uid="uid://btpoptrjckhji"]
 
 [ext_resource type="Script" path="res://Scenes/generation/room.gd" id="1_c27e8"]
 [ext_resource type="Texture2D" uid="uid://dak85krm7wp57" path="res://Assets/dungeon/Dungeon tileset.png" id="2_2g1xn"]
@@ -242,7 +242,7 @@ texture = ExtResource("2_2g1xn")
 navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_vk12q")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gfa05"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tw1qp"]
 texture = ExtResource("2_2g1xn")
 6:5/0 = 0
 8:0/size_in_atlas = Vector2i(1, 3)
@@ -375,7 +375,7 @@ texture = ExtResource("2_2g1xn")
 
 [sub_resource type="TileSet" id="TileSet_dkytm"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_gfa05")
+sources/0 = SubResource("TileSetAtlasSource_tw1qp")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5f254"]
 shader = ExtResource("3_ve54m")

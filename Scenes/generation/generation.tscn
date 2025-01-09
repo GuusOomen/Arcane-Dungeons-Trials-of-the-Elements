@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dxvu63vla2ccb"]
+[gd_scene load_steps=23 format=3 uid="uid://dxvu63vla2ccb"]
 
 [ext_resource type="Script" path="res://Scripts/generation.gd" id="1_xrdjh"]
 [ext_resource type="PackedScene" uid="uid://g3ikbwmqixki" path="res://Scenes/generation/starting_room.tscn" id="2_7ae3x"]
@@ -7,7 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://clvft8pq7ev1m" path="res://Scenes/generation/test_room_1.tscn" id="4_jqjx6"]
 [ext_resource type="PackedScene" uid="uid://dh6mg83cdygg0" path="res://Scenes/generation/room_3.tscn" id="4_y4oug"]
 [ext_resource type="PackedScene" uid="uid://cokr0nbhhpsng" path="res://Scenes/Main_character.tscn" id="5_5e5ja"]
+[ext_resource type="PackedScene" uid="uid://btpoptrjckhji" path="res://Scenes/generation/room_4.tscn" id="6_0242i"]
 [ext_resource type="Shader" path="res://bg.gdshader" id="6_jauvy"]
+[ext_resource type="PackedScene" uid="uid://dm82tgnxytvib" path="res://Scenes/generation/room_5.tscn" id="6_v8v6t"]
+[ext_resource type="PackedScene" uid="uid://cpg2dsbhhtrb2" path="res://Scenes/generation/room_7.tscn" id="7_ud30r"]
 [ext_resource type="Shader" path="res://tonemap.gdshader" id="8_k6jl2"]
 [ext_resource type="Shader" path="res://vignette.gdshader" id="8_kru41"]
 
@@ -53,7 +56,7 @@ shader = ExtResource("8_kru41")
 y_sort_enabled = true
 script = ExtResource("1_xrdjh")
 starting_room = ExtResource("2_7ae3x")
-room_pool = Array[PackedScene]([ExtResource("2_rh4gi"), ExtResource("3_alwgr"), ExtResource("4_y4oug")])
+room_pool = Array[PackedScene]([ExtResource("2_rh4gi"), ExtResource("3_alwgr"), ExtResource("4_y4oug"), ExtResource("6_0242i"), ExtResource("6_v8v6t"), ExtResource("7_ud30r")])
 ending_pool = Array[PackedScene]([ExtResource("4_jqjx6")])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

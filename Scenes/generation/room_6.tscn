@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://bj61by5ri871c"]
+[gd_scene load_steps=14 format=4 uid="uid://3qfsjmit860n"]
 
 [ext_resource type="Script" path="res://Scenes/generation/room.gd" id="1_gjh8p"]
 [ext_resource type="Texture2D" uid="uid://dak85krm7wp57" path="res://Assets/dungeon/Dungeon tileset.png" id="2_ytow8"]
@@ -437,7 +437,7 @@ scale = Vector2(2.99295, 0.3125)
 texture = ExtResource("4_5ercn")
 
 [node name="Teleporter" parent="." instance=ExtResource("5_aj7xd")]
-position = Vector2(-1694, 19)
+position = Vector2(-1668, 20)
 
 [node name="Teleporter2" parent="." instance=ExtResource("5_aj7xd")]
-position = Vector2(1640, 21)
+position = Vector2(1628, 20)

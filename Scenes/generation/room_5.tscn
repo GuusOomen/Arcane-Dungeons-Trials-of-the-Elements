@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://cgacg733v0jc5"]
+[gd_scene load_steps=15 format=4 uid="uid://dm82tgnxytvib"]
 
 [ext_resource type="Script" path="res://Scenes/generation/room.gd" id="1_ghsfi"]
 [ext_resource type="Texture2D" uid="uid://dak85krm7wp57" path="res://Assets/dungeon/Dungeon tileset.png" id="2_va4fx"]
@@ -438,6 +438,20 @@ texture = ExtResource("4_ciyps")
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_5f254")
 position = Vector2(-260, 220)
+scale = Vector2(0.3125, 0.3125)
+texture = ExtResource("4_ciyps")
+
+[node name="Fade12" type="Sprite2D" parent="."]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_5f254")
+position = Vector2(-300, 140)
+scale = Vector2(0.3125, 0.3125)
+texture = ExtResource("4_ciyps")
+
+[node name="Fade13" type="Sprite2D" parent="."]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_5f254")
+position = Vector2(260, 140)
 scale = Vector2(0.3125, 0.3125)
 texture = ExtResource("4_ciyps")
 
