@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cpg2dsbhhtrb2" path="res://Scenes/generation/room_7.tscn" id="7_ud30r"]
 [ext_resource type="Shader" path="res://tonemap.gdshader" id="8_k6jl2"]
 [ext_resource type="Shader" path="res://vignette.gdshader" id="8_kru41"]
-[ext_resource type="PackedScene" uid="uid://tv6146nigmiu" path="res://Scenes/generation/room_8.tscn" id="9_4ch1k"]
+[ext_resource type="PackedScene" uid="uid://bwyrr8vo5ob6f" path="res://Scenes/generation/room_8.tscn" id="9_4ch1k"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_h42mq"]
 noise_type = 5

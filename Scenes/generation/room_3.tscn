@@ -449,14 +449,6 @@ rotation = 3.14159
 scale = Vector2(1.5626, 0.3125)
 texture = ExtResource("4_y5mts")
 
-[node name="Fade7" type="Sprite2D" parent="."]
-y_sort_enabled = true
-material = SubResource("ShaderMaterial_pgs4g")
-position = Vector2(-20, -260)
-rotation = 3.14159
-scale = Vector2(1.5626, 0.3125)
-texture = ExtResource("4_y5mts")
-
 [node name="Fade8" type="Sprite2D" parent="."]
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_pgs4g")
