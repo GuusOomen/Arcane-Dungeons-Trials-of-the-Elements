@@ -444,3 +444,6 @@ position = Vector2(-21, 296)
 
 [node name="Teleporter4" parent="." instance=ExtResource("2_tsak7")]
 position = Vector2(261, 18)
+
+[node name="Teleporter5" parent="." instance=ExtResource("2_tsak7")]
+position = Vector2(-20, 20)

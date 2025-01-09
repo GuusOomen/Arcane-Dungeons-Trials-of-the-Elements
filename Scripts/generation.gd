@@ -1,7 +1,7 @@
 extends Node2D
 
-@export var max_depth := 6
-@export var min_depth := 3
+@export var max_depth := 2
+@export var min_depth := 1
 @export var starting_room: PackedScene
 @export var room_pool: Array[PackedScene]
 @export var tree_pool: Array[PackedScene]
@@ -11,7 +11,7 @@ extends Node2D
 func generate_(prev_room: Node2D, prev_teleporter: Area2D, prev_room_scene: PackedScene, depth: int, path: int) -> Array[Node2D]:
 	var room_scene: PackedScene
 	if depth == max_depth:
-		if path >= required_rooms.size() || null == required_rooms[path]:
+		if null == required_rooms[path]:
 			room_scene = ending_pool.pick_random()
 		else:
 			room_scene = required_rooms[path]
@@ -24,9 +24,9 @@ func generate_(prev_room: Node2D, prev_teleporter: Area2D, prev_room_scene: Pack
 	else:
 		var rand: int = randi_range(0, 1)
 		if 0 == rand:
-			room_scene = (room_pool + ending_pool).pick_random()
+			room_scene = room_pool.pick_random()
 		if 1 == rand:
-			if path >= required_rooms.size() || null == required_rooms[path]:
+			if null == required_rooms[path]:
 				room_scene = ending_pool.pick_random()
 			else:
 				room_scene = required_rooms[path]
