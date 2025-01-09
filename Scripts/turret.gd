@@ -2,9 +2,6 @@ extends CharacterBody2D
 
 @export var health = 3
 
-# Constants for various actions
-const ATTACK_RANGE_LONG = 200
-
 # Variables to track states
 var is_attacking = false
 var is_taking_dmg = false

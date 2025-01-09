@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://3ru2w07ykr8f"]
+
+[ext_resource type="Script" path="res://Scripts/projectile/projectile.gd" id="1_yop2w"]
+[ext_resource type="Texture2D" uid="uid://3mvug30ndiy" path="res://Assets/arrow.png" id="2_tjl4m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v3q73"]
+atlas = ExtResource("2_tjl4m")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_416qw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v3q73")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yh2m3"]
+radius = 1.0
+height = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0eaao"]
+radius = 16.0
+
+[node name="Projectile" type="CharacterBody2D"]
+physics_interpolation_mode = 1
+collision_layer = 0
+script = ExtResource("1_yop2w")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(1, -0.195314)
+scale = Vector2(0.625, 0.609375)
+sprite_frames = SubResource("SpriteFrames_416qw")
+autoplay = "default"
+frame_progress = 0.710665
+offset = Vector2(0, -0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 15)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_yh2m3")
+
+[node name="Damagebox" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damagebox"]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_0eaao")
+
+[connection signal="area_entered" from="Damagebox" to="." method="_on_damagebox_area_entered"]
