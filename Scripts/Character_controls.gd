@@ -155,6 +155,8 @@ func perform_attack() -> void:
 	attack_counter += 1
 
 func perform_magic() -> void:
+	$AttackSound.pitch_scale = randf() * 2
+	$AttackSound.play()
 	var projectile: CharacterBody2D = projectiles[char_type].instantiate()
 	projectile.cast_group = "Player"
 	projectile.type = char_type
@@ -163,6 +165,7 @@ func perform_magic() -> void:
 	get_tree().current_scene.add_child(projectile)
 
 func start_dash(direction: Vector2) -> void:
+	$DashSound.play()
 	is_dashing = true
 	dash_timer = 0.2
 	velocity = (direction * DASH_SPEED)
