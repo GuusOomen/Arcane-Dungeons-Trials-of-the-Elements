@@ -1392,17 +1392,21 @@ volume_db = -21.085
 
 [node name="Footsteps" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("40_bd22w")
+volume_db = -15.0
+pitch_scale = 0.9
 
 [node name="PlayerHurt" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("41_1g1m6")
+volume_db = -15.0
 
 [node name="BackgroundSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("42_v7xwc")
-volume_db = -26.234
+volume_db = -30.0
 
 [node name="RollSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("43_vm6a8")
+volume_db = 2.5
 
 [node name="TeleportSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("44_ox0l0")
-volume_db = -12.18
+volume_db = -25.0

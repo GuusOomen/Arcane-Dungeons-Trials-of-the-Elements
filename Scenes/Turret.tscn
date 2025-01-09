@@ -841,8 +841,10 @@ target_position = Vector2(200, 0)
 collide_with_areas = true
 
 [node name="HurtSound" parent="." instance=ExtResource("20_fet4d")]
+volume_db = -15.0
 
 [node name="DeadSoundTurret" parent="." instance=ExtResource("20_r7858")]
+volume_db = -15.0
 
 [connection signal="timeout" from="Timers/AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="Timers/DmgTimer" to="." method="_on_dmg_timer_timeout"]

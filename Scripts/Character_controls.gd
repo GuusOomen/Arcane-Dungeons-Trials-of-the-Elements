@@ -99,7 +99,7 @@ func _physics_process(delta: float) -> void:
 		dash_timer -= delta
 		hitbox.disabled = true
 		if dash_timer <= 0:
-			footsteps.volume_db = 0
+			footsteps.volume_db = -15.0
 			footsteps.play()
 			is_dashing = false
 	elif is_rolling:
@@ -107,7 +107,7 @@ func _physics_process(delta: float) -> void:
 		roll_timer -= delta
 		hitbox.disabled = true
 		if roll_timer <= 0:
-			footsteps.volume_db = 0
+			footsteps.volume_db = -15.0
 			footsteps.play()
 			is_rolling = false
 	elif is_attacking:
@@ -128,7 +128,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		# Default movement animation based on direction
 		if input_vector != Vector2.ZERO:
-			footsteps.volume_db = 0
+			footsteps.volume_db = -15.0
 			play_animation(current_direction + "-Walk")
 		else:
 			footsteps.volume_db = -80
