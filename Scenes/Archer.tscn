@@ -1,6 +1,6 @@
 [gd_scene load_steps=170 format=3 uid="uid://ctylh0prvmbaj"]
 
-[ext_resource type="Script" path="res://Scenes/archer.gd" id="1_o8313"]
+[ext_resource type="Script" path="res://Scripts/archer.gd" id="1_o8313"]
 [ext_resource type="Texture2D" uid="uid://durgbkrewhsvq" path="res://Assets/archer/Up/Png/SkeletonWithBowUpAttack01.png" id="2_owwwy"]
 [ext_resource type="Texture2D" uid="uid://8e5n0pcxaprf" path="res://Assets/archer/Up/Png/SkeletonWithBowUpDeath.png" id="3_egxoa"]
 [ext_resource type="Texture2D" uid="uid://5dr7qyxftaxx" path="res://Assets/archer/Up/Png/SkeletonWithBowUpHurt.png" id="4_1qtxk"]
@@ -1198,10 +1198,6 @@ wait_time = 1.5
 [node name="DmgTimer" type="Timer" parent="Timers"]
 wait_time = 0.4
 one_shot = true
-
-[node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(1000, 0)
-collide_with_areas = true
 
 [connection signal="timeout" from="Timers/AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="Timers/NavigationTimer" to="." method="_on_navigation_timer_timeout"]
