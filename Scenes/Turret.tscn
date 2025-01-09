@@ -436,7 +436,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Back-Attack",
-"speed": 8.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -528,7 +528,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Front-Attack",
-"speed": 8.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -620,7 +620,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Left-Attack",
-"speed": 8.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -712,7 +712,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Right-Attack",
-"speed": 8.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -796,7 +796,7 @@ shape = SubResource("CapsuleShape2D_h655u")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_wougq")
-animation = &"Right-Attack"
+animation = &"Back-Attack"
 autoplay = "Front-Idle"
 
 [node name="Hitbox" type="Area2D" parent="." groups=["Hitbox"]]
@@ -820,6 +820,7 @@ grow_vertical = 1
 [node name="Timers" type="Node" parent="."]
 
 [node name="AttackTimer" type="Timer" parent="Timers"]
+wait_time = 2.0
 
 [node name="DmgTimer" type="Timer" parent="Timers"]
 wait_time = 0.5
@@ -835,7 +836,6 @@ one_shot = true
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(200, 0)
-collision_mask = 2
 collide_with_areas = true
 
 [connection signal="timeout" from="Timers/AttackTimer" to="." method="_on_attack_timer_timeout"]
