@@ -10,7 +10,7 @@ var attack_direction = null
 var dead = false
 var angle_to_target
 
-@export var projectile: PackedScene = preload("res://Scenes/projectile/projectile-wind.tscn")
+@export var projectile: PackedScene = preload("res://Scenes/projectile/projectile-turret.tscn")
 
 @onready var animation_player = $AnimatedSprite2D
 @onready var attack_timer = $Timers/AttackTimer

@@ -233,6 +233,9 @@ func dead():
 	set_physics_process(false)
 	is_dead = true
 	await get_tree().create_timer(1).timeout
+	$AnimatedSprite2D.material.set("shader_parameter/color_light", Color(0.8, 0.8, 0.8))
+	$AnimatedSprite2D.material.set("shader_parameter/color_medium", Color(0.49, 0.49, 0.49))
+	$AnimatedSprite2D.material.set("shader_parameter/color_dark", Color(0.2, 0.2, 0.2))
 	get_tree().reload_current_scene()
 
 func change_type(type):

@@ -1,7 +1,7 @@
 extends Node2D
 
-@export var max_depth := 2
-@export var min_depth := 1
+@export var max_depth := 3
+@export var min_depth := 2
 @export var starting_room: PackedScene
 @export var room_pool: Array[PackedScene]
 @export var tree_pool: Array[PackedScene]
@@ -13,7 +13,7 @@ func generate_(prev_room: Node2D, prev_teleporter: Area2D, prev_room_scene: Pack
 	if depth == max_depth:
 		if has_special:
 			while path < special_rooms.size():
-				if 0 == randi_range(0, 1):
+				if 0 == randi_range(0, 2):
 					if null != special_rooms[path]:
 						room_scene = special_rooms[path]
 						special_rooms[path] = null
@@ -22,7 +22,7 @@ func generate_(prev_room: Node2D, prev_teleporter: Area2D, prev_room_scene: Pack
 				else:
 					break
 				path += 1
-			if path >= special_rooms.size():
+			if null == room_scene:
 				room_scene = ending_pool.pick_random()
 		else:
 			while path < special_rooms.size():
@@ -31,13 +31,16 @@ func generate_(prev_room: Node2D, prev_teleporter: Area2D, prev_room_scene: Pack
 					special_rooms[path] = null
 					break
 				path += 1
-			if path >= special_rooms.size():
+			if null == room_scene:
 				room_scene = ending_pool.pick_random()
 	elif depth < min_depth:
 		if 0 != path:
-			room_scene = (room_pool + tree_pool).pick_random()
+			var tmp: Array[PackedScene] = room_pool + tree_pool
+			room_scene = tmp.filter(func(x: PackedScene) -> bool:
+				return x != prev_room_scene).pick_random()
 		else:
-			room_scene = room_pool.pick_random()
+			room_scene = room_pool.filter(func(x: PackedScene) -> bool:
+				return x != prev_room_scene).pick_random()
 	else:
 		if 0 == randi_range(0, 1):
 			if has_special:
@@ -51,7 +54,7 @@ func generate_(prev_room: Node2D, prev_teleporter: Area2D, prev_room_scene: Pack
 					else:
 						break
 					path += 1
-				if path >= special_rooms.size():
+				if null == room_scene:
 					room_scene = ending_pool.pick_random()
 			else:
 				while path < special_rooms.size():
@@ -60,13 +63,16 @@ func generate_(prev_room: Node2D, prev_teleporter: Area2D, prev_room_scene: Pack
 						special_rooms[path] = null
 						break
 					path += 1
-				if path >= special_rooms.size():
+				if null == room_scene:
 					room_scene = ending_pool.pick_random()
 		else:
 			if 0 != path:
-				room_scene = (room_pool + tree_pool).pick_random()
+				var tmp: Array[PackedScene] = room_pool + tree_pool
+				room_scene = tmp.filter(func(x: PackedScene) -> bool:
+					return x != prev_room_scene).pick_random()
 			else:
-				room_scene = room_pool.pick_random()
+				room_scene = room_pool.filter(func(x: PackedScene) -> bool:
+					return x != prev_room_scene).pick_random()
 			
 	var room: Node2D = room_scene.instantiate()
 	room.hide()
@@ -81,7 +87,7 @@ func generate_(prev_room: Node2D, prev_teleporter: Area2D, prev_room_scene: Pack
 				child.teleporter = prev_teleporter
 				teleporter = child
 				continue
-			var result := generate_(room, child, starting_room, depth + 1, path, has_special)
+			var result := generate_(room, child, room_scene, depth + 1, path, has_special)
 			child.room = result[0]
 			child.teleporter = result[1]
 	return [room, teleporter]

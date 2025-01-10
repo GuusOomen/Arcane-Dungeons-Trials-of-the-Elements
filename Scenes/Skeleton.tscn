@@ -1039,11 +1039,11 @@ script = ExtResource("1_bwphp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
-position = Vector2(-2.11758e-22, 0)
+position = Vector2(-7.52316e-37, -4)
 sprite_frames = SubResource("SpriteFrames_wougq")
 animation = &"Front-Idle"
 autoplay = "Front-Idle"
-offset = Vector2(-2.38419e-08, -6)
+offset = Vector2(-2.38419e-08, -2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-8.88178e-16, 5.99955)
