@@ -2,20 +2,9 @@ extends Node2D
 
 var wave = 1
 
-var enemy_count: int : set = set_enemy_count
-
-func set_enemy_count(new_enemy_count: int) -> void:
-	if -1 == new_enemy_count:
-		var ending := get_node("Ending")
-		ending.process_mode = PROCESS_MODE_INHERIT
-		ending.show()
-	enemy_count = new_enemy_count
+var enemy_count: int
 
 func _ready() -> void:
-	var ending := get_node("Ending")
-	ending.hide()
-	ending.process_mode = PROCESS_MODE_DISABLED
-	
 	for child in $Wave1.get_children():
 		if child.is_in_group("Enemy"):
 			child.process_mode = Node.PROCESS_MODE_DISABLED
