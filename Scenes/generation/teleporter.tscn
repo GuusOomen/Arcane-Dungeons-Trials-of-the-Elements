@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://jjdxsy11v4f2"]
+[gd_scene load_steps=6 format=3 uid="uid://jjdxsy11v4f2"]
 
 [ext_resource type="Script" path="res://Scenes/generation/teleporter.gd" id="1_osbkv"]
 [ext_resource type="Texture2D" uid="uid://dpah4kwbso8ya" path="res://Assets/teleporter.png" id="2_pyo1j"]
@@ -6,17 +6,35 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_k5sfd"]
 radius = 16.0
 
+[sub_resource type="Gradient" id="Gradient_rakva"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5fkkh"]
+gradient = SubResource("Gradient_rakva")
+width = 128
+height = 128
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
 [node name="Teleporter" type="Area2D" groups=["Teleporter"]]
 collision_layer = 0
 collision_mask = 128
 script = ExtResource("1_osbkv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.720833, 0.33, 1, 0.501961)
 z_index = -1
 texture = ExtResource("2_pyo1j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_k5sfd")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.720833, 0.33, 1, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_5fkkh")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

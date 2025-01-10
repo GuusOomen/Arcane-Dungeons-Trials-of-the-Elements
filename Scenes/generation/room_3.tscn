@@ -498,7 +498,7 @@ position = Vector2(181, -216)
 position = Vector2(181, 219)
 
 [node name="Teleporter4" parent="." instance=ExtResource("2_j4eo2")]
-position = Vector2(-219, -219)
+position = Vector2(-219, -216)
 
 [node name="Skeleton" parent="." instance=ExtResource("6_ffq5c")]
 position = Vector2(-244, -204)
