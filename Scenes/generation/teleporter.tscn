@@ -111,7 +111,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_mgcui")
 }],
 "loop": false,
-"name": &"default",
+"name": &"beam",
 "speed": 30.0
 }]
 
@@ -155,8 +155,7 @@ modulate = Color(0.435707, 0.00153749, 0.653003, 1)
 position = Vector2(0, -1915)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_jtt2x")
-frame = 11
-frame_progress = 1.0
+animation = &"beam"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
