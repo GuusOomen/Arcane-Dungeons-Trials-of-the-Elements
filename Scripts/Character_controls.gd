@@ -25,8 +25,6 @@ var is_dashing = false
 var dash_timer = 0.0
 var is_rolling = false
 var roll_timer = 0.0
-var is_attacking = false
-var attack_timer = 0.0
 var is_taking_dmg = false
 var dmg_timer = 0.0
 var last_input_vector = Vector2.ZERO
@@ -35,6 +33,10 @@ var current_direction = "Front"  # Track direction for animation ("Front", "Back
 var attack_direction = ""  # Track direction for attack ("up", "down", "left", "right")
 var is_dead = false
 var heal_cooldown = 0
+
+var progress = 0
+var cooldown = false
+var attack_speed = 5.0
 
 # variables to track health
 var hearts_list : Array[TextureRect]
@@ -55,6 +57,7 @@ var teleport_loc := Vector2(INF, 0.0)
 @onready var backgroundsound = $BackgroundSound
 @onready var rollsound = $RollSound
 @onready var teleportsound = $TeleportSound
+@onready var cooldownbar = $CooldownBar
 
 
 func _ready() -> void:
@@ -70,16 +73,23 @@ func _physics_process(delta: float) -> void:
 	if input_vector != Vector2.ZERO:
 		last_input_vector = input_vector
 	# Determine the character's facing direction based on input
-	if input_vector.x < 0 and !is_attacking:
+	if input_vector.x < 0:
 		current_direction = "Side"
 		animation_player.flip_h = true
-	elif input_vector.x > 0 and !is_attacking:
+	elif input_vector.x > 0:
 		current_direction = "Side"
 		animation_player.flip_h = false
-	elif input_vector.y < 0 and !is_attacking:
+	elif input_vector.y < 0:
 		current_direction = "Back"
-	elif input_vector.y > 0 and !is_attacking:
+	elif input_vector.y > 0:
 		current_direction = "Front"
+	
+	# Attack cooldown logic
+	cooldownbar.value = progress
+	if cooldown:
+		progress -= attack_speed
+		if progress <= 0:
+			cooldown = false
 	
 	# Heal if type is earth and cooldown passed
 	if char_type == Types.Projectile.EARTH:
@@ -110,21 +120,6 @@ func _physics_process(delta: float) -> void:
 			footsteps.volume_db = -15.0
 			footsteps.play()
 			is_rolling = false
-	elif is_attacking:
-		velocity = input_vector * 0
-		attack_timer -= delta
-		
-		if attack_timer <= 0:
-			is_attacking = false
-		# Script to change direction in attack
-		# print((attack_timer < (ATTACK_LONG_SECOND_SLASH - 0.1)) and (attack_timer > (ATTACK_LONG_SECOND_SLASH + 0.1)))
-		if (ATTACK_LONG_SECOND_SLASH - 0.1 < attack_timer and ATTACK_LONG_SECOND_SLASH + 0.1 > attack_timer and !changed_direction_attack):
-			if input_vector.x < 0 and (current_direction != "Side" or animation_player.flip_h != true):
-				animation_player.flip_h = true
-				changed_direction_attack = true
-			elif input_vector.x > 0 and (current_direction != "Side" or animation_player.flip_h != false):
-				animation_player.flip_h = false
-				changed_direction_attack = true
 	else:
 		# Default movement animation based on direction
 		if input_vector != Vector2.ZERO:
@@ -138,7 +133,10 @@ func _physics_process(delta: float) -> void:
 		velocity = input_vector * SPEED
 		
 		if Input.is_action_just_pressed("bow"):
-			perform_magic()
+			if !cooldown:
+				cooldown = true
+				progress = 100
+				perform_magic()
 		
 		# Attack handling
 		#if Input.is_action_just_pressed("attack"):
@@ -163,18 +161,6 @@ func _physics_process(delta: float) -> void:
 		teleport_loc.x = INF
 		show()
 
-var attack_counter := 0
-func perform_attack() -> void:
-	# Set the attack animation based on the direction and range type
-	if 0 == attack_counter % 2:
-		play_animation(current_direction + "-Slash-1")
-		attack_timer = ATTACK_DURATION_SHORT
-	else:
-		play_animation(current_direction + "-Slash-2")
-		attack_timer = ATTACK_DURATION_SHORT
-	is_attacking = true
-	changed_direction_attack = false
-	attack_counter += 1
 
 func perform_magic() -> void:
 	attacksound.pitch_scale = (randf() + 0.25) * 2

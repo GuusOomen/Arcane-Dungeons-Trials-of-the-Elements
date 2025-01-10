@@ -1,4 +1,4 @@
-[gd_scene load_steps=209 format=3 uid="uid://cokr0nbhhpsng"]
+[gd_scene load_steps=210 format=3 uid="uid://cokr0nbhhpsng"]
 
 [ext_resource type="Script" path="res://Scripts/Character_controls.gd" id="1_neyl5"]
 [ext_resource type="Texture2D" uid="uid://dps7jbb60lnle" path="res://Assets/main_character/Back/Base.png" id="2_mria7"]
@@ -1336,6 +1336,8 @@ height = 39.0
 radius = 14.0
 height = 49.0
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wx0ao"]
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 physics_interpolation_mode = 1
 collision_layer = 128
@@ -1381,6 +1383,15 @@ z_as_relative = false
 physics_interpolation_mode = 1
 top_level = true
 script = ExtResource("37_gs5w3")
+
+[node name="CooldownBar" type="ProgressBar" parent="."]
+z_index = 1
+offset_left = -16.0
+offset_top = 30.0
+offset_right = 16.0
+offset_bottom = 34.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_wx0ao")
+show_percentage = false
 
 [node name="AttackSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("38_7bgjw")
