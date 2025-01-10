@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var health = 4
+@export var health = 3
 
 # Variables to track states
 var is_attacking = false

@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 enum Mode {attack, move}
 
-@export var health = 3
+@export var health = 2
 
 # Variable for various actions
 @export var SPEED := 100.0

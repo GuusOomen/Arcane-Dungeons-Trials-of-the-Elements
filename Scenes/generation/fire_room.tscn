@@ -461,12 +461,12 @@ position = Vector2(220, -25)
 modulate = Color(1, 0.33, 0.33, 1)
 position = Vector2(-152, 19)
 scale = Vector2(3.5, 3.5)
-health = 8
+health = 6
 projectile = ExtResource("9_0s5m6")
 
 [node name="Turret2" parent="." instance=ExtResource("6_tr44f")]
 modulate = Color(1, 0.33, 0.33, 1)
 position = Vector2(113, 19)
 scale = Vector2(3.5, 3.5)
-health = 8
+health = 6
 projectile = ExtResource("9_0s5m6")
