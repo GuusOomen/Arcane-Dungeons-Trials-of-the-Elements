@@ -202,6 +202,8 @@ func heal():
 		update_heart_display_heal()
 
 func take_damage(_slow):
+	if is_taking_dmg:
+		return
 	playerhurt.play()
 	is_taking_dmg = true
 	dmg_timer = 0.4
