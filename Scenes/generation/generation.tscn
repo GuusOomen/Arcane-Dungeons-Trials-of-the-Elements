@@ -68,7 +68,6 @@ shader = ExtResource("8_kru41")
 y_sort_enabled = true
 script = ExtResource("1_xrdjh")
 max_depth = 2
-min_depth = 1
 starting_room = ExtResource("2_7ae3x")
 room_pool = Array[PackedScene]([ExtResource("2_rh4gi"), ExtResource("3_alwgr"), ExtResource("4_y4oug"), ExtResource("6_0242i"), ExtResource("6_v8v6t"), ExtResource("7_ud30r"), ExtResource("9_4ch1k")])
 tree_pool = Array[PackedScene]([ExtResource("10_lag0d"), ExtResource("11_ivsw2"), ExtResource("12_mr74g")])
