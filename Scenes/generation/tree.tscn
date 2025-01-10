@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://boastwxvwprua"]
 
-[ext_resource type="SpriteFrames" uid="uid://ckf065g1w1fcl" path="res://tree.tres" id="1_fhjha"]
+[ext_resource type="SpriteFrames" uid="uid://ckf065g1w1fcl" path="res://Assets/tree.tres" id="1_fhjha"]
 [ext_resource type="Script" path="res://Scripts/tree.gd" id="1_jvt78"]
-[ext_resource type="Shader" path="res://burn.gdshader" id="2_jgdep"]
+[ext_resource type="Shader" path="res://Shaders/burn.gdshader" id="2_jgdep"]
 [ext_resource type="AudioStream" uid="uid://d25au4un7f16d" path="res://Sounds/TreeBurning.wav" id="4_vrwbm"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_dpqru"]

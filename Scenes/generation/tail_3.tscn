@@ -1,12 +1,12 @@
 [gd_scene load_steps=16 format=4 uid="uid://tginl2ngctro"]
 
-[ext_resource type="Script" path="res://Scenes/generation/room.gd" id="1_e8nn7"]
+[ext_resource type="Script" path="res://Scripts/room.gd" id="1_e8nn7"]
 [ext_resource type="Texture2D" uid="uid://dak85krm7wp57" path="res://Assets/dungeon/Dungeon tileset.png" id="2_7fhr2"]
-[ext_resource type="Shader" path="res://fade.gdshader" id="3_don77"]
+[ext_resource type="Shader" path="res://Shaders/fade.gdshader" id="3_don77"]
 [ext_resource type="Texture2D" uid="uid://bul2a7wj05vg1" path="res://Assets/icon.svg" id="4_0lfee"]
 [ext_resource type="PackedScene" uid="uid://jjdxsy11v4f2" path="res://Scenes/generation/teleporter.tscn" id="5_7cu3t"]
-[ext_resource type="PackedScene" uid="uid://bqphqqsbp1btx" path="res://Scenes/Skeleton.tscn" id="6_dp02f"]
-[ext_resource type="PackedScene" uid="uid://boastwxvwprua" path="res://Scenes/tree.tscn" id="8_mroja"]
+[ext_resource type="PackedScene" uid="uid://bqphqqsbp1btx" path="res://Scenes/enemies/Skeleton.tscn" id="6_dp02f"]
+[ext_resource type="PackedScene" uid="uid://boastwxvwprua" path="res://Scenes/generation/tree.tscn" id="8_mroja"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bjp4a"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)

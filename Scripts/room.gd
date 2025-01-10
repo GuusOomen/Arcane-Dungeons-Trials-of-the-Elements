@@ -1,18 +1,15 @@
 extends Node2D
 
-var is_finished := false
-var enemy_count = 0
+var enemy_count: int : set = set_enemy_count
 
-func _ready() -> void:
-	for teleporter in get_tree().get_nodes_in_group("Teleporter"):
-		teleporter.hide()
-		teleporter.process_mode = PROCESS_MODE_DISABLED
+func set_enemy_count(new_enemy_count: int) -> void:
+	if 0 == new_enemy_count:
+		for child in get_children():
+			if child.is_in_group("Teleporter"):
+				child.sprite_visibility(true)
+	enemy_count = new_enemy_count
 
-func _process(delta: float) -> void:
-	if is_finished:
-		return
-	if 0 == get_tree().get_node_count_in_group("Enemy"):
-		for teleporter in get_tree().get_nodes_in_group("Teleporter"):
-			teleporter.process_mode = PROCESS_MODE_INHERIT
-			teleporter.show()
-			is_finished = true
+func _enter_tree() -> void:
+	for child in get_children():
+			if child.is_in_group("Teleporter"):
+				child.sprite_visibility(false)

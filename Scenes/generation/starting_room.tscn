@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://dak85krm7wp57" path="res://Assets/dungeon/Dungeon tileset.png" id="1_ge43v"]
 [ext_resource type="PackedScene" uid="uid://jjdxsy11v4f2" path="res://Scenes/generation/teleporter.tscn" id="2_tsak7"]
-[ext_resource type="Shader" path="res://fade.gdshader" id="3_4bfhw"]
+[ext_resource type="Shader" path="res://Shaders/fade.gdshader" id="3_4bfhw"]
 [ext_resource type="Texture2D" uid="uid://bul2a7wj05vg1" path="res://Assets/icon.svg" id="4_8d743"]
-[ext_resource type="Texture2D" uid="uid://bb7ua8niywn5i" path="res://controls.png" id="5_wfrjd"]
+[ext_resource type="Texture2D" uid="uid://bb7ua8niywn5i" path="res://Assets/controls.png" id="5_wfrjd"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bjp4a"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)

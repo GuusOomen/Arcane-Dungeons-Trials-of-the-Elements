@@ -1,13 +1,13 @@
 [gd_scene load_steps=18 format=4 uid="uid://mqkk7h6jv478"]
 
-[ext_resource type="Script" path="res://Scenes/generation/room.gd" id="1_y8aae"]
+[ext_resource type="Script" path="res://Scripts/room.gd" id="1_y8aae"]
 [ext_resource type="Texture2D" uid="uid://dak85krm7wp57" path="res://Assets/dungeon/Dungeon tileset.png" id="2_eeva7"]
-[ext_resource type="Shader" path="res://fade.gdshader" id="3_1o2md"]
+[ext_resource type="Shader" path="res://Shaders/fade.gdshader" id="3_1o2md"]
 [ext_resource type="Texture2D" uid="uid://bul2a7wj05vg1" path="res://Assets/icon.svg" id="4_intyn"]
 [ext_resource type="PackedScene" uid="uid://jjdxsy11v4f2" path="res://Scenes/generation/teleporter.tscn" id="5_34s0s"]
-[ext_resource type="PackedScene" uid="uid://26k2ba5xm41c" path="res://Scenes/Turret.tscn" id="6_tr44f"]
-[ext_resource type="PackedScene" uid="uid://boastwxvwprua" path="res://Scenes/tree.tscn" id="7_kfqfm"]
-[ext_resource type="PackedScene" uid="uid://d0ybc5t7vr58y" path="res://Scenes/orb.tscn" id="8_1dmsc"]
+[ext_resource type="PackedScene" uid="uid://26k2ba5xm41c" path="res://Scenes/enemies/Turret.tscn" id="6_tr44f"]
+[ext_resource type="PackedScene" uid="uid://boastwxvwprua" path="res://Scenes/generation/tree.tscn" id="7_kfqfm"]
+[ext_resource type="PackedScene" uid="uid://d0ybc5t7vr58y" path="res://Scenes/generation/orb.tscn" id="8_1dmsc"]
 [ext_resource type="PackedScene" uid="uid://cmft2eharu7sk" path="res://Scenes/projectile/projectile-fire.tscn" id="9_0s5m6"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bjp4a"]

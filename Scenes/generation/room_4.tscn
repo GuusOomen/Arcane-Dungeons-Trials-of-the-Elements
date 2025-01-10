@@ -1,12 +1,12 @@
 [gd_scene load_steps=16 format=4 uid="uid://btpoptrjckhji"]
 
-[ext_resource type="Script" path="res://Scenes/generation/room.gd" id="1_c27e8"]
+[ext_resource type="Script" path="res://Scripts/room.gd" id="1_c27e8"]
 [ext_resource type="Texture2D" uid="uid://dak85krm7wp57" path="res://Assets/dungeon/Dungeon tileset.png" id="2_2g1xn"]
-[ext_resource type="Shader" path="res://fade.gdshader" id="3_ve54m"]
+[ext_resource type="Shader" path="res://Shaders/fade.gdshader" id="3_ve54m"]
 [ext_resource type="Texture2D" uid="uid://bul2a7wj05vg1" path="res://Assets/icon.svg" id="4_cggsp"]
 [ext_resource type="PackedScene" uid="uid://jjdxsy11v4f2" path="res://Scenes/generation/teleporter.tscn" id="5_ud8hb"]
-[ext_resource type="PackedScene" uid="uid://26k2ba5xm41c" path="res://Scenes/Turret.tscn" id="6_6rto2"]
-[ext_resource type="PackedScene" uid="uid://bqphqqsbp1btx" path="res://Scenes/Skeleton.tscn" id="6_o0xp7"]
+[ext_resource type="PackedScene" uid="uid://26k2ba5xm41c" path="res://Scenes/enemies/Turret.tscn" id="6_6rto2"]
+[ext_resource type="PackedScene" uid="uid://bqphqqsbp1btx" path="res://Scenes/enemies/Skeleton.tscn" id="6_o0xp7"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bjp4a"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
