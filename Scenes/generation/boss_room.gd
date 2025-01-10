@@ -3,6 +3,10 @@ extends Node2D
 var wave = 1
 
 var enemy_count: int : set = set_enemy_count
+var entered: bool = false
+
+@onready var doors = $Doors
+@onready var door_sfx = $BossRoomDoor
 
 func set_enemy_count(new_enemy_count: int) -> void:
 	if -1 == new_enemy_count:
@@ -48,9 +52,13 @@ func _process(_delta: float) -> void:
 			enemy_count += 1
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
+	if entered:
+		return
 	if body.is_in_group("Player"):
 		for child in $Wave1.get_children():
 			if child.is_in_group("Enemy"):
 				child.process_mode = Node.PROCESS_MODE_INHERIT
 		
-		$Doors.enabled = true
+		doors.enabled = true
+		door_sfx.play()
+		entered = true
