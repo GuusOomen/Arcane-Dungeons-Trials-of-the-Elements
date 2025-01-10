@@ -69,7 +69,7 @@ script = ExtResource("1_xrdjh")
 starting_room = ExtResource("2_7ae3x")
 room_pool = Array[PackedScene]([ExtResource("2_rh4gi"), ExtResource("3_alwgr"), ExtResource("4_y4oug"), ExtResource("6_0242i"), ExtResource("6_v8v6t"), ExtResource("7_ud30r"), ExtResource("9_4ch1k")])
 tree_pool = Array[PackedScene]([ExtResource("10_lag0d"), ExtResource("11_ivsw2"), ExtResource("12_mr74g")])
-special_rooms = Array[PackedScene]([ExtResource("10_emfu2"), ExtResource("11_fjbua"), ExtResource("13_ko26x"), ExtResource("12_eliql"), ExtResource("14_j4hrh")])
+special_rooms = Array[PackedScene]([ExtResource("10_emfu2"), ExtResource("13_ko26x"), ExtResource("12_eliql"), ExtResource("11_fjbua"), ExtResource("14_j4hrh")])
 ending_pool = Array[PackedScene]([ExtResource("17_okxln"), ExtResource("18_al8ln"), ExtResource("20_phy0v")])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
