@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://cft5li4x4olfd"]
+[gd_scene load_steps=26 format=4 uid="uid://cft5li4x4olfd"]
 
 [ext_resource type="Script" path="res://Scenes/generation/boss_room.gd" id="1_l1rf3"]
 [ext_resource type="Texture2D" uid="uid://dak85krm7wp57" path="res://Assets/dungeon/Dungeon tileset.png" id="2_0taii"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://ctylh0prvmbaj" path="res://Scenes/Archer.tscn" id="9_dbbpu"]
 [ext_resource type="Texture2D" uid="uid://dpah4kwbso8ya" path="res://Assets/teleporter.png" id="10_1xkhm"]
 [ext_resource type="Script" path="res://Scenes/generation/ending.gd" id="10_p5n0d"]
+[ext_resource type="Texture2D" uid="uid://dmhtohu25yknx" path="res://Credit.png" id="12_id6yg"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bjp4a"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -643,6 +644,13 @@ position = Vector2(4, 2019)
 
 [node name="Tree9" parent="." instance=ExtResource("6_j06gi")]
 position = Vector2(-52, 2057)
+
+[node name="Controls" type="Sprite2D" parent="."]
+modulate = Color(0.916667, 0.8, 1, 0.392157)
+z_index = -4000
+position = Vector2(-18, 2188)
+scale = Vector2(0.426615, 0.426615)
+texture = ExtResource("12_id6yg")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Ending" to="Ending" method="_on_body_entered"]
