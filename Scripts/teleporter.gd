@@ -25,6 +25,7 @@ func _process(delta: float) -> void:
 		player.get_node("Camera2D").global_position += teleporter.position - player.global_position
 		player.teleport(teleporter.position)
 		# play beam animation
+		teleporter.animation_player.stop()
 		teleporter.animation_player.play("beam")
 		room.global_position = Vector2.ZERO
 		room.process_mode = PROCESS_MODE_INHERIT
