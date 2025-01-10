@@ -449,6 +449,6 @@ position = Vector2(261, 18)
 [node name="Controls" type="Sprite2D" parent="."]
 modulate = Color(0.916667, 0.8, 1, 0.392157)
 z_index = -4000
-position = Vector2(-18.75, 21.25)
-scale = Vector2(2.5, 2.5)
+position = Vector2(-20.4522, 19)
+scale = Vector2(1.38235, 1.38235)
 texture = ExtResource("5_wfrjd")
