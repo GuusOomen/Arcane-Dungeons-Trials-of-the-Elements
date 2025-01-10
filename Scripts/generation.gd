@@ -13,7 +13,7 @@ func generate_(prev_room: Node2D, prev_teleporter: Area2D, prev_room_scene: Pack
 	if depth == max_depth:
 		if has_special:
 			while path < special_rooms.size():
-				if 0 == randi_range(0, 2):
+				if 0 == randi_range(0, 3):
 					if null != special_rooms[path]:
 						room_scene = special_rooms[path]
 						special_rooms[path] = null
