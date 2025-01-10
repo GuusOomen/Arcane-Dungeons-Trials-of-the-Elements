@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://jjdxsy11v4f2"]
+[gd_scene load_steps=21 format=3 uid="uid://jjdxsy11v4f2"]
 
 [ext_resource type="Script" path="res://Scenes/generation/teleporter.gd" id="1_osbkv"]
 [ext_resource type="Texture2D" uid="uid://dpah4kwbso8ya" path="res://Assets/teleporter.png" id="2_pyo1j"]
+[ext_resource type="Texture2D" uid="uid://7rmx6dl6nt7g" path="res://Assets/teleporter-animation.png" id="3_kmy7d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k5sfd"]
 radius = 16.0
@@ -17,6 +18,102 @@ use_hdr = true
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Gradient" id="Gradient_fwpyf"]
+offsets = PackedFloat32Array(0.309211, 0.980263, 0.986842, 0.993421, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0, 0.144737, 0.144737, 0.144737, 1, 0.086267, 0.086267, 0.086267, 1, 0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ptsqn"]
+atlas = ExtResource("3_kmy7d")
+region = Rect2(640, 0, 64, 2000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dvhuq"]
+atlas = ExtResource("3_kmy7d")
+region = Rect2(0, 0, 64, 2000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vusl8"]
+atlas = ExtResource("3_kmy7d")
+region = Rect2(64, 0, 64, 2000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10g0m"]
+atlas = ExtResource("3_kmy7d")
+region = Rect2(128, 0, 64, 2000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kg3un"]
+atlas = ExtResource("3_kmy7d")
+region = Rect2(192, 0, 64, 2000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0e0hv"]
+atlas = ExtResource("3_kmy7d")
+region = Rect2(256, 0, 64, 2000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y08o2"]
+atlas = ExtResource("3_kmy7d")
+region = Rect2(320, 0, 64, 2000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cy66s"]
+atlas = ExtResource("3_kmy7d")
+region = Rect2(384, 0, 64, 2000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1mvcf"]
+atlas = ExtResource("3_kmy7d")
+region = Rect2(448, 0, 64, 2000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjqu4"]
+atlas = ExtResource("3_kmy7d")
+region = Rect2(512, 0, 64, 2000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wn1ht"]
+atlas = ExtResource("3_kmy7d")
+region = Rect2(576, 0, 64, 2000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mgcui"]
+atlas = ExtResource("3_kmy7d")
+region = Rect2(640, 0, 64, 2000)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jtt2x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ptsqn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dvhuq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vusl8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10g0m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kg3un")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0e0hv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y08o2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cy66s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1mvcf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjqu4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wn1ht")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mgcui")
+}],
+"loop": false,
+"name": &"beam",
+"speed": 30.0
+}]
 
 [node name="Teleporter" type="Area2D" groups=["Teleporter"]]
 collision_layer = 0
@@ -35,6 +132,30 @@ shape = SubResource("CircleShape2D_k5sfd")
 color = Color(0.720833, 0.33, 1, 1)
 energy = 0.5
 texture = SubResource("GradientTexture2D_5fkkh")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 50
+lifetime = 10.0
+randomness = 1.0
+lifetime_randomness = 1.0
+emission_shape = 2
+emission_sphere_radius = 20.0
+direction = Vector2(0, -1)
+spread = 20.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+scale_amount_min = 4.0
+scale_amount_max = 6.0
+color = Color(0.721569, 0.329412, 1, 1)
+color_ramp = SubResource("Gradient_fwpyf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.435707, 0.00153749, 0.653003, 1)
+position = Vector2(0, -1915)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_jtt2x")
+animation = &"beam"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
