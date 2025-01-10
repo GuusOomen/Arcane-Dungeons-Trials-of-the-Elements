@@ -22,7 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://bfhtp7siy0s5q" path="res://Assets/archer/Right/Png/SkeletonWithBowRightIdle.png" id="21_bbkna"]
 [ext_resource type="Texture2D" uid="uid://cs20sem2dobe0" path="res://Assets/archer/Right/Png/SkeletonWithBowRightRun.png" id="22_ewln1"]
 [ext_resource type="PackedScene" uid="uid://gqq7opqr8gnq" path="res://Scenes/enemies/healthbar.tscn" id="22_twjr1"]
-[ext_resource type="PackedScene" uid="uid://bqdutsgsgfq4b" path="res://Scenes/enemies/DeadSound.tscn" id="23_umnjw"]
+[ext_resource type="PackedScene" uid="uid://novoilhwxa04" path="res://Scenes/enemies/DeadSound.tscn" id="23_umnjw"]
 [ext_resource type="PackedScene" uid="uid://dgh8ew8dpke64" path="res://Scenes/enemies/HurtSound.tscn" id="24_geywm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ldwcm"]
