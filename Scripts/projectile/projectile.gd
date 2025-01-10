@@ -6,6 +6,11 @@ extends CharacterBody2D
 @export var speed := 300.0
 var slow = false
 
+@onready var sprite = $AnimatedSprite2D
+@onready var particles = $CPUParticles2D
+@onready var destroy_timer = $DestroyTimer
+@onready var damage_box = $Damagebox
+
 func _ready() -> void:
 	$AnimatedSprite2D.rotation = atan2(direction.y, direction.x)
 
@@ -17,7 +22,9 @@ func _physics_process(delta: float) -> void:
 		destroy()
 
 func destroy() -> void:
-	call_deferred("queue_free")
+	sprite.visible = false
+	damage_box.collision_mask = 0
+	destroy_timer.start()
 
 func _on_damagebox_area_entered(area: Area2D) -> void:
 	if not area.is_in_group("Hitbox"):
@@ -34,4 +41,10 @@ func _on_damagebox_area_entered(area: Area2D) -> void:
 		return
 	if parent.has_method("take_damage"):
 		parent.take_damage(slow)
+	
+	particles.emitting = true
 	destroy()
+
+
+func _on_destroy_timer_timeout() -> void:
+	call_deferred("queue_free")
