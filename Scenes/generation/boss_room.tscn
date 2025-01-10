@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://cft5li4x4olfd"]
+[gd_scene load_steps=28 format=4 uid="uid://cft5li4x4olfd"]
 
 [ext_resource type="Script" path="res://Scripts/boss_room.gd" id="1_l1rf3"]
 [ext_resource type="Texture2D" uid="uid://dak85krm7wp57" path="res://Assets/dungeon/Dungeon tileset.png" id="2_0taii"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://Scripts/ending.gd" id="10_p5n0d"]
 [ext_resource type="Texture2D" uid="uid://dmhtohu25yknx" path="res://Assets/Credit.png" id="12_id6yg"]
 [ext_resource type="AudioStream" uid="uid://d4hoq0e30vi0n" path="res://Sounds/boss_room_door.mp3" id="12_tbxqr"]
+[ext_resource type="PackedScene" uid="uid://cokr0nbhhpsng" path="res://Scenes/Main_character.tscn" id="14_8oka6"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bjp4a"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -656,6 +657,9 @@ texture = ExtResource("12_id6yg")
 [node name="BossRoomDoor" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_tbxqr")
 volume_db = -12.0
+
+[node name="Player" parent="." instance=ExtResource("14_8oka6")]
+position = Vector2(-9, 524)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Ending" to="Ending" method="_on_body_entered"]

@@ -201,7 +201,7 @@ func heal():
 		health += 1
 		update_heart_display_heal()
 
-func take_damage(slow):
+func take_damage(_slow):
 	playerhurt.play()
 	is_taking_dmg = true
 	dmg_timer = 0.4
@@ -229,24 +229,24 @@ func change_type(type):
 	if not type in types:
 		types.append(type)
 	char_type = type
-	var material = $AnimatedSprite2D.material
+	var sprite_material = $AnimatedSprite2D.material
 	match type:
 		Types.Projectile.FIRE:
-			material.set("shader_parameter/color_light", Color(0.8, 0.2, 0.2))
-			material.set("shader_parameter/color_medium", Color(0.6, 0.1, 0.1))
-			material.set("shader_parameter/color_dark", Color(0.4, 0, 0))
+			sprite_material.set("shader_parameter/color_light", Color(0.8, 0.2, 0.2))
+			sprite_material.set("shader_parameter/color_medium", Color(0.6, 0.1, 0.1))
+			sprite_material.set("shader_parameter/color_dark", Color(0.4, 0, 0))
 		Types.Projectile.WATER:
-			material.set("shader_parameter/color_light", Color(0.4, 0.6, 1.0))
-			material.set("shader_parameter/color_medium", Color(0.2, 0.4, 0.8))
-			material.set("shader_parameter/color_dark", Color(0.1, 0.2, 0.5))
+			sprite_material.set("shader_parameter/color_light", Color(0.4, 0.6, 1.0))
+			sprite_material.set("shader_parameter/color_medium", Color(0.2, 0.4, 0.8))
+			sprite_material.set("shader_parameter/color_dark", Color(0.1, 0.2, 0.5))
 		Types.Projectile.EARTH:
-			material.set("shader_parameter/color_light", Color(0.2, 0.6, 0.2))
-			material.set("shader_parameter/color_medium", Color(0.1, 0.4, 0.1)) 
-			material.set("shader_parameter/color_dark", Color(0, 0.2, 0)) 
+			sprite_material.set("shader_parameter/color_light", Color(0.2, 0.6, 0.2))
+			sprite_material.set("shader_parameter/color_medium", Color(0.1, 0.4, 0.1)) 
+			sprite_material.set("shader_parameter/color_dark", Color(0, 0.2, 0)) 
 		Types.Projectile.WIND:
-			material.set("shader_parameter/color_light", Color(0.8, 0.9, 1.0))
-			material.set("shader_parameter/color_medium", Color(0.6, 0.7, 0.9))
-			material.set("shader_parameter/color_dark", Color(0.4, 0.5, 0.7))
+			sprite_material.set("shader_parameter/color_light", Color(0.8, 0.9, 1.0))
+			sprite_material.set("shader_parameter/color_medium", Color(0.6, 0.7, 0.9))
+			sprite_material.set("shader_parameter/color_dark", Color(0.4, 0.5, 0.7))
 		_:
 			print("Unknown type: ", type)
 

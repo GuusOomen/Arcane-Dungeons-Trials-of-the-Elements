@@ -40,7 +40,7 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	healthbar.init_health(health)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if mode == Mode.attack && (not detect_char() || nav_agent.distance_to_target() >= RANGE + 100):
 		stop_attack()
 		mode = Mode.move

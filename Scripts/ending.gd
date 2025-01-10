@@ -22,7 +22,7 @@ func tween_bg_color(color: Color) -> void:
 func tween_vignette_color(color: Color) -> void:
 	vignette.color = color
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if is_pressable && Input.is_action_just_pressed("interact"):
 		var player := get_tree().get_first_node_in_group("Player")
 		player.backgroundsound.stop()

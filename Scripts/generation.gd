@@ -79,7 +79,7 @@ func generate_(prev_room: Node2D, prev_teleporter: Area2D, prev_room_scene: Pack
 	room.process_mode = PROCESS_MODE_DISABLED
 	room.global_position = Vector2(10000.0, 0.0)
 	add_child(room)
-	var teleporter: Area2D
+	var teleporter: Area2D = null
 	for child in room.get_children():
 		if child.is_in_group("Teleporter"):
 			if null == teleporter:
@@ -95,7 +95,7 @@ func generate_(prev_room: Node2D, prev_teleporter: Area2D, prev_room_scene: Pack
 func generate() -> void:
 	var room: Node2D = starting_room.instantiate()
 	add_child(room)
-	var path: int
+	var path: int = 0
 	var children := room.get_children()
 	children.shuffle()
 	for child in children:

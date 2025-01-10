@@ -41,7 +41,9 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if enemy_count == 0:
 		wave += 1
-		var wave_node = get_node("Wave{0}".format([wave]))
+		var wave_node = null
+		if has_node("Wave{0}".format([wave])):
+			wave_node = get_node("Wave{0}".format([wave]))
 		if wave_node == null:
 			enemy_count = -1
 			return

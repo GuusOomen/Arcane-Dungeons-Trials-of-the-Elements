@@ -14,7 +14,7 @@ var slow = false
 func _ready() -> void:
 	$AnimatedSprite2D.rotation = atan2(direction.y, direction.x)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	velocity = speed * direction
 	move_and_slide()
 	speed *= 1.01

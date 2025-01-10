@@ -15,7 +15,7 @@ func _on_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		is_pressable = false
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if is_pressable && Input.is_action_just_pressed("interact") && $Sprite2D.visible:
 		for projectile: CharacterBody2D in get_tree().get_nodes_in_group("Projectile"):
 			projectile.call_deferred("queue_free")
