@@ -49,7 +49,6 @@ func generate_(prev_room: Node2D, prev_teleporter: Area2D, prev_room_scene: Pack
 						if null != special_rooms[path]:
 							room_scene = special_rooms[path]
 							special_rooms[path] = null
-							has_special = true
 							break
 					else:
 						break
@@ -61,6 +60,7 @@ func generate_(prev_room: Node2D, prev_teleporter: Area2D, prev_room_scene: Pack
 					if null != special_rooms[path]:
 						room_scene = special_rooms[path]
 						special_rooms[path] = null
+						has_special = true
 						break
 					path += 1
 				if null == room_scene:
